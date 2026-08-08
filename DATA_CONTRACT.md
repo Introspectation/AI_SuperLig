@@ -19,6 +19,8 @@ of duplicate keys and non-played/administrative results.
 | home_goals | REQUIRED | integer | FTHG | Non-negative full-time goals. |
 | away_goals | REQUIRED | integer | FTAG | Non-negative full-time goals. |
 | result | REQUIRED | enum H/D/A | FTR | Must agree with full-time goals. |
+| match_status | REQUIRED | enum | curation/default | played, not_played_forfeit, or abandoned_forfeit. |
+| model_eligible | REQUIRED | boolean | derived from match_status | False for every reviewed administrative result. |
 | home_ht_goals | OPTIONAL | nullable integer | HTHG | Overall 99.00%; weakest season 91.52%. |
 | away_ht_goals | OPTIONAL | nullable integer | HTAG | Overall 99.00%; weakest season 91.52%. |
 | home_shots | OPTIONAL | nullable integer | HS | Overall 99.00%; weakest season 91.52%. |
@@ -42,6 +44,9 @@ auditability. A collision or duplicate natural key is a hard failure.
 Optional match statistics are historical outcomes, not pre-match features.
 The leakage contract forbids using a match's own optional statistics to
 predict that match.
+`match_status=played` is assigned only after the exact reviewed override set
+matches the detected administrative-result set. Every override sets
+`model_eligible=false`; raw source scores are retained for lineage.
 
 ## Fields rejected from the MVP match table
 
@@ -50,8 +55,6 @@ predict that match.
 - all 1X2, over/under, and Asian-handicap odds: market data is isolated below.
 - bookmaker counts, maxima, and exchange fields: not needed for the first
   closing-probability benchmark.
-- `match_status`: the source has no explicit played/awarded/abandoned field.
-  The audit flags 31 candidates, but Phase 0 will not invent status values.
 - rolling form, standings, Elo, attack/defence strength, and every other
   pre-match feature: deferred to a later phase.
 
@@ -84,9 +87,9 @@ one homogeneous series without stratification.
 
 ## Team aliases
 
-`reports/team_aliases.csv` contains proposals only. High-confidence mappings
-still require one human sign-off before canonical materialization. Review-level
-mappings are never applied automatically. Raw names remain available for lineage.
+`reports/team_aliases.csv` contains seven source-backed mappings approved for
+future canonical materialization. They are never written back to raw CSVs, and
+the original source names remain available for lineage.
 
 ## Hard validation rules
 
@@ -94,5 +97,6 @@ mappings are never applied automatically. Raw names remain available for lineage
 - result agrees with full-time goals; home and away teams differ;
 - natural match keys and `match_id` values are unique;
 - raw checksums and exact ordered schemas match their locks;
-- non-played/administrative candidates require explicit disposition;
+- all 31 reviewed administrative results set `model_eligible=false`;
+- review config must match the detected candidate set exactly;
 - market rows never enter a predictive feature dataset.

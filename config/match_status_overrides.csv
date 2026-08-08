@@ -1,0 +1,32 @@
+season,date,home_team,away_team,match_status,model_eligible,decision,evidence_id
+2022-23,25/02/2023,Umraniyespor,Gaziantep,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,05/03/2023,Ad. Demirspor,Hatayspor,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,05/03/2023,Gaziantep,Galatasaray,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,12/03/2023,Hatayspor,Konyaspor,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,19/03/2023,Gaziantep,Trabzonspor,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,19/03/2023,Kayserispor,Hatayspor,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,02/04/2023,Gaziantep,Kasimpasa,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,02/04/2023,Hatayspor,Sivasspor,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,09/04/2023,Ad. Demirspor,Gaziantep,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,09/04/2023,Alanyaspor,Hatayspor,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,16/04/2023,Gaziantep,Konyaspor,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,16/04/2023,Hatayspor,Karagumruk,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,19/04/2023,Besiktas,Hatayspor,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,23/04/2023,Gaziantep,Alanyaspor,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,23/04/2023,Hatayspor,Ankaragucu,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,30/04/2023,Buyuksehyr,Hatayspor,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,30/04/2023,Kayserispor,Gaziantep,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,07/05/2023,Gaziantep,Karagumruk,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,07/05/2023,Hatayspor,Istanbulspor,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,17/05/2023,Besiktas,Gaziantep,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,17/05/2023,Giresunspor,Hatayspor,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,21/05/2023,Gaziantep,Giresunspor,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,21/05/2023,Hatayspor,Fenerbahce,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,30/05/2023,Buyuksehyr,Gaziantep,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,30/05/2023,Hatayspor,Umraniyespor,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,03/06/2023,Antalyaspor,Hatayspor,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,03/06/2023,Gaziantep,Istanbulspor,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,07/06/2023,Fenerbahce,Gaziantep,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2022-23,07/06/2023,Hatayspor,Galatasaray,not_played_forfeit,false,exclude_from_played_match_models,TFF_2023_WITHDRAWALS
+2023-24,19/12/2023,Istanbulspor,Trabzonspor,abandoned_forfeit,false,exclude_from_played_match_models,TFF_2023_ISTANBULSPOR_PFDK
+2024-25,09/02/2025,Galatasaray,Ad. Demirspor,abandoned_forfeit,false,exclude_from_played_match_models,TFF_2025_ADANA_PFDK

@@ -2,18 +2,18 @@
 
 ## Answer first
 
-**Verdict: GO-WITH-CONSTRAINTS for proceeding to a score-only Dixon-Coles phase.**
+**Verdict: GO for proceeding to a score-only baseline and Dixon-Coles phase.**
 No model is implemented in this phase.
 
 The nine Football-Data snapshots contain 3,088 rows. Date, teams,
 full-time goals, and FTR are complete and internally consistent enough for a
 score-based MVP. The raw schemas are not concat-compatible: they range from 61
 to 131 columns and change odds providers and closing-market coverage over time.
-The principal blocker to blind modeling is 31 strong heuristic but
-unconfirmed non-played/administrative-result candidates: 29 in 2022-23 and one in each of
+The audit detected 31 strong non-played/administrative-result
+candidates: 29 in 2022-23 and one in each of
 2023-24 and 2024-25. They have 3-0/0-3 scores while every audited match-stat
-field is missing. They require human confirmation and an explicit include/exclude
-decision before model fitting.
+field is missing. Phase 0.1 verified all 31 against federation decisions; every
+row remains in lineage but is explicitly ineligible for played-match model fitting.
 
 Reliable MVP columns are `Date`, `HomeTeam`, `AwayTeam`, `FTHG`, `FTAG`, and
 `FTR`. Half-time and match-stat fields are retained as optional historical
@@ -32,14 +32,15 @@ Source page: [https://www.football-data.co.uk/turkeym.php](https://www.football-
 Field definitions: [https://www.football-data.co.uk/notes.txt](https://www.football-data.co.uk/notes.txt).
 Snapshot date: 2026-08-08.
 
-The first local request was rejected because The local network request returned an access-blocked HTML page instead of CSV. Header validation rejected it and no raw file was promoted.
+The first local request was rejected:
+The local network request returned an access-blocked HTML page instead of CSV. Header validation rejected it and no raw file was promoted.
 No mirror or invented substitute entered the audit. The successful acquisition
 used direct HTTPS from a GitHub-hosted Ubuntu Actions runner in [this workflow run](https://github.com/Introspectation/AI_SuperLig/actions/runs/31259394478).
 Artifact digest: `sha256:dccda407ebb1cb21d211e3a66065ae3acca3f2b8964031027e0b4535c3619e77`. Nine expected season files; artifact-to-workspace SHA-256 equality; per-file hashes locked in raw_sources.csv.
 The per-file URLs, byte sizes, and hashes are reproduced in
 `raw_file_manifest.csv`.
 
-| Season | Rows | Cols | Teams | Exact dupes | Match dupes | Date fails | Invalid team rows | Score complete | All stats complete | Closing avg complete | Non-played candidates |
+| Season | Rows | Cols | Teams | Exact dupes | Match dupes | Date fails | Invalid team rows | Score complete | All stats complete | Closing avg complete | Reviewed exclusions |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 2017-18 | 306 | 64 | 18 | 0 | 0 | 0 | 0 | 100.00% | 100.00% | absent | 0 |
 | 2018-19 | 306 | 61 | 18 | 0 | 0 | 0 | 0 | 100.00% | 99.67% | absent | 0 |
@@ -162,64 +163,60 @@ transliterations, abbreviations, truncations, and historical labels.
 
 | Raw name | Proposed canonical | Confidence | Status | Seasons | Reason |
 | --- | --- | --- | --- | --- | --- |
-| Ad. Demirspor | Adana Demirspor | high | proposed_not_applied | 2021-22\|2022-23\|2023-24\|2024-25 | Unambiguous source abbreviation in the audited seasons. |
-| Buyuksehyr | Istanbul Basaksehir | high | proposed_not_applied | 2017-18\|2018-19\|2019-20\|2020-21\|2021-22\|2022-23\|2023-24\|2024-25\|2025-26 | Stable truncated/transliterated source label across all nine seasons. |
-| Goztep | Goztepe | high | proposed_not_applied | 2017-18\|2018-19\|2019-20\|2020-21\|2021-22\|2024-25\|2025-26 | Stable one-character truncation of the club name. |
-| Karagumruk | Fatih Karagumruk | high | proposed_not_applied | 2020-21\|2021-22\|2022-23\|2023-24\|2025-26 | Unambiguous shortened club name in this league and time range. |
-| Akhisar Belediyespor | Akhisarspor | high | proposed_not_applied | 2017-18\|2018-19 | Historical club-name change; no competing Akhisar entity appears. |
-| Erzurum BB | Erzurumspor FK | review | human_review_required | 2018-19\|2020-21 | Likely historical abbreviation/name change; old Erzurum entities make automatic merging unsafe. |
-| Gaziantep | Gaziantep FK | review | human_review_required | 2019-20\|2020-21\|2021-22\|2022-23\|2023-24\|2024-25\|2025-26 | Likely current club, but the city has had distinct historical clubs. |
+| Ad. Demirspor | Adana Demirspor | high | approved_for_canonicalization | 2021-22\|2022-23\|2023-24\|2024-25 | Same date opponent and 0-1 score identify the source abbreviation. |
+| Buyuksehyr | Istanbul Basaksehir | high | approved_for_canonicalization | 2017-18\|2018-19\|2019-20\|2020-21\|2021-22\|2022-23\|2023-24\|2024-25\|2025-26 | Same date opponent and 2-0 score identify Medipol Basaksehir FK. |
+| Goztep | Goztepe | high | approved_for_canonicalization | 2017-18\|2018-19\|2019-20\|2020-21\|2021-22\|2024-25\|2025-26 | Same date opponent and 1-3 score identify Goztepe AS. |
+| Karagumruk | Fatih Karagumruk | high | approved_for_canonicalization | 2020-21\|2021-22\|2022-23\|2023-24\|2025-26 | Same date opponent and 3-0 score identify Fatih Karagumruk AS. |
+| Akhisar Belediyespor | Akhisarspor | high | approved_for_canonicalization | 2017-18\|2018-19 | Same date opponent and 1-2 score identify Akhisarspor. |
+| Erzurum BB | Erzurumspor FK | high | approved_for_canonicalization | 2018-19\|2020-21 | Fixture identity plus the club statement confirm the later name change. |
+| Gaziantep | Gaziantep FK | high | approved_for_canonicalization | 2019-20\|2020-21\|2021-22\|2022-23\|2023-24\|2024-25\|2025-26 | Same date opponent and score distinguish this club from historical Gaziantepspor. |
 
-No alias is applied automatically in Phase 0. In particular, review-level rows
-remain separate until a human decision is recorded.
+All seven mappings are source-verified and approved for future canonicalization.
+They are not applied to immutable raw files; raw labels remain available for lineage.
 
 ## Data-quality risks and impact
 
 | Severity | Finding | Evidence | Modeling impact | Required action |
 | --- | --- | --- | --- | --- |
-| High | Likely non-played/administrative results | 31 rows; 3-0/0-3 with all audited stats missing | Artificial goals bias attack/defence strength and score tails. | Human-confirm and exclude or explicitly model status before fitting. |
+| High | Administrative results | 31 source-confirmed rows; all set model_eligible=false | Including awarded goals would bias attack/defence strength and score tails. | Keep status overrides and exact-set regression tests active. |
 | High | Post-match leakage risk | Goals, shots, cards, corners, fouls, and closing odds coexist in raw rows. | Naive feature selection can produce impossible performance. | Enforce LEAKAGE_CONTRACT.md and walk-forward tests. |
 | Medium | Odds regime drift | Closing average absent in first two seasons; bookmaker roster changes later. | A single benchmark series would mix unlike sources. | Label source/regime and report benchmark coverage separately. |
 | Medium | Missing kickoff time | `Time` absent in 2017-18 and 2018-19. | Same-day strict ordering is unknowable. | Treat same-date matches as simultaneous for leakage boundaries. |
-| Medium | Unapproved team aliases | 7 proposed/review mappings. | Bad merges split or combine team histories. | Approve only high-confidence mappings; retain raw lineage. |
+| Medium | Canonical team-name drift | 7 source-backed mappings approved for canonicalization. | Bad merges split or combine team histories. | Apply only the reviewed map and retain raw lineage. |
 | Low | Encoding/header variation | 2018-19 begins with UTF-8 BOM. | Over-strict loaders can reject a valid season. | Decode BOM for parsing; never rewrite raw bytes. |
 | Low | Isolated red-card missing value | 2018-19 Bursaspor-Alanyaspor has null AR; all other audited stats are present. | Does not affect score-only Dixon-Coles; unsafe to impute silently. | Keep AR nullable and preserve the source null. |
 
 ## Recommended canonical schema
 
 REQUIRED: `match_id`, `season`, `date`, `home_team`, `away_team`,
-`home_goals`, `away_goals`, `result`.
+`home_goals`, `away_goals`, `result`, `match_status`, `model_eligible`.
 
 OPTIONAL: `kickoff_time`, both half-time goal fields, and all audited shots,
 shots-on-target, fouls, corners, yellow-card, and red-card fields. They are
 historical outcomes, not current-match features.
 
 REJECTED FROM MVP: `Div`, derivable `HTR`, all odds in the match table,
-over/under and handicap markets, bookmaker maxima/counts, unverified
-`match_status`, and all rolling/pre-match features. Full types and validation
+over/under and handicap markets, bookmaker maxima/counts, and all
+rolling/pre-match features. Full types and validation
 rules are in `DATA_CONTRACT.md`.
 
 ## Explicit unresolved questions
 
-1. Confirm the disposition of all 31 rows in
-   `suspected_non_played_matches.csv` before any model is fitted.
-2. Approve or reject each team alias proposal, especially `Erzurum BB` and
-   `Gaziantep`.
-3. Decide whether the closing-market benchmark starts in 2019-20 or uses
+1. Decide whether the closing-market benchmark starts in 2019-20 or uses
    separately labelled Pinnacle closing odds for 2017-18 and 2018-19.
-4. Confirm the conservative same-calendar-date ordering rule for seasons without
+2. Confirm the conservative same-calendar-date ordering rule for seasons without
    kickoff times.
-5. Define how newly promoted 2026-27 teams not present in the audit receive
+3. Define how newly promoted 2026-27 teams not present in the audit receive
    canonical identities and cold-start handling in a later phase.
 
 ## Final decision
 
-**GO-WITH-CONSTRAINTS.** The score-and-result backbone is viable for the next
-Dixon-Coles iteration, conditional on resolving non-played candidates and team
-aliases. Match statistics are sufficiently complete as optional outcomes but are
-not necessary for Dixon-Coles. Market odds are useful as an external benchmark
-from 2019-20 onward and must stay logically isolated. Do not proceed to modeling
-until the two human-review tables have explicit dispositions.
+**GO.** The score-and-result backbone is viable for the next score-only baseline
+and Dixon-Coles iteration. Administrative results and team aliases now have
+explicit source-backed decisions. Match statistics are sufficiently complete
+as optional outcomes but are not necessary for Dixon-Coles. Market odds are
+useful as an external benchmark
+from 2019-20 onward and must stay logically isolated.
 
 ## Exact columns by season
 

@@ -1,8 +1,8 @@
-source_name,proposed_canonical_name,confidence,review_status,reason,seasons_observed
-Ad. Demirspor,Adana Demirspor,high,proposed_not_applied,Unambiguous source abbreviation in the audited seasons.,2021-22|2022-23|2023-24|2024-25
-Buyuksehyr,Istanbul Basaksehir,high,proposed_not_applied,Stable truncated/transliterated source label across all nine seasons.,2017-18|2018-19|2019-20|2020-21|2021-22|2022-23|2023-24|2024-25|2025-26
-Goztep,Goztepe,high,proposed_not_applied,Stable one-character truncation of the club name.,2017-18|2018-19|2019-20|2020-21|2021-22|2024-25|2025-26
-Karagumruk,Fatih Karagumruk,high,proposed_not_applied,Unambiguous shortened club name in this league and time range.,2020-21|2021-22|2022-23|2023-24|2025-26
-Akhisar Belediyespor,Akhisarspor,high,proposed_not_applied,Historical club-name change; no competing Akhisar entity appears.,2017-18|2018-19
-Erzurum BB,Erzurumspor FK,review,human_review_required,Likely historical abbreviation/name change; old Erzurum entities make automatic merging unsafe.,2018-19|2020-21
-Gaziantep,Gaziantep FK,review,human_review_required,"Likely current club, but the city has had distinct historical clubs.",2019-20|2020-21|2021-22|2022-23|2023-24|2024-25|2025-26
+source_name,proposed_canonical_name,confidence,review_status,evidence_ids,reason,seasons_observed
+Ad. Demirspor,Adana Demirspor,high,approved_for_canonicalization,TFF_2021_ADANA_MATCH,Same date opponent and 0-1 score identify the source abbreviation.,2021-22|2022-23|2023-24|2024-25
+Buyuksehyr,Istanbul Basaksehir,high,approved_for_canonicalization,TFF_2018_WEEK1,Same date opponent and 2-0 score identify Medipol Basaksehir FK.,2017-18|2018-19|2019-20|2020-21|2021-22|2022-23|2023-24|2024-25|2025-26
+Goztep,Goztepe,high,approved_for_canonicalization,TFF_2018_WEEK1,Same date opponent and 1-3 score identify Goztepe AS.,2017-18|2018-19|2019-20|2020-21|2021-22|2024-25|2025-26
+Karagumruk,Fatih Karagumruk,high,approved_for_canonicalization,TFF_2020_WEEK1,Same date opponent and 3-0 score identify Fatih Karagumruk AS.,2020-21|2021-22|2022-23|2023-24|2025-26
+Akhisar Belediyespor,Akhisarspor,high,approved_for_canonicalization,TFF_2018_WEEK1,Same date opponent and 1-2 score identify Akhisarspor.,2017-18|2018-19
+Erzurum BB,Erzurumspor FK,high,approved_for_canonicalization,TFF_2018_WEEK1|TFF_2020_WEEK1|ERZURUM_2025_RENAME,Fixture identity plus the club statement confirm the later name change.,2018-19|2020-21
+Gaziantep,Gaziantep FK,high,approved_for_canonicalization,TFF_2019_WEEK1|TFF_2020_WEEK1,Same date opponent and score distinguish this club from historical Gaziantepspor.,2019-20|2020-21|2021-22|2022-23|2023-24|2024-25|2025-26

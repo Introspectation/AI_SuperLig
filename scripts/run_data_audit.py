@@ -24,6 +24,9 @@ SOURCE_CATALOG = ROOT / "config" / "raw_sources.csv"
 SCHEMA_LOCK = ROOT / "config" / "expected_schemas.json"
 DATA_CONTRACT = ROOT / "DATA_CONTRACT.md"
 ACQUISITION_PROVENANCE = ROOT / "config" / "acquisition_provenance.json"
+MATCH_STATUS_OVERRIDES = ROOT / "config" / "match_status_overrides.csv"
+TEAM_ALIAS_DECISIONS = ROOT / "config" / "team_aliases.csv"
+REVIEW_SOURCE_CATALOG = ROOT / "config" / "review_sources.csv"
 
 SEASONS = [
     "2017-18",
@@ -126,60 +129,6 @@ BOOKMAKER_NAMES = {
     "WH": "William Hill",
 }
 
-# Proposals only. Nothing in Phase 0 applies these mappings to raw data.
-ALIAS_PROPOSALS = [
-    {
-        "source_name": "Ad. Demirspor",
-        "proposed_canonical_name": "Adana Demirspor",
-        "confidence": "high",
-        "review_status": "proposed_not_applied",
-        "reason": "Unambiguous source abbreviation in the audited seasons.",
-    },
-    {
-        "source_name": "Buyuksehyr",
-        "proposed_canonical_name": "Istanbul Basaksehir",
-        "confidence": "high",
-        "review_status": "proposed_not_applied",
-        "reason": "Stable truncated/transliterated source label across all nine seasons.",
-    },
-    {
-        "source_name": "Goztep",
-        "proposed_canonical_name": "Goztepe",
-        "confidence": "high",
-        "review_status": "proposed_not_applied",
-        "reason": "Stable one-character truncation of the club name.",
-    },
-    {
-        "source_name": "Karagumruk",
-        "proposed_canonical_name": "Fatih Karagumruk",
-        "confidence": "high",
-        "review_status": "proposed_not_applied",
-        "reason": "Unambiguous shortened club name in this league and time range.",
-    },
-    {
-        "source_name": "Akhisar Belediyespor",
-        "proposed_canonical_name": "Akhisarspor",
-        "confidence": "high",
-        "review_status": "proposed_not_applied",
-        "reason": "Historical club-name change; no competing Akhisar entity appears.",
-    },
-    {
-        "source_name": "Erzurum BB",
-        "proposed_canonical_name": "Erzurumspor FK",
-        "confidence": "review",
-        "review_status": "human_review_required",
-        "reason": "Likely historical abbreviation/name change; old Erzurum entities make automatic merging unsafe.",
-    },
-    {
-        "source_name": "Gaziantep",
-        "proposed_canonical_name": "Gaziantep FK",
-        "confidence": "review",
-        "review_status": "human_review_required",
-        "reason": "Likely current club, but the city has had distinct historical clubs.",
-    },
-]
-
-
 class AuditError(RuntimeError):
     """A loud, actionable audit failure."""
 
@@ -244,6 +193,79 @@ def load_source_catalog() -> pd.DataFrame:
     if sources["season"].duplicated().any():
         raise AuditError("Source catalog contains duplicate seasons.")
     return sources
+
+
+def load_review_config() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    required_files = [REVIEW_SOURCE_CATALOG, MATCH_STATUS_OVERRIDES, TEAM_ALIAS_DECISIONS]
+    missing_files = [str(path) for path in required_files if not path.exists()]
+    if missing_files:
+        raise AuditError(f"Missing Phase 0.1 review config: {missing_files}")
+
+    review_sources = pd.read_csv(REVIEW_SOURCE_CATALOG, dtype="string")
+    match_decisions = pd.read_csv(MATCH_STATUS_OVERRIDES, dtype="string")
+    alias_decisions = pd.read_csv(TEAM_ALIAS_DECISIONS, dtype="string")
+
+    required_source_columns = {"evidence_id", "authority", "title", "url", "accessed_date"}
+    required_match_columns = {
+        "season",
+        "date",
+        "home_team",
+        "away_team",
+        "match_status",
+        "model_eligible",
+        "decision",
+        "evidence_id",
+    }
+    required_alias_columns = {
+        "source_name",
+        "canonical_name",
+        "confidence",
+        "decision",
+        "evidence_ids",
+        "reason",
+    }
+    for label, frame, required in [
+        ("review sources", review_sources, required_source_columns),
+        ("match status overrides", match_decisions, required_match_columns),
+        ("team aliases", alias_decisions, required_alias_columns),
+    ]:
+        missing = required.difference(frame.columns)
+        if missing:
+            raise AuditError(f"{label} config is missing columns: {sorted(missing)}")
+        if frame[list(required)].isna().any(axis=None):
+            raise AuditError(f"{label} config contains null required values")
+
+    if review_sources["evidence_id"].duplicated().any():
+        raise AuditError("Review source catalog contains duplicate evidence_id values")
+
+    match_key = ["season", "date", "home_team", "away_team"]
+    if match_decisions.duplicated(match_key).any():
+        raise AuditError("Match status overrides contain duplicate natural keys")
+    allowed_statuses = {"not_played_forfeit", "abandoned_forfeit"}
+    unexpected_statuses = set(match_decisions["match_status"]) - allowed_statuses
+    if unexpected_statuses:
+        raise AuditError(f"Unexpected reviewed match statuses: {sorted(unexpected_statuses)}")
+    if set(match_decisions["model_eligible"]) != {"false"}:
+        raise AuditError("Every reviewed administrative result must set model_eligible=false")
+
+    if alias_decisions["source_name"].duplicated().any():
+        raise AuditError("Team alias decisions contain duplicate source names")
+    if set(alias_decisions["confidence"]) != {"high"}:
+        raise AuditError("Only high-confidence aliases may be approved")
+    if set(alias_decisions["decision"]) != {"approved_for_canonicalization"}:
+        raise AuditError("Every configured alias must have an explicit approval decision")
+
+    known_evidence = set(review_sources["evidence_id"])
+    used_evidence = set(match_decisions["evidence_id"])
+    for value in alias_decisions["evidence_ids"]:
+        used_evidence.update(str(value).split("|"))
+    unknown_evidence = used_evidence - known_evidence
+    if unknown_evidence:
+        raise AuditError(f"Review config references unknown evidence IDs: {sorted(unknown_evidence)}")
+
+    match_decisions = match_decisions.copy()
+    match_decisions["model_eligible"] = False
+    return review_sources, match_decisions, alias_decisions
 
 
 def validate_download_bytes(content_start: bytes, source_url: str) -> None:
@@ -612,8 +634,7 @@ def profile_season(
                     "away_goals": frame.at[index, "FTAG"],
                     "result": frame.at[index, "FTR"],
                     "reason": "3-0/0-3 score with every audited match-stat field missing",
-                    "confidence": "high_candidate_not_confirmed",
-                    "review_status": "human_review_required",
+                    "heuristic_confidence": "strong_candidate",
                 }
             )
 
@@ -777,13 +798,45 @@ def build_evidence(
         previous_columns = current
         previous_season = season
 
-    aliases: list[dict[str, Any]] = []
+    review_sources, match_decisions, alias_decisions = load_review_config()
     team_frame = pd.DataFrame(teams_rows)
-    for proposal in ALIAS_PROPOSALS:
-        source_name = proposal["source_name"]
-        seasons = team_frame.loc[team_frame["team"] == source_name, "season"].tolist()
-        if seasons:
-            aliases.append({**proposal, "seasons_observed": "|".join(seasons)})
+    observed_teams = set(team_frame["team"])
+    missing_alias_sources = set(alias_decisions["source_name"]) - observed_teams
+    if missing_alias_sources:
+        raise AuditError(
+            "Approved aliases do not occur in the audited source: "
+            f"{sorted(missing_alias_sources)}"
+        )
+
+    aliases = alias_decisions.rename(
+        columns={"canonical_name": "proposed_canonical_name", "decision": "review_status"}
+    ).copy()
+    aliases["seasons_observed"] = aliases["source_name"].map(
+        lambda source_name: "|".join(
+            team_frame.loc[team_frame["team"] == source_name, "season"].tolist()
+        )
+    )
+
+    suspected = pd.DataFrame(suspected_rows)
+    match_key = ["season", "date", "home_team", "away_team"]
+    detected_keys = set(map(tuple, suspected[match_key].itertuples(index=False, name=None)))
+    reviewed_keys = set(
+        map(tuple, match_decisions[match_key].itertuples(index=False, name=None))
+    )
+    if detected_keys != reviewed_keys:
+        missing_reviews = sorted(detected_keys - reviewed_keys)
+        unexpected_reviews = sorted(reviewed_keys - detected_keys)
+        raise AuditError(
+            "Phase 0.1 match decisions no longer match detected candidates. "
+            f"Missing reviews={missing_reviews}; unexpected reviews={unexpected_reviews}"
+        )
+    suspected = suspected.merge(
+        match_decisions,
+        on=match_key,
+        how="left",
+        validate="one_to_one",
+    )
+    suspected["review_status"] = "source_confirmed"
 
     return {
         "raw_file_manifest": manifest,
@@ -794,8 +847,9 @@ def build_evidence(
         "teams_by_season": team_frame,
         "odds_coverage_by_season": pd.DataFrame(odds_rows),
         "schema_changes": pd.DataFrame(schema_changes),
-        "team_aliases": pd.DataFrame(aliases),
-        "suspected_non_played_matches": pd.DataFrame(suspected_rows),
+        "team_aliases": aliases,
+        "review_sources": review_sources,
+        "suspected_non_played_matches": suspected,
     }
 
 
@@ -820,6 +874,20 @@ def generate_data_contract(evidence: dict[str, pd.DataFrame]) -> str:
         ["home_goals", "REQUIRED", "integer", "FTHG", "Non-negative full-time goals."],
         ["away_goals", "REQUIRED", "integer", "FTAG", "Non-negative full-time goals."],
         ["result", "REQUIRED", "enum H/D/A", "FTR", "Must agree with full-time goals."],
+        [
+            "match_status",
+            "REQUIRED",
+            "enum",
+            "curation/default",
+            "played, not_played_forfeit, or abandoned_forfeit.",
+        ],
+        [
+            "model_eligible",
+            "REQUIRED",
+            "boolean",
+            "derived from match_status",
+            "False for every reviewed administrative result.",
+        ],
     ]
     optional_fields = [
         ("home_ht_goals", "HTHG"),
@@ -871,6 +939,9 @@ def generate_data_contract(evidence: dict[str, pd.DataFrame]) -> str:
         "Optional match statistics are historical outcomes, not pre-match features.",
         "The leakage contract forbids using a match's own optional statistics to",
         "predict that match.",
+        "`match_status=played` is assigned only after the exact reviewed override set",
+        "matches the detected administrative-result set. Every override sets",
+        "`model_eligible=false`; raw source scores are retained for lineage.",
         "",
         "## Fields rejected from the MVP match table",
         "",
@@ -879,8 +950,6 @@ def generate_data_contract(evidence: dict[str, pd.DataFrame]) -> str:
         "- all 1X2, over/under, and Asian-handicap odds: market data is isolated below.",
         "- bookmaker counts, maxima, and exchange fields: not needed for the first",
         "  closing-probability benchmark.",
-        "- `match_status`: the source has no explicit played/awarded/abandoned field.",
-        f"  The audit flags {suspected_count} candidates, but Phase 0 will not invent status values.",
         "- rolling form, standings, Elo, attack/defence strength, and every other",
         "  pre-match feature: deferred to a later phase.",
         "",
@@ -916,9 +985,9 @@ def generate_data_contract(evidence: dict[str, pd.DataFrame]) -> str:
         "",
         "## Team aliases",
         "",
-        "`reports/team_aliases.csv` contains proposals only. High-confidence mappings",
-        "still require one human sign-off before canonical materialization. Review-level",
-        "mappings are never applied automatically. Raw names remain available for lineage.",
+        "`reports/team_aliases.csv` contains seven source-backed mappings approved for",
+        "future canonical materialization. They are never written back to raw CSVs, and",
+        "the original source names remain available for lineage.",
         "",
         "## Hard validation rules",
         "",
@@ -926,7 +995,8 @@ def generate_data_contract(evidence: dict[str, pd.DataFrame]) -> str:
         "- result agrees with full-time goals; home and away teams differ;",
         "- natural match keys and `match_id` values are unique;",
         "- raw checksums and exact ordered schemas match their locks;",
-        "- non-played/administrative candidates require explicit disposition;",
+        f"- all {suspected_count} reviewed administrative results set `model_eligible=false`;",
+        "- review config must match the detected candidate set exactly;",
         "- market rows never enter a predictive feature dataset.",
     ]
     return "\n".join(lines)
@@ -1052,18 +1122,18 @@ def generate_audit_report(
         "",
         "## Answer first",
         "",
-        "**Verdict: GO-WITH-CONSTRAINTS for proceeding to a score-only Dixon-Coles phase.**",
+        "**Verdict: GO for proceeding to a score-only baseline and Dixon-Coles phase.**",
         "No model is implemented in this phase.",
         "",
         f"The nine Football-Data snapshots contain {total_rows:,} rows. Date, teams,",
         "full-time goals, and FTR are complete and internally consistent enough for a",
         "score-based MVP. The raw schemas are not concat-compatible: they range from 61",
         "to 131 columns and change odds providers and closing-market coverage over time.",
-        f"The principal blocker to blind modeling is {total_suspected} strong heuristic but",
-        "unconfirmed non-played/administrative-result candidates: 29 in 2022-23 and one in each of",
+        f"The audit detected {total_suspected} strong non-played/administrative-result",
+        "candidates: 29 in 2022-23 and one in each of",
         "2023-24 and 2024-25. They have 3-0/0-3 scores while every audited match-stat",
-        "field is missing. They require human confirmation and an explicit include/exclude",
-        "decision before model fitting.",
+        "field is missing. Phase 0.1 verified all 31 against federation decisions; every",
+        "row remains in lineage but is explicitly ineligible for played-match model fitting.",
         "",
         "Reliable MVP columns are `Date`, `HomeTeam`, `AwayTeam`, `FTHG`, `FTAG`, and",
         "`FTR`. Half-time and match-stat fields are retained as optional historical",
@@ -1082,7 +1152,8 @@ def generate_audit_report(
         f"Field definitions: [{provenance['source_notes']}]({provenance['source_notes']}).",
         f"Snapshot date: {provenance['snapshot_date']}.",
         "",
-        f"The first local request was rejected because {provenance['local_attempt']['reason']}",
+        "The first local request was rejected:",
+        provenance["local_attempt"]["reason"],
         "No mirror or invented substitute entered the audit. The successful acquisition",
         f"used {acquisition['method']} in [this workflow run]({acquisition['run_url']}).",
         f"Artifact digest: `{acquisition['artifact_digest']}`. {acquisition['verification']}",
@@ -1102,7 +1173,7 @@ def generate_audit_report(
                 "Score complete",
                 "All stats complete",
                 "Closing avg complete",
-                "Non-played candidates",
+                "Reviewed exclusions",
             ],
             season_rows,
         ),
@@ -1195,8 +1266,8 @@ def generate_audit_report(
             alias_rows,
         ),
         "",
-        "No alias is applied automatically in Phase 0. In particular, review-level rows",
-        "remain separate until a human decision is recorded.",
+        "All seven mappings are source-verified and approved for future canonicalization.",
+        "They are not applied to immutable raw files; raw labels remain available for lineage.",
         "",
         "## Data-quality risks and impact",
         "",
@@ -1205,10 +1276,10 @@ def generate_audit_report(
             [
                 [
                     "High",
-                    "Likely non-played/administrative results",
-                    f"{total_suspected} rows; 3-0/0-3 with all audited stats missing",
-                    "Artificial goals bias attack/defence strength and score tails.",
-                    "Human-confirm and exclude or explicitly model status before fitting.",
+                    "Administrative results",
+                    f"{total_suspected} source-confirmed rows; all set model_eligible=false",
+                    "Including awarded goals would bias attack/defence strength and score tails.",
+                    "Keep status overrides and exact-set regression tests active.",
                 ],
                 [
                     "High",
@@ -1233,10 +1304,10 @@ def generate_audit_report(
                 ],
                 [
                     "Medium",
-                    "Unapproved team aliases",
-                    f"{len(aliases)} proposed/review mappings.",
+                    "Canonical team-name drift",
+                    f"{len(aliases)} source-backed mappings approved for canonicalization.",
                     "Bad merges split or combine team histories.",
-                    "Approve only high-confidence mappings; retain raw lineage.",
+                    "Apply only the reviewed map and retain raw lineage.",
                 ],
                 [
                     "Low",
@@ -1258,38 +1329,34 @@ def generate_audit_report(
         "## Recommended canonical schema",
         "",
         "REQUIRED: `match_id`, `season`, `date`, `home_team`, `away_team`,",
-        "`home_goals`, `away_goals`, `result`.",
+        "`home_goals`, `away_goals`, `result`, `match_status`, `model_eligible`.",
         "",
         "OPTIONAL: `kickoff_time`, both half-time goal fields, and all audited shots,",
         "shots-on-target, fouls, corners, yellow-card, and red-card fields. They are",
         "historical outcomes, not current-match features.",
         "",
         "REJECTED FROM MVP: `Div`, derivable `HTR`, all odds in the match table,",
-        "over/under and handicap markets, bookmaker maxima/counts, unverified",
-        "`match_status`, and all rolling/pre-match features. Full types and validation",
+        "over/under and handicap markets, bookmaker maxima/counts, and all",
+        "rolling/pre-match features. Full types and validation",
         "rules are in `DATA_CONTRACT.md`.",
         "",
         "## Explicit unresolved questions",
         "",
-        f"1. Confirm the disposition of all {total_suspected} rows in",
-        "   `suspected_non_played_matches.csv` before any model is fitted.",
-        "2. Approve or reject each team alias proposal, especially `Erzurum BB` and",
-        "   `Gaziantep`.",
-        "3. Decide whether the closing-market benchmark starts in 2019-20 or uses",
+        "1. Decide whether the closing-market benchmark starts in 2019-20 or uses",
         "   separately labelled Pinnacle closing odds for 2017-18 and 2018-19.",
-        "4. Confirm the conservative same-calendar-date ordering rule for seasons without",
+        "2. Confirm the conservative same-calendar-date ordering rule for seasons without",
         "   kickoff times.",
-        "5. Define how newly promoted 2026-27 teams not present in the audit receive",
+        "3. Define how newly promoted 2026-27 teams not present in the audit receive",
         "   canonical identities and cold-start handling in a later phase.",
         "",
         "## Final decision",
         "",
-        "**GO-WITH-CONSTRAINTS.** The score-and-result backbone is viable for the next",
-        "Dixon-Coles iteration, conditional on resolving non-played candidates and team",
-        "aliases. Match statistics are sufficiently complete as optional outcomes but are",
-        "not necessary for Dixon-Coles. Market odds are useful as an external benchmark",
-        "from 2019-20 onward and must stay logically isolated. Do not proceed to modeling",
-        "until the two human-review tables have explicit dispositions.",
+        "**GO.** The score-and-result backbone is viable for the next score-only baseline",
+        "and Dixon-Coles iteration. Administrative results and team aliases now have",
+        "explicit source-backed decisions. Match statistics are sufficiently complete",
+        "as optional outcomes but are not necessary for Dixon-Coles. Market odds are",
+        "useful as an external benchmark",
+        "from 2019-20 onward and must stay logically isolated.",
         "",
         "## Exact columns by season",
     ]
@@ -1309,6 +1376,120 @@ def generate_audit_report(
     return "\n".join(lines)
 
 
+def generate_review_report(evidence: dict[str, pd.DataFrame]) -> str:
+    reviewed = evidence["suspected_non_played_matches"]
+    aliases = evidence["team_aliases"]
+    sources = evidence["review_sources"]
+
+    status_rows = []
+    for status, selected in reviewed.groupby("match_status", sort=True):
+        status_rows.append(
+            [
+                status,
+                len(selected),
+                "false" if not selected["model_eligible"].any() else "MIXED",
+                "|".join(sorted(set(selected["evidence_id"]))),
+            ]
+        )
+
+    season_rows = []
+    for season, selected in reviewed.groupby("season", sort=True):
+        season_rows.append(
+            [
+                season,
+                len(selected),
+                int((selected["match_status"] == "not_played_forfeit").sum()),
+                int((selected["match_status"] == "abandoned_forfeit").sum()),
+            ]
+        )
+
+    alias_rows = [
+        [
+            row.source_name,
+            row.proposed_canonical_name,
+            row.confidence,
+            row.review_status,
+            row.evidence_ids,
+        ]
+        for row in aliases.itertuples()
+    ]
+    source_lines = [
+        f"- [{row.evidence_id}: {row.title}]({row.url}); {row.authority}; accessed {row.accessed_date}."
+        for row in sources.itertuples()
+    ]
+
+    lines = [
+        "# Phase 0.1 administrative-result and team-identity review",
+        "",
+        "## Technical summary",
+        "",
+        "**All 31 heuristic match candidates are source-confirmed administrative",
+        "results and are excluded from future played-match model fitting.** Twenty-nine",
+        "are unplayed 2022-23 forfeits after Hatayspor and Gaziantep withdrew; two are",
+        "started-but-abandoned matches later registered as 3-0 forfeits. Raw rows remain",
+        "unchanged for lineage.",
+        "",
+        "**All seven team aliases are approved for canonicalization.** Exact date,",
+        "opponent, and score joins to TFF fixtures resolve the provider abbreviations;",
+        "the Erzurum mapping also has a club-issued name-change statement. No alias is",
+        "written back to raw CSVs.",
+        "",
+        "## Every administrative result is ineligible for played-match fitting",
+        "",
+        md_table(["Reviewed status", "Rows", "Model eligible", "Evidence"], status_rows),
+        "",
+        md_table(
+            ["Season", "Reviewed rows", "Not played forfeits", "Abandoned forfeits"],
+            season_rows,
+        ),
+        "",
+        "The machine-readable row decisions are in",
+        "`config/match_status_overrides.csv`; the regenerated",
+        "`reports/suspected_non_played_matches.csv` includes the heuristic evidence,",
+        "reviewed status, eligibility flag, decision, and evidence ID.",
+        "",
+        "## Seven aliases are safe at this project scope",
+        "",
+        md_table(
+            ["Raw label", "Canonical name", "Confidence", "Decision", "Evidence"],
+            alias_rows,
+        ),
+        "",
+        "These decisions are scoped to the audited Turkish top-flight seasons. They do",
+        "not authorize fuzzy matching of unseen clubs, and they do not merge historical",
+        "clubs merely because they share a city name.",
+        "",
+        "## Method and robustness",
+        "",
+        "- Candidate detection remained independent of the review config: exact 3-0/0-3",
+        "  scores with every audited match-stat field missing.",
+        "- The audit now fails if the detected candidate key set differs by even one row",
+        "  from the reviewed override key set.",
+        "- The combined 2022-23 TFF decisions identify Hatayspor and Gaziantep as the",
+        "  withdrawn clubs and register their remaining fixtures as 3-0 forfeits.",
+        "- The two abandoned matches have match-specific PFDK decisions.",
+        "- Alias evidence uses exact fixture identity, not string similarity alone.",
+        "",
+        "## Limitations and remaining questions",
+        "",
+        "Ordinary rows do not receive match-by-match external verification; their",
+        "`played` status is the canonical default after the reviewed exceptions are",
+        "removed. The market benchmark regime and conservative same-day ordering rule",
+        "remain separate design decisions and do not block score-only baselines.",
+        "",
+        "## Recommended next step",
+        "",
+        "Proceed to chronological evaluation scaffolding and naive score baselines. The",
+        "31 reviewed rows must stay in lineage but must fail any model-population test",
+        "that expects `model_eligible=true`.",
+        "",
+        "## Evidence sources",
+        "",
+        *source_lines,
+    ]
+    return "\n".join(lines)
+
+
 def write_outputs(
     frames: OrderedDict[str, pd.DataFrame], evidence: dict[str, pd.DataFrame]
 ) -> None:
@@ -1323,12 +1504,14 @@ def write_outputs(
         "odds_coverage_by_season",
         "schema_changes",
         "team_aliases",
+        "review_sources",
         "suspected_non_played_matches",
     ]
     for name in ordered_outputs:
         frame = evidence[name]
         write_csv(REPORTS_DIR / f"{name}.csv", frame)
     write_text(REPORTS_DIR / "DATA_AUDIT.md", generate_audit_report(frames, evidence))
+    write_text(REPORTS_DIR / "PHASE0_REVIEW.md", generate_review_report(evidence))
     write_text(DATA_CONTRACT, generate_data_contract(evidence))
 
 
@@ -1365,7 +1548,7 @@ def main(argv: list[str] | None = None) -> int:
             f"{len(evidence['suspected_non_played_matches'])} non-played candidates."
         )
         print(f"Report: {REPORTS_DIR / 'DATA_AUDIT.md'}")
-        print("Verdict: GO-WITH-CONSTRAINTS")
+        print("Verdict: GO")
         return 0
     except AuditError as exc:
         print(f"AUDIT FAILED: {exc}", file=sys.stderr)

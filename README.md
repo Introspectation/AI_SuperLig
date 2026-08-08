@@ -1,8 +1,8 @@
 # AI SuperLig
 
 Research repository for probabilistic prediction of the 2026-27 Turkish Super
-Lig. The current scope is **Phase 0 only: source-data audit and data contracts**.
-No predictive model is implemented yet.
+Lig. The current scope is **Phase 0 and 0.1: source-data audit, contracts, and
+source-backed review decisions**. No predictive model is implemented yet.
 
 ## Reproduce Phase 0
 
@@ -26,11 +26,13 @@ the audited snapshot.
 - `reports/schema_by_season.csv`: season-by-column schema matrix;
 - `reports/missingness_by_season.csv`: column completeness evidence;
 - `reports/teams_by_season.csv`: every distinct source team by season;
+- `reports/PHASE0_REVIEW.md`: decisions for administrative results and aliases;
 - `DATA_CONTRACT.md`: provisional normalized match and isolated market tables;
 - `LEAKAGE_CONTRACT.md`: non-negotiable time and feature rules.
 
-Additional CSVs preserve season summaries, odds coverage, alias proposals,
-schema changes, source provenance, and suspicious non-played match candidates.
+Additional CSVs preserve season summaries, odds coverage, approved aliases,
+schema changes, source provenance, and reviewed administrative-result rows.
+The audit fails if its detected candidate set diverges from the reviewed config.
 
 ## Git and CI
 

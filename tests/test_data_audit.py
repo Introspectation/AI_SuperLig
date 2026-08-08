@@ -40,11 +40,25 @@ class DataAuditTests(unittest.TestCase):
         self.assertEqual(int(summary["invalid_score_rows"].sum()), 0)
         self.assertEqual(int(summary["result_score_mismatches"].sum()), 0)
 
-    def test_non_played_candidates_remain_explicit(self) -> None:
+    def test_non_played_candidates_have_exact_source_backed_decisions(self) -> None:
         candidates = self.evidence["suspected_non_played_matches"]
         counts = candidates.groupby("season").size().to_dict()
         self.assertEqual(counts, {"2022-23": 29, "2023-24": 1, "2024-25": 1})
-        self.assertTrue((candidates["review_status"] == "human_review_required").all())
+        self.assertTrue((candidates["review_status"] == "source_confirmed").all())
+        self.assertFalse(candidates["model_eligible"].any())
+        self.assertEqual(
+            candidates["match_status"].value_counts().to_dict(),
+            {"not_played_forfeit": 29, "abandoned_forfeit": 2},
+        )
+
+    def test_team_aliases_are_explicitly_approved_and_source_backed(self) -> None:
+        aliases = self.evidence["team_aliases"]
+        self.assertEqual(len(aliases), 7)
+        self.assertEqual(set(aliases["confidence"]), {"high"})
+        self.assertEqual(
+            set(aliases["review_status"]), {"approved_for_canonicalization"}
+        )
+        self.assertFalse(aliases["evidence_ids"].str.strip().eq("").any())
 
     def test_legacy_vc_odds_are_not_misclassified_as_closing(self) -> None:
         triplets_2017 = audit.closing_bookmaker_triplets(self.frames["2017-18"])

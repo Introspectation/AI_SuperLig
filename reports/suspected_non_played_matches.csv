@@ -1,32 +1,32 @@
-season,raw_csv_row,date,home_team,away_team,home_goals,away_goals,result,reason,confidence,review_status
-2022-23,205,25/02/2023,Umraniyespor,Gaziantep,3,0,H,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,214,05/03/2023,Ad. Demirspor,Hatayspor,3,0,H,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,215,05/03/2023,Gaziantep,Galatasaray,0,3,A,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,223,12/03/2023,Hatayspor,Konyaspor,0,3,A,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,234,19/03/2023,Gaziantep,Trabzonspor,0,3,A,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,235,19/03/2023,Kayserispor,Hatayspor,3,0,H,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,241,02/04/2023,Gaziantep,Kasimpasa,0,3,A,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,242,02/04/2023,Hatayspor,Sivasspor,0,3,A,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,249,09/04/2023,Ad. Demirspor,Gaziantep,3,0,H,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,250,09/04/2023,Alanyaspor,Hatayspor,3,0,H,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,260,16/04/2023,Gaziantep,Konyaspor,0,3,A,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,261,16/04/2023,Hatayspor,Karagumruk,0,3,A,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,267,19/04/2023,Besiktas,Hatayspor,3,0,H,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,276,23/04/2023,Gaziantep,Alanyaspor,0,3,A,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,277,23/04/2023,Hatayspor,Ankaragucu,0,3,A,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,287,30/04/2023,Buyuksehyr,Hatayspor,3,0,H,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,288,30/04/2023,Kayserispor,Gaziantep,3,0,H,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,295,07/05/2023,Gaziantep,Karagumruk,0,3,A,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,296,07/05/2023,Hatayspor,Istanbulspor,0,3,A,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,304,17/05/2023,Besiktas,Gaziantep,3,0,H,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,305,17/05/2023,Giresunspor,Hatayspor,3,0,H,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,314,21/05/2023,Gaziantep,Giresunspor,0,3,A,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,315,21/05/2023,Hatayspor,Fenerbahce,0,3,A,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,319,30/05/2023,Buyuksehyr,Gaziantep,3,0,H,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,322,30/05/2023,Hatayspor,Umraniyespor,0,3,A,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,328,03/06/2023,Antalyaspor,Hatayspor,3,0,H,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,329,03/06/2023,Gaziantep,Istanbulspor,0,3,A,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,340,07/06/2023,Fenerbahce,Gaziantep,3,0,H,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2022-23,342,07/06/2023,Hatayspor,Galatasaray,0,3,A,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2023-24,154,19/12/2023,Istanbulspor,Trabzonspor,0,3,A,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
-2024-25,206,09/02/2025,Galatasaray,Ad. Demirspor,3,0,H,3-0/0-3 score with every audited match-stat field missing,high_candidate_not_confirmed,human_review_required
+season,raw_csv_row,date,home_team,away_team,home_goals,away_goals,result,reason,heuristic_confidence,match_status,model_eligible,decision,evidence_id,review_status
+2022-23,205,25/02/2023,Umraniyespor,Gaziantep,3,0,H,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,214,05/03/2023,Ad. Demirspor,Hatayspor,3,0,H,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,215,05/03/2023,Gaziantep,Galatasaray,0,3,A,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,223,12/03/2023,Hatayspor,Konyaspor,0,3,A,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,234,19/03/2023,Gaziantep,Trabzonspor,0,3,A,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,235,19/03/2023,Kayserispor,Hatayspor,3,0,H,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,241,02/04/2023,Gaziantep,Kasimpasa,0,3,A,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,242,02/04/2023,Hatayspor,Sivasspor,0,3,A,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,249,09/04/2023,Ad. Demirspor,Gaziantep,3,0,H,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,250,09/04/2023,Alanyaspor,Hatayspor,3,0,H,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,260,16/04/2023,Gaziantep,Konyaspor,0,3,A,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,261,16/04/2023,Hatayspor,Karagumruk,0,3,A,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,267,19/04/2023,Besiktas,Hatayspor,3,0,H,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,276,23/04/2023,Gaziantep,Alanyaspor,0,3,A,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,277,23/04/2023,Hatayspor,Ankaragucu,0,3,A,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,287,30/04/2023,Buyuksehyr,Hatayspor,3,0,H,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,288,30/04/2023,Kayserispor,Gaziantep,3,0,H,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,295,07/05/2023,Gaziantep,Karagumruk,0,3,A,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,296,07/05/2023,Hatayspor,Istanbulspor,0,3,A,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,304,17/05/2023,Besiktas,Gaziantep,3,0,H,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,305,17/05/2023,Giresunspor,Hatayspor,3,0,H,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,314,21/05/2023,Gaziantep,Giresunspor,0,3,A,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,315,21/05/2023,Hatayspor,Fenerbahce,0,3,A,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,319,30/05/2023,Buyuksehyr,Gaziantep,3,0,H,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,322,30/05/2023,Hatayspor,Umraniyespor,0,3,A,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,328,03/06/2023,Antalyaspor,Hatayspor,3,0,H,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,329,03/06/2023,Gaziantep,Istanbulspor,0,3,A,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,340,07/06/2023,Fenerbahce,Gaziantep,3,0,H,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2022-23,342,07/06/2023,Hatayspor,Galatasaray,0,3,A,3-0/0-3 score with every audited match-stat field missing,strong_candidate,not_played_forfeit,False,exclude_from_played_match_models,TFF_2023_WITHDRAWALS,source_confirmed
+2023-24,154,19/12/2023,Istanbulspor,Trabzonspor,0,3,A,3-0/0-3 score with every audited match-stat field missing,strong_candidate,abandoned_forfeit,False,exclude_from_played_match_models,TFF_2023_ISTANBULSPOR_PFDK,source_confirmed
+2024-25,206,09/02/2025,Galatasaray,Ad. Demirspor,3,0,H,3-0/0-3 score with every audited match-stat field missing,strong_candidate,abandoned_forfeit,False,exclude_from_played_match_models,TFF_2025_ADANA_PFDK,source_confirmed
