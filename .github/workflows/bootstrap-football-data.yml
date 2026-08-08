@@ -40,6 +40,7 @@ jobs:
               --proto '=https' --tlsv1.2 --output "$temp" "$url"
 
             header="$(head -n 1 "$temp" | tr -d '\r')"
+            header="${header#$'\xEF\xBB\xBF'}"
             if [[ "$header" != Div,Date,* ]]; then
               echo "Unexpected response for $url: $header" >&2
               rm -f "$temp"
