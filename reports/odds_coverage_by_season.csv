@@ -1,0 +1,65 @@
+season,odds_type,odds_source,home_column,draw_column,away_column,complete_rows,row_count,coverage_rate
+2017-18,pre_closing_average_1x2,betbrain_average_pre_closing,BbAvH,BbAvD,BbAvA,306,306,1.000000
+2017-18,individual_bookmaker_closing_1x2,Pinnacle,PSCH,PSCD,PSCA,303,306,0.990196
+2018-19,pre_closing_average_1x2,betbrain_average_pre_closing,BbAvH,BbAvD,BbAvA,306,306,1.000000
+2018-19,individual_bookmaker_closing_1x2,Pinnacle,PSCH,PSCD,PSCA,306,306,1.000000
+2019-20,pre_closing_average_1x2,market_average_pre_closing,AvgH,AvgD,AvgA,306,306,1.000000
+2019-20,closing_market_average_1x2,market_average_closing,AvgCH,AvgCD,AvgCA,306,306,1.000000
+2019-20,individual_bookmaker_closing_1x2,Bet365,B365CH,B365CD,B365CA,306,306,1.000000
+2019-20,individual_bookmaker_closing_1x2,Bet&Win,BWCH,BWCD,BWCA,306,306,1.000000
+2019-20,individual_bookmaker_closing_1x2,Interwetten,IWCH,IWCD,IWCA,306,306,1.000000
+2019-20,individual_bookmaker_closing_1x2,Pinnacle,PSCH,PSCD,PSCA,306,306,1.000000
+2019-20,individual_bookmaker_closing_1x2,VC Bet,VCCH,VCCD,VCCA,306,306,1.000000
+2019-20,individual_bookmaker_closing_1x2,William Hill,WHCH,WHCD,WHCA,306,306,1.000000
+2020-21,pre_closing_average_1x2,market_average_pre_closing,AvgH,AvgD,AvgA,420,420,1.000000
+2020-21,closing_market_average_1x2,market_average_closing,AvgCH,AvgCD,AvgCA,420,420,1.000000
+2020-21,individual_bookmaker_closing_1x2,Bet365,B365CH,B365CD,B365CA,420,420,1.000000
+2020-21,individual_bookmaker_closing_1x2,Bet&Win,BWCH,BWCD,BWCA,420,420,1.000000
+2020-21,individual_bookmaker_closing_1x2,Interwetten,IWCH,IWCD,IWCA,420,420,1.000000
+2020-21,individual_bookmaker_closing_1x2,Pinnacle,PSCH,PSCD,PSCA,420,420,1.000000
+2020-21,individual_bookmaker_closing_1x2,VC Bet,VCCH,VCCD,VCCA,420,420,1.000000
+2020-21,individual_bookmaker_closing_1x2,William Hill,WHCH,WHCD,WHCA,420,420,1.000000
+2021-22,pre_closing_average_1x2,market_average_pre_closing,AvgH,AvgD,AvgA,380,380,1.000000
+2021-22,closing_market_average_1x2,market_average_closing,AvgCH,AvgCD,AvgCA,380,380,1.000000
+2021-22,individual_bookmaker_closing_1x2,Bet365,B365CH,B365CD,B365CA,380,380,1.000000
+2021-22,individual_bookmaker_closing_1x2,Bet&Win,BWCH,BWCD,BWCA,378,380,0.994737
+2021-22,individual_bookmaker_closing_1x2,Interwetten,IWCH,IWCD,IWCA,376,380,0.989474
+2021-22,individual_bookmaker_closing_1x2,Pinnacle,PSCH,PSCD,PSCA,379,380,0.997368
+2021-22,individual_bookmaker_closing_1x2,VC Bet,VCCH,VCCD,VCCA,377,380,0.992105
+2021-22,individual_bookmaker_closing_1x2,William Hill,WHCH,WHCD,WHCA,380,380,1.000000
+2022-23,pre_closing_average_1x2,market_average_pre_closing,AvgH,AvgD,AvgA,313,342,0.915205
+2022-23,closing_market_average_1x2,market_average_closing,AvgCH,AvgCD,AvgCA,313,342,0.915205
+2022-23,individual_bookmaker_closing_1x2,Bet365,B365CH,B365CD,B365CA,313,342,0.915205
+2022-23,individual_bookmaker_closing_1x2,Bet&Win,BWCH,BWCD,BWCA,313,342,0.915205
+2022-23,individual_bookmaker_closing_1x2,Interwetten,IWCH,IWCD,IWCA,313,342,0.915205
+2022-23,individual_bookmaker_closing_1x2,Pinnacle,PSCH,PSCD,PSCA,313,342,0.915205
+2022-23,individual_bookmaker_closing_1x2,VC Bet,VCCH,VCCD,VCCA,313,342,0.915205
+2022-23,individual_bookmaker_closing_1x2,William Hill,WHCH,WHCD,WHCA,313,342,0.915205
+2023-24,pre_closing_average_1x2,market_average_pre_closing,AvgH,AvgD,AvgA,380,380,1.000000
+2023-24,closing_market_average_1x2,market_average_closing,AvgCH,AvgCD,AvgCA,380,380,1.000000
+2023-24,individual_bookmaker_closing_1x2,Bet365,B365CH,B365CD,B365CA,380,380,1.000000
+2023-24,individual_bookmaker_closing_1x2,Bet&Win,BWCH,BWCD,BWCA,372,380,0.978947
+2023-24,individual_bookmaker_closing_1x2,Interwetten,IWCH,IWCD,IWCA,170,380,0.447368
+2023-24,individual_bookmaker_closing_1x2,Pinnacle,PSCH,PSCD,PSCA,380,380,1.000000
+2023-24,individual_bookmaker_closing_1x2,VC Bet,VCCH,VCCD,VCCA,380,380,1.000000
+2023-24,individual_bookmaker_closing_1x2,William Hill,WHCH,WHCD,WHCA,380,380,1.000000
+2024-25,pre_closing_average_1x2,market_average_pre_closing,AvgH,AvgD,AvgA,342,342,1.000000
+2024-25,closing_market_average_1x2,market_average_closing,AvgCH,AvgCD,AvgCA,342,342,1.000000
+2024-25,individual_bookmaker_closing_1x2,1XBet,1XBCH,1XBCD,1XBCA,342,342,1.000000
+2024-25,individual_bookmaker_closing_1x2,Bet365,B365CH,B365CD,B365CA,342,342,1.000000
+2024-25,individual_bookmaker_closing_1x2,Betfair,BFCH,BFCD,BFCA,342,342,1.000000
+2024-25,individual_bookmaker_closing_1x2,Betfair Exchange,BFECH,BFECD,BFECA,342,342,1.000000
+2024-25,individual_bookmaker_closing_1x2,Bet&Win,BWCH,BWCD,BWCA,205,342,0.599415
+2024-25,individual_bookmaker_closing_1x2,Pinnacle,PSCH,PSCD,PSCA,342,342,1.000000
+2024-25,individual_bookmaker_closing_1x2,William Hill,WHCH,WHCD,WHCA,252,342,0.736842
+2025-26,pre_closing_average_1x2,market_average_pre_closing,AvgH,AvgD,AvgA,306,306,1.000000
+2025-26,closing_market_average_1x2,market_average_closing,AvgCH,AvgCD,AvgCA,306,306,1.000000
+2025-26,individual_bookmaker_closing_1x2,Bet365,B365CH,B365CD,B365CA,306,306,1.000000
+2025-26,individual_bookmaker_closing_1x2,Betfred,BFDCH,BFDCD,BFDCA,303,306,0.990196
+2025-26,individual_bookmaker_closing_1x2,Betfair Exchange,BFECH,BFECD,BFECA,287,306,0.937908
+2025-26,individual_bookmaker_closing_1x2,BetMGM,BMGMCH,BMGMCD,BMGMCA,306,306,1.000000
+2025-26,individual_bookmaker_closing_1x2,BetVictor,BVCH,BVCD,BVCA,303,306,0.990196
+2025-26,individual_bookmaker_closing_1x2,Bet&Win,BWCH,BWCD,BWCA,306,306,1.000000
+2025-26,individual_bookmaker_closing_1x2,Coral,CLCH,CLCD,CLCA,213,306,0.696078
+2025-26,individual_bookmaker_closing_1x2,Ladbrokes,LBCH,LBCD,LBCA,221,306,0.722222
+2025-26,individual_bookmaker_closing_1x2,Pinnacle,PSCH,PSCD,PSCA,135,306,0.441176

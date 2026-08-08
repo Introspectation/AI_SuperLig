@@ -1,0 +1,12 @@
+# Keep generated and authored text deterministic across platforms.
+*.md text eol=lf
+*.py text eol=lf
+*.json text eol=lf
+*.csv text eol=lf
+*.txt text eol=lf
+*.toml text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Raw source bytes are immutable. This more-specific rule must remain last.
+data/raw/football_data/*.csv -text

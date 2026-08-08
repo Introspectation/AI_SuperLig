@@ -1,0 +1,16 @@
+{
+  "source_page": "https://www.football-data.co.uk/turkeym.php",
+  "source_notes": "https://www.football-data.co.uk/notes.txt",
+  "snapshot_date": "2026-08-08",
+  "local_attempt": {
+    "status": "rejected",
+    "reason": "The local network request returned an access-blocked HTML page instead of CSV. Header validation rejected it and no raw file was promoted."
+  },
+  "successful_acquisition": {
+    "method": "direct HTTPS from a GitHub-hosted Ubuntu Actions runner",
+    "run_url": "https://github.com/Introspectation/AI_SuperLig/actions/runs/31259394478",
+    "artifact_name": "football-data-superlig-2017-2026",
+    "artifact_digest": "sha256:dccda407ebb1cb21d211e3a66065ae3acca3f2b8964031027e0b4535c3619e77",
+    "verification": "Nine expected season files; artifact-to-workspace SHA-256 equality; per-file hashes locked in raw_sources.csv."
+  }
+}

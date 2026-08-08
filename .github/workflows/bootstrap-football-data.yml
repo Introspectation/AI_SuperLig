@@ -1,0 +1,70 @@
+name: Bootstrap Football-Data snapshot
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/bootstrap-football-data.yml
+
+permissions:
+  contents: read
+
+jobs:
+  download-raw-snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out the triggering branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Download missing Turkish Super Lig CSVs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data/raw/football_data
+
+          while IFS=, read -r season source_code; do
+            target="data/raw/football_data/${season}.csv"
+            url="https://www.football-data.co.uk/mmz4281/${source_code}/T1.csv"
+
+            if [[ -e "$target" ]]; then
+              echo "Preserving existing immutable file: $target"
+              continue
+            fi
+
+            temp="${target}.download"
+            curl --fail --location --retry 3 --connect-timeout 20 \
+              --proto '=https' --tlsv1.2 --output "$temp" "$url"
+
+            header="$(head -n 1 "$temp" | tr -d '\r')"
+            header="${header#$'\xEF\xBB\xBF'}"
+            if [[ "$header" != Div,Date,* ]]; then
+              echo "Unexpected response for $url: $header" >&2
+              rm -f "$temp"
+              exit 1
+            fi
+
+            mv "$temp" "$target"
+            sha256sum "$target"
+          done <<'SEASONS'
+          2017-18,1718
+          2018-19,1819
+          2019-20,1920
+          2020-21,2021
+          2021-22,2122
+          2022-23,2223
+          2023-24,2324
+          2024-25,2425
+          2025-26,2526
+          SEASONS
+
+      - name: Upload the immutable snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: football-data-superlig-2017-2026
+          path: data/raw/football_data/*.csv
+          if-no-files-found: error
+          retention-days: 1
