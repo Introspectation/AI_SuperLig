@@ -1,0 +1,10 @@
+# Raw source bytes are immutable. Never perform line-ending conversion.
+data/raw/football_data/*.csv -text
+
+# Keep generated and authored text deterministic across platforms.
+*.md text eol=lf
+*.py text eol=lf
+*.toml text eol=lf
+*.yml text eol=lf
+reports/*.csv text eol=lf
+
