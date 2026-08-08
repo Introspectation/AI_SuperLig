@@ -1,0 +1,8 @@
+source_name,proposed_canonical_name,confidence,review_status,reason,seasons_observed
+Ad. Demirspor,Adana Demirspor,high,proposed_not_applied,Unambiguous source abbreviation in the audited seasons.,2021-22|2022-23|2023-24|2024-25
+Buyuksehyr,Istanbul Basaksehir,high,proposed_not_applied,Stable truncated/transliterated source label across all nine seasons.,2017-18|2018-19|2019-20|2020-21|2021-22|2022-23|2023-24|2024-25|2025-26
+Goztep,Goztepe,high,proposed_not_applied,Stable one-character truncation of the club name.,2017-18|2018-19|2019-20|2020-21|2021-22|2024-25|2025-26
+Karagumruk,Fatih Karagumruk,high,proposed_not_applied,Unambiguous shortened club name in this league and time range.,2020-21|2021-22|2022-23|2023-24|2025-26
+Akhisar Belediyespor,Akhisarspor,high,proposed_not_applied,Historical club-name change; no competing Akhisar entity appears.,2017-18|2018-19
+Erzurum BB,Erzurumspor FK,review,human_review_required,Likely historical abbreviation/name change; old Erzurum entities make automatic merging unsafe.,2018-19|2020-21
+Gaziantep,Gaziantep FK,review,human_review_required,"Likely current club, but the city has had distinct historical clubs.",2019-20|2020-21|2021-22|2022-23|2023-24|2024-25|2025-26
