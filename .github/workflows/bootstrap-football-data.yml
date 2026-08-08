@@ -7,7 +7,7 @@ on:
       - .github/workflows/bootstrap-football-data.yml
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   download-raw-snapshot:
@@ -60,23 +60,10 @@ jobs:
           2025-26,2526
           SEASONS
 
-      - name: Commit the immutable snapshot to this branch
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/raw/football_data/*.csv
-
-          if git diff --cached --quiet; then
-            echo "No new raw files to commit."
-            exit 0
-          fi
-
-          git commit \
-            -m "08.08.2026 -> football-data ham sezon dosyalari alindi" \
-            -m "- 2017-18 ile 2025-26 arasindaki dokuz T1.csv snapshot'i kaynaktan indirildi.
-- Ham dosyalar donusturulmeden sezon adlariyla saklandi.
-- Kaynak yenilemelerinde mevcut dosyalarin uzerine yazma engellendi."
-          git push origin "HEAD:${{ github.ref_name }}"
-
+      - name: Upload the immutable snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: football-data-superlig-2017-2026
+          path: data/raw/football_data/*.csv
+          if-no-files-found: error
+          retention-days: 1
