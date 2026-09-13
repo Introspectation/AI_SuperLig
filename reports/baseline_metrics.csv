@@ -1,0 +1,11 @@
+evaluation_role,season,model,matches,log_loss,brier_score
+development,ALL,uniform_hda,1413,1.098612288668,0.666666666667
+development,ALL,expanding_league_hda,1413,1.060313828507,0.640069777149
+development,2021-22,uniform_hda,380,1.098612288668,0.666666666667
+development,2021-22,expanding_league_hda,380,1.058152821017,0.638515266561
+development,2022-23,uniform_hda,313,1.098612288668,0.666666666667
+development,2022-23,expanding_league_hda,313,1.065916550900,0.644374355631
+development,2023-24,uniform_hda,379,1.098612288668,0.666666666667
+development,2023-24,expanding_league_hda,379,1.066598977119,0.644249324165
+development,2024-25,uniform_hda,341,1.098612288668,0.666666666667
+development,2024-25,expanding_league_hda,341,1.050593768136,0.633205649993

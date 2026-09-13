@@ -1,4 +1,4 @@
-name: Data foundation CI
+name: Data and baseline CI
 
 on:
   workflow_dispatch:
@@ -33,8 +33,8 @@ jobs:
       - name: Run regression tests
         run: python -m unittest discover -s tests -v
 
-      - name: Rebuild audited data foundation without network access
-        run: python scripts/run_data_foundation.py
+      - name: Rebuild foundation and naive baselines without network access
+        run: python scripts/run_baseline_evaluation.py
 
       - name: Verify committed outputs are reproducible
         run: >-
@@ -51,8 +51,10 @@ jobs:
           name: data-foundation-outputs
           path: |
             DATA_CONTRACT.md
+            EVALUATION_PROTOCOL.md
             LEAKAGE_CONTRACT.md
             MODEL_DESIGN.md
+            ROADMAP.md
             data/processed/
             reports/
           if-no-files-found: error
