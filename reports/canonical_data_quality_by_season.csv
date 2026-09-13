@@ -1,0 +1,10 @@
+season,match_rows,model_eligible_rows,excluded_administrative_rows,kickoff_complete_rows,tff_backfill_rows,market_benchmark_rows,market_coverage_of_eligible,benchmark_regime
+2017-18,306,306,0,306,306,303,0.990196,pinnacle_closing
+2018-19,306,306,0,306,306,306,1.000000,pinnacle_closing
+2019-20,306,306,0,306,0,306,1.000000,market_average_closing
+2020-21,420,420,0,420,0,420,1.000000,market_average_closing
+2021-22,380,380,0,380,0,380,1.000000,market_average_closing
+2022-23,342,313,29,342,0,313,1.000000,market_average_closing
+2023-24,380,379,1,380,0,379,1.000000,market_average_closing
+2024-25,342,341,1,342,0,341,1.000000,market_average_closing
+2025-26,306,306,0,306,0,306,1.000000,market_average_closing

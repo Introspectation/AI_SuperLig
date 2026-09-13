@@ -1,24 +1,36 @@
 # AI SuperLig
 
 Research repository for probabilistic prediction of the 2026-27 Turkish Super
-Lig. The current scope is **Phase 0 and 0.1: source-data audit, contracts, and
-source-backed review decisions**. No predictive model is implemented yet.
+Lig. The current scope is the **data foundation**: source-data audit, immutable
+source snapshots, canonical match data, an isolated market benchmark, and
+source-backed review decisions. No predictive model is implemented yet.
 
-## Reproduce Phase 0
+## Reproduce the data foundation
 
 Create a Python environment, install the pinned lightweight dependencies, then
-run the audit:
+run the complete offline pipeline:
 
 ```powershell
 python -m pip install -r requirements.txt
-python scripts/run_data_audit.py
+python scripts/run_data_foundation.py
 ```
 
 The second command is the single reproducibility command. It verifies immutable
-raw-file checksums and locked schemas before regenerating every report and the
-provisional data contract. If a raw file is absent, it attempts the catalogued
-Football-Data HTTPS URL and refuses any response whose checksum differs from
-the audited snapshot.
+raw-file checksums and locked schemas, regenerates the Phase 0 audit, then
+rebuilds the canonical and market tables. Normal builds are offline and fail
+loudly if a source snapshot, reviewed discrepancy, or expected schema changes.
+
+Source acquisition is intentionally separate from normal builds. The committed
+Football-Data snapshots can be restored by the Phase 0 audit from their
+catalogued checksums. The official TFF kickoff snapshot can be recreated only
+into an empty raw-data target with:
+
+```powershell
+python scripts/bootstrap_tff_kickoffs.py
+```
+
+The bootstrap records every source URL, response checksum, and byte count in an
+immutable manifest and refuses to overwrite an existing snapshot.
 
 ## Phase 0 outputs
 
@@ -27,19 +39,41 @@ the audited snapshot.
 - `reports/missingness_by_season.csv`: column completeness evidence;
 - `reports/teams_by_season.csv`: every distinct source team by season;
 - `reports/PHASE0_REVIEW.md`: decisions for administrative results and aliases;
-- `DATA_CONTRACT.md`: provisional normalized match and isolated market tables;
+- `DATA_CONTRACT.md`: normalized match and isolated market table contracts;
 - `LEAKAGE_CONTRACT.md`: non-negotiable time and feature rules.
 
 Additional CSVs preserve season summaries, odds coverage, approved aliases,
 schema changes, source provenance, and reviewed administrative-result rows.
 The audit fails if its detected candidate set diverges from the reviewed config.
 
+## Canonical outputs
+
+- `data/processed/canonical_matches.csv`: one traceable match row with kickoff,
+  on-pitch score targets, status, eligibility, and Football-Data lineage;
+- `data/processed/market_benchmark.csv`: de-vigged H/D/A closing probabilities,
+  kept physically and logically separate from predictive features;
+- `reports/CANONICAL_DATA_AUDIT.md`: coverage, exclusions, reviewed source
+  conflicts, and the canonical-build verdict;
+- `reports/canonical_data_quality_by_season.csv`: per-season eligibility,
+  kickoff, and market coverage;
+- `reports/tff_kickoff_join_audit.csv`: auditable 2017-19 TFF join evidence;
+- `MODEL_DESIGN.md`: deferred design for the dynamic promoted-team prior.
+
+The audited Football-Data kickoff values from 2019-20 onward are interpreted as
+UK-clock time after exact summer and winter cross-checks against TFF. The build
+converts them from `Europe/London` to `Europe/Istanbul`, including daylight
+saving changes. The 2017-18 and 2018-19 gaps are backfilled from committed
+official TFF archive snapshots. The primary market benchmark uses closing
+market-average odds from 2019-20 onward; the earlier Pinnacle closing odds are
+retained as a clearly labelled secondary regime rather than mixed into the
+primary benchmark.
+
 ## Git and CI
 
 Work happens on short-lived branches and enters `main` through pull requests.
 See `CONTRIBUTING.md` for the branch and commit convention. GitHub Actions
-re-runs tests and the offline audit; deployment/CD is intentionally absent
-until the project has a deployable live system.
+re-runs tests and the complete offline data foundation; deployment/CD is
+intentionally absent until the project has a deployable live system.
 
 ## Source
 
@@ -48,3 +82,7 @@ The raw inputs are the Turkish league CSVs linked by
 including the distinction between pre-closing odds and `C`-suffixed closing
 odds, follow the provider's
 [data notes](https://www.football-data.co.uk/notes.txt).
+
+Official kickoff backfill and reviewed administrative results are sourced from
+the [Turkish Football Federation](https://www.tff.org/). Exact page URLs and
+checksums are preserved in the raw manifest and review-source configuration.

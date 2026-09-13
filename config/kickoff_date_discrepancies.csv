@@ -1,0 +1,2 @@
+season,football_data_date,tff_date,home_team,away_team,decision,evidence_ids,reason
+2018-19,2019-02-23,2019-02-24,Istanbul Basaksehir,Bursaspor,retain_original_kickoff_date,TFF_2019_WEEK23|ASPOR_2019_RESUMED_MATCH,The match began at 19:00 on 23 February and was suspended after five minutes before resuming at 19:00 on 24 February; prediction time is the original kickoff.

@@ -40,3 +40,7 @@ Files under `data/raw/football_data/` are immutable snapshots. Do not edit,
 normalize, re-save, or overwrite them. A source refresh requires explicit
 review, updated checksums, a regenerated audit, and an explanation in the
 commit body.
+
+The source-derived TFF kickoff snapshot and its response manifest under
+`data/raw/tff/` follow the same immutability rule. Their bootstrap command
+validates an existing pair and refuses to overwrite either file.

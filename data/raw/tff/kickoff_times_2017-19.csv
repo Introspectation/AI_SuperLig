@@ -1,0 +1,613 @@
+season,week,date,kickoff_time,home_team_tff,away_team_tff,home_goals,away_goals,tff_match_id,source_url
+2017-18,1,2017-08-11,21:45,MEDİPOL BAŞAKŞEHİR FK,BURSASPOR,1,0,180340,https://www.tff.org/Default.aspx?hafta=1&pageID=1440
+2017-18,1,2017-08-12,20:00,AKHİSAR BELEDİYE GENÇLİK VE SPOR,DEMİR GRUP SİVASSPOR,1,0,180336,https://www.tff.org/Default.aspx?hafta=1&pageID=1440
+2017-18,1,2017-08-12,20:00,GENÇLERBİRLİĞİ,KARDEMİR KARABÜKSPOR,1,1,180341,https://www.tff.org/Default.aspx?hafta=1&pageID=1440
+2017-18,1,2017-08-12,21:45,ALANYASPOR,KASIMPAŞA A.Ş.,1,3,180339,https://www.tff.org/Default.aspx?hafta=1&pageID=1440
+2017-18,1,2017-08-12,21:45,GÖZTEPE A.Ş.,FENERBAHÇE A.Ş.,2,2,180343,https://www.tff.org/Default.aspx?hafta=1&pageID=1440
+2017-18,1,2017-08-13,20:00,EVKUR YENİ MALATYASPOR,OSMANLISPOR FUTBOL KULÜBÜ,3,1,180338,https://www.tff.org/Default.aspx?hafta=1&pageID=1440
+2017-18,1,2017-08-13,20:00,TRABZONSPOR A.Ş.,ATİKER KONYASPOR,2,1,180342,https://www.tff.org/Default.aspx?hafta=1&pageID=1440
+2017-18,1,2017-08-13,21:45,BEŞİKTAŞ A.Ş.,ANTALYASPOR A.Ş.,2,0,180337,https://www.tff.org/Default.aspx?hafta=1&pageID=1440
+2017-18,1,2017-08-14,21:45,GALATASARAY A.Ş.,KAYSERİSPOR,4,1,180335,https://www.tff.org/Default.aspx?hafta=1&pageID=1440
+2017-18,2,2017-08-18,21:45,KASIMPAŞA A.Ş.,BEŞİKTAŞ A.Ş.,2,2,180351,https://www.tff.org/Default.aspx?hafta=2&pageID=1440
+2017-18,2,2017-08-19,19:00,KARDEMİR KARABÜKSPOR,MEDİPOL BAŞAKŞEHİR FK,3,1,180346,https://www.tff.org/Default.aspx?hafta=2&pageID=1440
+2017-18,2,2017-08-19,19:45,BURSASPOR,ALANYASPOR,3,2,180347,https://www.tff.org/Default.aspx?hafta=2&pageID=1440
+2017-18,2,2017-08-19,21:45,DEMİR GRUP SİVASSPOR,EVKUR YENİ MALATYASPOR,2,0,180344,https://www.tff.org/Default.aspx?hafta=2&pageID=1440
+2017-18,2,2017-08-19,21:45,OSMANLISPOR FUTBOL KULÜBÜ,GALATASARAY A.Ş.,1,3,180349,https://www.tff.org/Default.aspx?hafta=2&pageID=1440
+2017-18,2,2017-08-20,20:00,KAYSERİSPOR,GÖZTEPE A.Ş.,1,0,180350,https://www.tff.org/Default.aspx?hafta=2&pageID=1440
+2017-18,2,2017-08-20,21:45,ANTALYASPOR A.Ş.,AKHİSAR BELEDİYE GENÇLİK VE SPOR,2,2,180348,https://www.tff.org/Default.aspx?hafta=2&pageID=1440
+2017-18,2,2017-08-20,21:45,FENERBAHÇE A.Ş.,TRABZONSPOR A.Ş.,2,2,180352,https://www.tff.org/Default.aspx?hafta=2&pageID=1440
+2017-18,2,2017-08-21,21:45,ATİKER KONYASPOR,GENÇLERBİRLİĞİ,3,0,180345,https://www.tff.org/Default.aspx?hafta=2&pageID=1440
+2017-18,3,2017-08-25,21:45,AYTEMİZ ALANYASPOR,KARDEMİR KARABÜKSPOR,1,1,180355,https://www.tff.org/Default.aspx?hafta=3&pageID=1440
+2017-18,3,2017-08-25,21:45,GALATASARAY A.Ş.,DEMİR GRUP SİVASSPOR,3,0,180356,https://www.tff.org/Default.aspx?hafta=3&pageID=1440
+2017-18,3,2017-08-26,19:45,EVKUR YENİ MALATYASPOR,ANTALYASPOR A.Ş.,1,1,180354,https://www.tff.org/Default.aspx?hafta=3&pageID=1440
+2017-18,3,2017-08-26,19:45,BEŞİKTAŞ A.Ş.,BURSASPOR,2,1,180358,https://www.tff.org/Default.aspx?hafta=3&pageID=1440
+2017-18,3,2017-08-26,21:45,GÖZTEPE A.Ş.,TRABZONSPOR A.Ş.,3,2,180353,https://www.tff.org/Default.aspx?hafta=3&pageID=1440
+2017-18,3,2017-08-26,21:45,KAYSERİSPOR,OSMANLISPOR FUTBOL KULÜBÜ,2,2,180360,https://www.tff.org/Default.aspx?hafta=3&pageID=1440
+2017-18,3,2017-08-27,19:45,MEDİPOL BAŞAKŞEHİR FK,ATİKER KONYASPOR,2,1,180361,https://www.tff.org/Default.aspx?hafta=3&pageID=1440
+2017-18,3,2017-08-27,21:45,AKHİSAR BELEDİYE GENÇLİK VE SPOR,KASIMPAŞA A.Ş.,2,1,180357,https://www.tff.org/Default.aspx?hafta=3&pageID=1440
+2017-18,3,2017-08-27,21:45,GENÇLERBİRLİĞİ,FENERBAHÇE A.Ş.,1,2,180359,https://www.tff.org/Default.aspx?hafta=3&pageID=1440
+2017-18,4,2017-09-09,17:00,KARDEMİR KARABÜKSPOR,BEŞİKTAŞ A.Ş.,0,1,180365,https://www.tff.org/Default.aspx?hafta=4&pageID=1440
+2017-18,4,2017-09-09,17:00,DEMİR GRUP SİVASSPOR,KAYSERİSPOR,0,2,180367,https://www.tff.org/Default.aspx?hafta=4&pageID=1440
+2017-18,4,2017-09-09,20:00,ATİKER KONYASPOR,AYTEMİZ ALANYASPOR,0,2,180369,https://www.tff.org/Default.aspx?hafta=4&pageID=1440
+2017-18,4,2017-09-09,20:00,FENERBAHÇE A.Ş.,MEDİPOL BAŞAKŞEHİR FK,2,3,180370,https://www.tff.org/Default.aspx?hafta=4&pageID=1440
+2017-18,4,2017-09-10,17:00,TRABZONSPOR A.Ş.,GENÇLERBİRLİĞİ,3,1,180364,https://www.tff.org/Default.aspx?hafta=4&pageID=1440
+2017-18,4,2017-09-10,17:00,OSMANLISPOR FUTBOL KULÜBÜ,GÖZTEPE A.Ş.,0,2,180368,https://www.tff.org/Default.aspx?hafta=4&pageID=1440
+2017-18,4,2017-09-10,20:00,BURSASPOR,TELESET MOBİLYA AKHİSARSPOR,3,0,180362,https://www.tff.org/Default.aspx?hafta=4&pageID=1440
+2017-18,4,2017-09-10,20:00,ANTALYASPOR A.Ş.,GALATASARAY A.Ş.,1,1,180363,https://www.tff.org/Default.aspx?hafta=4&pageID=1440
+2017-18,4,2017-09-11,20:00,KASIMPAŞA A.Ş.,EVKUR YENİ MALATYASPOR,3,2,180366,https://www.tff.org/Default.aspx?hafta=4&pageID=1440
+2017-18,5,2017-09-15,20:00,KAYSERİSPOR,ANTALYASPOR A.Ş.,2,0,180373,https://www.tff.org/Default.aspx?hafta=5&pageID=1440
+2017-18,5,2017-09-16,17:00,EVKUR YENİ MALATYASPOR,BURSASPOR,2,4,180375,https://www.tff.org/Default.aspx?hafta=5&pageID=1440
+2017-18,5,2017-09-16,20:00,GALATASARAY A.Ş.,KASIMPAŞA A.Ş.,2,0,180371,https://www.tff.org/Default.aspx?hafta=5&pageID=1440
+2017-18,5,2017-09-16,20:00,TELESET MOBİLYA AKHİSARSPOR,KARDEMİR KARABÜKSPOR,2,1,180376,https://www.tff.org/Default.aspx?hafta=5&pageID=1440
+2017-18,5,2017-09-17,17:00,OSMANLISPOR FUTBOL KULÜBÜ,DEMİR GRUP SİVASSPOR,2,4,180372,https://www.tff.org/Default.aspx?hafta=5&pageID=1440
+2017-18,5,2017-09-17,17:00,MEDİPOL BAŞAKŞEHİR FK,TRABZONSPOR A.Ş.,2,2,180379,https://www.tff.org/Default.aspx?hafta=5&pageID=1440
+2017-18,5,2017-09-17,20:00,GÖZTEPE A.Ş.,GENÇLERBİRLİĞİ,3,2,180374,https://www.tff.org/Default.aspx?hafta=5&pageID=1440
+2017-18,5,2017-09-17,20:00,AYTEMİZ ALANYASPOR,FENERBAHÇE A.Ş.,1,4,180378,https://www.tff.org/Default.aspx?hafta=5&pageID=1440
+2017-18,5,2017-09-18,20:00,BEŞİKTAŞ A.Ş.,ATİKER KONYASPOR,2,0,180377,https://www.tff.org/Default.aspx?hafta=5&pageID=1440
+2017-18,6,2017-09-22,20:00,TRABZONSPOR A.Ş.,AYTEMİZ ALANYASPOR,3,4,180387,https://www.tff.org/Default.aspx?hafta=6&pageID=1440
+2017-18,6,2017-09-23,14:00,ATİKER KONYASPOR,TELESET MOBİLYA AKHİSARSPOR,2,0,180388,https://www.tff.org/Default.aspx?hafta=6&pageID=1440
+2017-18,6,2017-09-23,16:30,GENÇLERBİRLİĞİ,MEDİPOL BAŞAKŞEHİR FK,1,0,180386,https://www.tff.org/Default.aspx?hafta=6&pageID=1440
+2017-18,6,2017-09-23,19:30,FENERBAHÇE A.Ş.,BEŞİKTAŞ A.Ş.,2,1,180382,https://www.tff.org/Default.aspx?hafta=6&pageID=1440
+2017-18,6,2017-09-24,14:00,DEMİR GRUP SİVASSPOR,GÖZTEPE A.Ş.,2,3,180381,https://www.tff.org/Default.aspx?hafta=6&pageID=1440
+2017-18,6,2017-09-24,14:00,KARDEMİR KARABÜKSPOR,EVKUR YENİ MALATYASPOR,2,4,180383,https://www.tff.org/Default.aspx?hafta=6&pageID=1440
+2017-18,6,2017-09-24,16:30,KASIMPAŞA A.Ş.,KAYSERİSPOR,1,1,180385,https://www.tff.org/Default.aspx?hafta=6&pageID=1440
+2017-18,6,2017-09-24,19:30,BURSASPOR,GALATASARAY A.Ş.,1,2,180384,https://www.tff.org/Default.aspx?hafta=6&pageID=1440
+2017-18,6,2017-09-25,20:00,ANTALYASPOR A.Ş.,OSMANLISPOR FUTBOL KULÜBÜ,3,0,180380,https://www.tff.org/Default.aspx?hafta=6&pageID=1440
+2017-18,7,2017-09-29,20:00,TELESET MOBİLYA AKHİSARSPOR,FENERBAHÇE A.Ş.,1,0,180393,https://www.tff.org/Default.aspx?hafta=7&pageID=1440
+2017-18,7,2017-09-30,14:00,DEMİR GRUP SİVASSPOR,ANTALYASPOR A.Ş.,3,1,180391,https://www.tff.org/Default.aspx?hafta=7&pageID=1440
+2017-18,7,2017-09-30,14:00,OSMANLISPOR FUTBOL KULÜBÜ,KASIMPAŞA A.Ş.,3,0,180395,https://www.tff.org/Default.aspx?hafta=7&pageID=1440
+2017-18,7,2017-09-30,16:30,KAYSERİSPOR,BURSASPOR,3,1,180396,https://www.tff.org/Default.aspx?hafta=7&pageID=1440
+2017-18,7,2017-09-30,19:30,GALATASARAY A.Ş.,KARDEMİR KARABÜKSPOR,3,2,180389,https://www.tff.org/Default.aspx?hafta=7&pageID=1440
+2017-18,7,2017-10-01,14:00,EVKUR YENİ MALATYASPOR,ATİKER KONYASPOR,1,1,180392,https://www.tff.org/Default.aspx?hafta=7&pageID=1440
+2017-18,7,2017-10-01,16:30,AYTEMİZ ALANYASPOR,GENÇLERBİRLİĞİ,4,1,180394,https://www.tff.org/Default.aspx?hafta=7&pageID=1440
+2017-18,7,2017-10-01,19:30,BEŞİKTAŞ A.Ş.,TRABZONSPOR A.Ş.,2,2,180390,https://www.tff.org/Default.aspx?hafta=7&pageID=1440
+2017-18,7,2017-10-01,19:30,GÖZTEPE A.Ş.,MEDİPOL BAŞAKŞEHİR FK,1,2,180397,https://www.tff.org/Default.aspx?hafta=7&pageID=1440
+2017-18,8,2017-10-13,20:00,GENÇLERBİRLİĞİ,BEŞİKTAŞ A.Ş.,2,1,180405,https://www.tff.org/Default.aspx?hafta=8&pageID=1440
+2017-18,8,2017-10-14,14:00,KARDEMİR KARABÜKSPOR,KAYSERİSPOR,1,0,180401,https://www.tff.org/Default.aspx?hafta=8&pageID=1440
+2017-18,8,2017-10-14,16:30,ANTALYASPOR A.Ş.,GÖZTEPE A.Ş.,1,3,180403,https://www.tff.org/Default.aspx?hafta=8&pageID=1440
+2017-18,8,2017-10-14,16:30,MEDİPOL BAŞAKŞEHİR FK,AYTEMİZ ALANYASPOR,2,1,180404,https://www.tff.org/Default.aspx?hafta=8&pageID=1440
+2017-18,8,2017-10-14,19:30,ATİKER KONYASPOR,GALATASARAY A.Ş.,0,2,180406,https://www.tff.org/Default.aspx?hafta=8&pageID=1440
+2017-18,8,2017-10-15,14:00,KASIMPAŞA A.Ş.,DEMİR GRUP SİVASSPOR,2,3,180402,https://www.tff.org/Default.aspx?hafta=8&pageID=1440
+2017-18,8,2017-10-15,16:30,TRABZONSPOR A.Ş.,TELESET MOBİLYA AKHİSARSPOR,1,6,180400,https://www.tff.org/Default.aspx?hafta=8&pageID=1440
+2017-18,8,2017-10-15,19:30,FENERBAHÇE A.Ş.,EVKUR YENİ MALATYASPOR,3,1,180398,https://www.tff.org/Default.aspx?hafta=8&pageID=1440
+2017-18,8,2017-10-16,20:00,BURSASPOR,OSMANLISPOR FUTBOL KULÜBÜ,3,1,180399,https://www.tff.org/Default.aspx?hafta=8&pageID=1440
+2017-18,9,2017-10-20,20:00,ANTALYASPOR A.Ş.,KASIMPAŞA A.Ş.,2,1,180408,https://www.tff.org/Default.aspx?hafta=9&pageID=1440
+2017-18,9,2017-10-20,20:00,GÖZTEPE A.Ş.,AYTEMİZ ALANYASPOR,3,3,180415,https://www.tff.org/Default.aspx?hafta=9&pageID=1440
+2017-18,9,2017-10-21,14:00,OSMANLISPOR FUTBOL KULÜBÜ,KARDEMİR KARABÜKSPOR,3,0,180414,https://www.tff.org/Default.aspx?hafta=9&pageID=1440
+2017-18,9,2017-10-21,16:30,TELESET MOBİLYA AKHİSARSPOR,GENÇLERBİRLİĞİ,3,3,180407,https://www.tff.org/Default.aspx?hafta=9&pageID=1440
+2017-18,9,2017-10-21,19:30,EVKUR YENİ MALATYASPOR,TRABZONSPOR A.Ş.,1,0,180411,https://www.tff.org/Default.aspx?hafta=9&pageID=1440
+2017-18,9,2017-10-22,14:00,DEMİR GRUP SİVASSPOR,BURSASPOR,0,0,180413,https://www.tff.org/Default.aspx?hafta=9&pageID=1440
+2017-18,9,2017-10-22,16:30,KAYSERİSPOR,ATİKER KONYASPOR,2,1,180409,https://www.tff.org/Default.aspx?hafta=9&pageID=1440
+2017-18,9,2017-10-22,19:30,GALATASARAY A.Ş.,FENERBAHÇE A.Ş.,0,0,180410,https://www.tff.org/Default.aspx?hafta=9&pageID=1440
+2017-18,9,2017-10-23,20:04,BEŞİKTAŞ A.Ş.,MEDİPOL BAŞAKŞEHİR FK,1,1,180412,https://www.tff.org/Default.aspx?hafta=9&pageID=1440
+2017-18,10,2017-10-27,20:00,KASIMPAŞA A.Ş.,GÖZTEPE A.Ş.,3,1,180421,https://www.tff.org/Default.aspx?hafta=10&pageID=1440
+2017-18,10,2017-10-28,14:00,GENÇLERBİRLİĞİ,EVKUR YENİ MALATYASPOR,0,1,180416,https://www.tff.org/Default.aspx?hafta=10&pageID=1440
+2017-18,10,2017-10-28,16:30,MEDİPOL BAŞAKŞEHİR FK,TELESET MOBİLYA AKHİSARSPOR,2,1,180423,https://www.tff.org/Default.aspx?hafta=10&pageID=1440
+2017-18,10,2017-10-28,19:30,AYTEMİZ ALANYASPOR,BEŞİKTAŞ A.Ş.,1,2,180422,https://www.tff.org/Default.aspx?hafta=10&pageID=1440
+2017-18,10,2017-10-29,14:00,ATİKER KONYASPOR,OSMANLISPOR FUTBOL KULÜBÜ,1,0,180417,https://www.tff.org/Default.aspx?hafta=10&pageID=1440
+2017-18,10,2017-10-29,14:00,KARDEMİR KARABÜKSPOR,DEMİR GRUP SİVASSPOR,0,1,180419,https://www.tff.org/Default.aspx?hafta=10&pageID=1440
+2017-18,10,2017-10-29,16:30,BURSASPOR,ANTALYASPOR A.Ş.,4,0,180420,https://www.tff.org/Default.aspx?hafta=10&pageID=1440
+2017-18,10,2017-10-29,19:30,TRABZONSPOR A.Ş.,GALATASARAY A.Ş.,2,1,180424,https://www.tff.org/Default.aspx?hafta=10&pageID=1440
+2017-18,10,2017-10-30,20:00,FENERBAHÇE A.Ş.,KAYSERİSPOR,3,3,180418,https://www.tff.org/Default.aspx?hafta=10&pageID=1440
+2017-18,11,2017-11-03,20:00,GALATASARAY A.Ş.,GENÇLERBİRLİĞİ,5,1,180428,https://www.tff.org/Default.aspx?hafta=11&pageID=1440
+2017-18,11,2017-11-04,14:00,KASIMPAŞA A.Ş.,BURSASPOR,2,2,180431,https://www.tff.org/Default.aspx?hafta=11&pageID=1440
+2017-18,11,2017-11-04,14:00,KAYSERİSPOR,TRABZONSPOR A.Ş.,0,0,180433,https://www.tff.org/Default.aspx?hafta=11&pageID=1440
+2017-18,11,2017-11-04,16:30,ANTALYASPOR A.Ş.,KARDEMİR KARABÜKSPOR,2,1,180425,https://www.tff.org/Default.aspx?hafta=11&pageID=1440
+2017-18,11,2017-11-04,19:30,OSMANLISPOR FUTBOL KULÜBÜ,FENERBAHÇE A.Ş.,1,1,180432,https://www.tff.org/Default.aspx?hafta=11&pageID=1440
+2017-18,11,2017-11-05,14:00,TELESET MOBİLYA AKHİSARSPOR,AYTEMİZ ALANYASPOR,0,4,180430,https://www.tff.org/Default.aspx?hafta=11&pageID=1440
+2017-18,11,2017-11-05,16:30,EVKUR YENİ MALATYASPOR,MEDİPOL BAŞAKŞEHİR FK,0,2,180429,https://www.tff.org/Default.aspx?hafta=11&pageID=1440
+2017-18,11,2017-11-05,19:30,DEMİR GRUP SİVASSPOR,ATİKER KONYASPOR,2,1,180426,https://www.tff.org/Default.aspx?hafta=11&pageID=1440
+2017-18,11,2017-11-05,19:30,GÖZTEPE A.Ş.,BEŞİKTAŞ A.Ş.,1,3,180427,https://www.tff.org/Default.aspx?hafta=11&pageID=1440
+2017-18,12,2017-11-17,20:00,BEŞİKTAŞ A.Ş.,TELESET MOBİLYA AKHİSARSPOR,0,0,180440,https://www.tff.org/Default.aspx?hafta=12&pageID=1440
+2017-18,12,2017-11-18,14:00,BURSASPOR,GÖZTEPE A.Ş.,0,0,180439,https://www.tff.org/Default.aspx?hafta=12&pageID=1440
+2017-18,12,2017-11-18,16:30,ATİKER KONYASPOR,ANTALYASPOR A.Ş.,1,1,180436,https://www.tff.org/Default.aspx?hafta=12&pageID=1440
+2017-18,12,2017-11-18,19:30,MEDİPOL BAŞAKŞEHİR FK,GALATASARAY A.Ş.,5,1,180441,https://www.tff.org/Default.aspx?hafta=12&pageID=1440
+2017-18,12,2017-11-19,14:00,AYTEMİZ ALANYASPOR,EVKUR YENİ MALATYASPOR,1,0,180434,https://www.tff.org/Default.aspx?hafta=12&pageID=1440
+2017-18,12,2017-11-19,14:00,GENÇLERBİRLİĞİ,KAYSERİSPOR,1,2,180435,https://www.tff.org/Default.aspx?hafta=12&pageID=1440
+2017-18,12,2017-11-19,16:30,TRABZONSPOR A.Ş.,OSMANLISPOR FUTBOL KULÜBÜ,4,3,180442,https://www.tff.org/Default.aspx?hafta=12&pageID=1440
+2017-18,12,2017-11-19,19:30,FENERBAHÇE A.Ş.,DEMİR GRUP SİVASSPOR,4,1,180437,https://www.tff.org/Default.aspx?hafta=12&pageID=1440
+2017-18,12,2017-11-20,20:00,KARDEMİR KARABÜKSPOR,KASIMPAŞA A.Ş.,0,2,180438,https://www.tff.org/Default.aspx?hafta=12&pageID=1440
+2017-18,13,2017-11-24,20:00,OSMANLISPOR FUTBOL KULÜBÜ,GENÇLERBİRLİĞİ,2,0,180445,https://www.tff.org/Default.aspx?hafta=13&pageID=1440
+2017-18,13,2017-11-25,14:00,GÖZTEPE A.Ş.,TELESET MOBİLYA AKHİSARSPOR,2,0,180451,https://www.tff.org/Default.aspx?hafta=13&pageID=1440
+2017-18,13,2017-11-25,16:30,EVKUR YENİ MALATYASPOR,BEŞİKTAŞ A.Ş.,0,0,180446,https://www.tff.org/Default.aspx?hafta=13&pageID=1440
+2017-18,13,2017-11-25,19:30,GALATASARAY A.Ş.,AYTEMİZ ALANYASPOR,2,0,180443,https://www.tff.org/Default.aspx?hafta=13&pageID=1440
+2017-18,13,2017-11-26,14:00,DEMİR GRUP SİVASSPOR,TRABZONSPOR A.Ş.,1,2,180444,https://www.tff.org/Default.aspx?hafta=13&pageID=1440
+2017-18,13,2017-11-26,14:00,BURSASPOR,KARDEMİR KARABÜKSPOR,2,1,180447,https://www.tff.org/Default.aspx?hafta=13&pageID=1440
+2017-18,13,2017-11-26,16:30,KASIMPAŞA A.Ş.,ATİKER KONYASPOR,2,1,180448,https://www.tff.org/Default.aspx?hafta=13&pageID=1440
+2017-18,13,2017-11-26,19:30,ANTALYASPOR A.Ş.,FENERBAHÇE A.Ş.,0,1,180449,https://www.tff.org/Default.aspx?hafta=13&pageID=1440
+2017-18,13,2017-11-27,20:00,KAYSERİSPOR,MEDİPOL BAŞAKŞEHİR FK,1,1,180450,https://www.tff.org/Default.aspx?hafta=13&pageID=1440
+2017-18,14,2017-12-02,14:00,TELESET MOBİLYA AKHİSARSPOR,EVKUR YENİ MALATYASPOR,0,0,180452,https://www.tff.org/Default.aspx?hafta=14&pageID=1440
+2017-18,14,2017-12-02,16:30,KARDEMİR KARABÜKSPOR,GÖZTEPE A.Ş.,0,1,180456,https://www.tff.org/Default.aspx?hafta=14&pageID=1440
+2017-18,14,2017-12-02,19:30,BEŞİKTAŞ A.Ş.,GALATASARAY A.Ş.,3,0,180453,https://www.tff.org/Default.aspx?hafta=14&pageID=1440
+2017-18,14,2017-12-03,14:00,ATİKER KONYASPOR,BURSASPOR,0,3,180454,https://www.tff.org/Default.aspx?hafta=14&pageID=1440
+2017-18,14,2017-12-03,14:00,GENÇLERBİRLİĞİ,DEMİR GRUP SİVASSPOR,4,0,180459,https://www.tff.org/Default.aspx?hafta=14&pageID=1440
+2017-18,14,2017-12-03,16:30,MEDİPOL BAŞAKŞEHİR FK,OSMANLISPOR FUTBOL KULÜBÜ,1,0,180458,https://www.tff.org/Default.aspx?hafta=14&pageID=1440
+2017-18,14,2017-12-03,19:30,FENERBAHÇE A.Ş.,KASIMPAŞA A.Ş.,4,2,180455,https://www.tff.org/Default.aspx?hafta=14&pageID=1440
+2017-18,14,2017-12-04,20:00,AYTEMİZ ALANYASPOR,KAYSERİSPOR,1,2,180457,https://www.tff.org/Default.aspx?hafta=14&pageID=1440
+2017-18,14,2017-12-04,20:00,TRABZONSPOR A.Ş.,ANTALYASPOR A.Ş.,3,0,180460,https://www.tff.org/Default.aspx?hafta=14&pageID=1440
+2017-18,15,2017-12-08,20:00,BURSASPOR,FENERBAHÇE A.Ş.,0,1,180465,https://www.tff.org/Default.aspx?hafta=15&pageID=1440
+2017-18,15,2017-12-09,14:00,KASIMPAŞA A.Ş.,TRABZONSPOR A.Ş.,0,3,180462,https://www.tff.org/Default.aspx?hafta=15&pageID=1440
+2017-18,15,2017-12-09,14:00,EVKUR YENİ MALATYASPOR,GÖZTEPE A.Ş.,2,3,180464,https://www.tff.org/Default.aspx?hafta=15&pageID=1440
+2017-18,15,2017-12-09,16:30,ANTALYASPOR A.Ş.,GENÇLERBİRLİĞİ,1,1,180466,https://www.tff.org/Default.aspx?hafta=15&pageID=1440
+2017-18,15,2017-12-09,19:30,GALATASARAY A.Ş.,TELESET MOBİLYA AKHİSARSPOR,4,2,180461,https://www.tff.org/Default.aspx?hafta=15&pageID=1440
+2017-18,15,2017-12-10,14:00,OSMANLISPOR FUTBOL KULÜBÜ,AYTEMİZ ALANYASPOR,3,0,180463,https://www.tff.org/Default.aspx?hafta=15&pageID=1440
+2017-18,15,2017-12-10,16:30,DEMİR GRUP SİVASSPOR,MEDİPOL BAŞAKŞEHİR FK,1,0,180467,https://www.tff.org/Default.aspx?hafta=15&pageID=1440
+2017-18,15,2017-12-10,19:30,KAYSERİSPOR,BEŞİKTAŞ A.Ş.,1,1,180468,https://www.tff.org/Default.aspx?hafta=15&pageID=1440
+2017-18,15,2017-12-11,20:00,ATİKER KONYASPOR,KARDEMİR KARABÜKSPOR,2,0,180469,https://www.tff.org/Default.aspx?hafta=15&pageID=1440
+2017-18,16,2017-12-16,14:00,GENÇLERBİRLİĞİ,KASIMPAŞA A.Ş.,0,0,180471,https://www.tff.org/Default.aspx?hafta=16&pageID=1440
+2017-18,16,2017-12-16,16:30,AYTEMİZ ALANYASPOR,DEMİR GRUP SİVASSPOR,1,1,180476,https://www.tff.org/Default.aspx?hafta=16&pageID=1440
+2017-18,16,2017-12-16,19:30,TRABZONSPOR A.Ş.,BURSASPOR,1,0,180478,https://www.tff.org/Default.aspx?hafta=16&pageID=1440
+2017-18,16,2017-12-17,14:00,TELESET MOBİLYA AKHİSARSPOR,KAYSERİSPOR,0,2,180475,https://www.tff.org/Default.aspx?hafta=16&pageID=1440
+2017-18,16,2017-12-17,14:00,MEDİPOL BAŞAKŞEHİR FK,ANTALYASPOR A.Ş.,4,1,180477,https://www.tff.org/Default.aspx?hafta=16&pageID=1440
+2017-18,16,2017-12-17,16:30,EVKUR YENİ MALATYASPOR,GALATASARAY A.Ş.,2,1,180474,https://www.tff.org/Default.aspx?hafta=16&pageID=1440
+2017-18,16,2017-12-17,19:30,BEŞİKTAŞ A.Ş.,OSMANLISPOR FUTBOL KULÜBÜ,5,1,180470,https://www.tff.org/Default.aspx?hafta=16&pageID=1440
+2017-18,16,2017-12-18,20:00,GÖZTEPE A.Ş.,ATİKER KONYASPOR,1,0,180472,https://www.tff.org/Default.aspx?hafta=16&pageID=1440
+2017-18,16,2017-12-18,20:00,FENERBAHÇE A.Ş.,KARDEMİR KARABÜKSPOR,2,0,180473,https://www.tff.org/Default.aspx?hafta=16&pageID=1440
+2017-18,17,2017-12-22,20:00,ANTALYASPOR A.Ş.,AYTEMİZ ALANYASPOR,3,1,180480,https://www.tff.org/Default.aspx?hafta=17&pageID=1440
+2017-18,17,2017-12-23,14:00,BURSASPOR,GENÇLERBİRLİĞİ,1,1,180483,https://www.tff.org/Default.aspx?hafta=17&pageID=1440
+2017-18,17,2017-12-23,16:30,DEMİR GRUP SİVASSPOR,BEŞİKTAŞ A.Ş.,2,1,180485,https://www.tff.org/Default.aspx?hafta=17&pageID=1440
+2017-18,17,2017-12-23,19:30,ATİKER KONYASPOR,FENERBAHÇE A.Ş.,1,1,180487,https://www.tff.org/Default.aspx?hafta=17&pageID=1440
+2017-18,17,2017-12-24,14:00,KAYSERİSPOR,EVKUR YENİ MALATYASPOR,0,1,180481,https://www.tff.org/Default.aspx?hafta=17&pageID=1440
+2017-18,17,2017-12-24,14:00,KARDEMİR KARABÜKSPOR,TRABZONSPOR A.Ş.,1,1,180482,https://www.tff.org/Default.aspx?hafta=17&pageID=1440
+2017-18,17,2017-12-24,16:30,KASIMPAŞA A.Ş.,MEDİPOL BAŞAKŞEHİR FK,1,2,180484,https://www.tff.org/Default.aspx?hafta=17&pageID=1440
+2017-18,17,2017-12-24,19:30,GALATASARAY A.Ş.,GÖZTEPE A.Ş.,3,1,180479,https://www.tff.org/Default.aspx?hafta=17&pageID=1440
+2017-18,17,2017-12-25,20:00,OSMANLISPOR FUTBOL KULÜBÜ,TELESET MOBİLYA AKHİSARSPOR,3,2,180486,https://www.tff.org/Default.aspx?hafta=17&pageID=1440
+2017-18,18,2018-01-19,20:00,KASIMPAŞA A.Ş.,AYTEMİZ ALANYASPOR,3,2,180492,https://www.tff.org/Default.aspx?hafta=18&pageID=1440
+2017-18,18,2018-01-20,13:30,KARDEMİR KARABÜKSPOR,GENÇLERBİRLİĞİ,0,2,180494,https://www.tff.org/Default.aspx?hafta=18&pageID=1440
+2017-18,18,2018-01-20,16:00,OSMANLISPOR FUTBOL KULÜBÜ,EVKUR YENİ MALATYASPOR,0,0,180491,https://www.tff.org/Default.aspx?hafta=18&pageID=1440
+2017-18,18,2018-01-20,19:00,FENERBAHÇE A.Ş.,GÖZTEPE A.Ş.,2,1,180496,https://www.tff.org/Default.aspx?hafta=18&pageID=1440
+2017-18,18,2018-01-21,13:30,DEMİR GRUP SİVASSPOR,TELESET MOBİLYA AKHİSARSPOR,1,1,180489,https://www.tff.org/Default.aspx?hafta=18&pageID=1440
+2017-18,18,2018-01-21,13:30,ATİKER KONYASPOR,TRABZONSPOR A.Ş.,2,2,180495,https://www.tff.org/Default.aspx?hafta=18&pageID=1440
+2017-18,18,2018-01-21,16:00,BURSASPOR,MEDİPOL BAŞAKŞEHİR FK,0,3,180493,https://www.tff.org/Default.aspx?hafta=18&pageID=1440
+2017-18,18,2018-01-21,19:00,ANTALYASPOR A.Ş.,BEŞİKTAŞ A.Ş.,1,2,180490,https://www.tff.org/Default.aspx?hafta=18&pageID=1440
+2017-18,18,2018-01-22,20:00,KAYSERİSPOR,GALATASARAY A.Ş.,1,3,180488,https://www.tff.org/Default.aspx?hafta=18&pageID=1440
+2017-18,19,2018-01-26,20:00,GENÇLERBİRLİĞİ,ATİKER KONYASPOR,2,1,180498,https://www.tff.org/Default.aspx?hafta=19&pageID=1440
+2017-18,19,2018-01-26,20:00,BEŞİKTAŞ A.Ş.,KASIMPAŞA A.Ş.,2,1,180504,https://www.tff.org/Default.aspx?hafta=19&pageID=1440
+2017-18,19,2018-01-27,13:30,AYTEMİZ ALANYASPOR,BURSASPOR,3,1,180500,https://www.tff.org/Default.aspx?hafta=19&pageID=1440
+2017-18,19,2018-01-27,16:00,GÖZTEPE A.Ş.,KAYSERİSPOR,1,1,180503,https://www.tff.org/Default.aspx?hafta=19&pageID=1440
+2017-18,19,2018-01-27,19:00,GALATASARAY A.Ş.,OSMANLISPOR FUTBOL KULÜBÜ,2,0,180502,https://www.tff.org/Default.aspx?hafta=19&pageID=1440
+2017-18,19,2018-01-28,13:34,EVKUR YENİ MALATYASPOR,DEMİR GRUP SİVASSPOR,1,0,180497,https://www.tff.org/Default.aspx?hafta=19&pageID=1440
+2017-18,19,2018-01-28,16:00,TELESET MOBİLYA AKHİSARSPOR,ANTALYASPOR A.Ş.,1,1,180501,https://www.tff.org/Default.aspx?hafta=19&pageID=1440
+2017-18,19,2018-01-28,19:00,TRABZONSPOR A.Ş.,FENERBAHÇE A.Ş.,1,1,180505,https://www.tff.org/Default.aspx?hafta=19&pageID=1440
+2017-18,19,2018-01-29,20:00,MEDİPOL BAŞAKŞEHİR FK,KARDEMİR KARABÜKSPOR,5,0,180499,https://www.tff.org/Default.aspx?hafta=19&pageID=1440
+2017-18,20,2018-02-02,20:00,BURSASPOR,BEŞİKTAŞ A.Ş.,2,2,180511,https://www.tff.org/Default.aspx?hafta=20&pageID=1440
+2017-18,20,2018-02-03,13:30,KARDEMİR KARABÜKSPOR,AYTEMİZ ALANYASPOR,1,0,180508,https://www.tff.org/Default.aspx?hafta=20&pageID=1440
+2017-18,20,2018-02-03,16:00,ANTALYASPOR A.Ş.,EVKUR YENİ MALATYASPOR,3,1,180507,https://www.tff.org/Default.aspx?hafta=20&pageID=1440
+2017-18,20,2018-02-03,19:00,FENERBAHÇE A.Ş.,GENÇLERBİRLİĞİ,2,2,180512,https://www.tff.org/Default.aspx?hafta=20&pageID=1440
+2017-18,20,2018-02-04,13:30,KASIMPAŞA A.Ş.,TELESET MOBİLYA AKHİSARSPOR,2,0,180510,https://www.tff.org/Default.aspx?hafta=20&pageID=1440
+2017-18,20,2018-02-04,13:30,OSMANLISPOR FUTBOL KULÜBÜ,KAYSERİSPOR,0,1,180513,https://www.tff.org/Default.aspx?hafta=20&pageID=1440
+2017-18,20,2018-02-04,16:00,ATİKER KONYASPOR,MEDİPOL BAŞAKŞEHİR FK,1,1,180514,https://www.tff.org/Default.aspx?hafta=20&pageID=1440
+2017-18,20,2018-02-04,19:00,DEMİR GRUP SİVASSPOR,GALATASARAY A.Ş.,2,1,180509,https://www.tff.org/Default.aspx?hafta=20&pageID=1440
+2017-18,20,2018-02-05,20:00,TRABZONSPOR A.Ş.,GÖZTEPE A.Ş.,0,0,180506,https://www.tff.org/Default.aspx?hafta=20&pageID=1440
+2017-18,21,2018-02-09,20:00,EVKUR YENİ MALATYASPOR,KASIMPAŞA A.Ş.,1,1,180519,https://www.tff.org/Default.aspx?hafta=21&pageID=1440
+2017-18,21,2018-02-10,13:30,GÖZTEPE A.Ş.,OSMANLISPOR FUTBOL KULÜBÜ,3,3,180521,https://www.tff.org/Default.aspx?hafta=21&pageID=1440
+2017-18,21,2018-02-10,16:00,GENÇLERBİRLİĞİ,TRABZONSPOR A.Ş.,0,0,180517,https://www.tff.org/Default.aspx?hafta=21&pageID=1440
+2017-18,21,2018-02-10,19:00,BEŞİKTAŞ A.Ş.,KARDEMİR KARABÜKSPOR,5,0,180518,https://www.tff.org/Default.aspx?hafta=21&pageID=1440
+2017-18,21,2018-02-11,13:30,TELESET MOBİLYA AKHİSARSPOR,BURSASPOR,1,0,180515,https://www.tff.org/Default.aspx?hafta=21&pageID=1440
+2017-18,21,2018-02-11,13:30,KAYSERİSPOR,DEMİR GRUP SİVASSPOR,1,1,180520,https://www.tff.org/Default.aspx?hafta=21&pageID=1440
+2017-18,21,2018-02-11,16:00,AYTEMİZ ALANYASPOR,ATİKER KONYASPOR,1,2,180522,https://www.tff.org/Default.aspx?hafta=21&pageID=1440
+2017-18,21,2018-02-11,19:00,MEDİPOL BAŞAKŞEHİR FK,FENERBAHÇE A.Ş.,0,2,180523,https://www.tff.org/Default.aspx?hafta=21&pageID=1440
+2017-18,21,2018-02-12,20:00,GALATASARAY A.Ş.,ANTALYASPOR A.Ş.,3,0,180516,https://www.tff.org/Default.aspx?hafta=21&pageID=1440
+2017-18,22,2018-02-16,20:00,ATİKER KONYASPOR,BEŞİKTAŞ A.Ş.,1,1,180530,https://www.tff.org/Default.aspx?hafta=22&pageID=1440
+2017-18,22,2018-02-17,13:30,ANTALYASPOR A.Ş.,KAYSERİSPOR,2,1,180526,https://www.tff.org/Default.aspx?hafta=22&pageID=1440
+2017-18,22,2018-02-17,16:00,DEMİR GRUP SİVASSPOR,OSMANLISPOR FUTBOL KULÜBÜ,3,2,180525,https://www.tff.org/Default.aspx?hafta=22&pageID=1440
+2017-18,22,2018-02-17,19:00,FENERBAHÇE A.Ş.,AYTEMİZ ALANYASPOR,3,0,180531,https://www.tff.org/Default.aspx?hafta=22&pageID=1440
+2017-18,22,2018-02-18,13:30,BURSASPOR,EVKUR YENİ MALATYASPOR,0,0,180528,https://www.tff.org/Default.aspx?hafta=22&pageID=1440
+2017-18,22,2018-02-18,13:30,KARDEMİR KARABÜKSPOR,TELESET MOBİLYA AKHİSARSPOR,0,3,180529,https://www.tff.org/Default.aspx?hafta=22&pageID=1440
+2017-18,22,2018-02-18,16:00,TRABZONSPOR A.Ş.,MEDİPOL BAŞAKŞEHİR FK,0,1,180532,https://www.tff.org/Default.aspx?hafta=22&pageID=1440
+2017-18,22,2018-02-18,19:00,KASIMPAŞA A.Ş.,GALATASARAY A.Ş.,2,1,180524,https://www.tff.org/Default.aspx?hafta=22&pageID=1440
+2017-18,22,2018-02-19,20:00,GENÇLERBİRLİĞİ,GÖZTEPE A.Ş.,3,0,180527,https://www.tff.org/Default.aspx?hafta=22&pageID=1440
+2017-18,23,2018-02-23,20:00,GALATASARAY A.Ş.,BURSASPOR,5,0,180537,https://www.tff.org/Default.aspx?hafta=23&pageID=1440
+2017-18,23,2018-02-23,20:00,TELESET MOBİLYA AKHİSARSPOR,ATİKER KONYASPOR,3,0,180541,https://www.tff.org/Default.aspx?hafta=23&pageID=1440
+2017-18,23,2018-02-24,16:00,KAYSERİSPOR,KASIMPAŞA A.Ş.,3,2,180538,https://www.tff.org/Default.aspx?hafta=23&pageID=1440
+2017-18,23,2018-02-24,19:00,AYTEMİZ ALANYASPOR,TRABZONSPOR A.Ş.,1,2,180540,https://www.tff.org/Default.aspx?hafta=23&pageID=1440
+2017-18,23,2018-02-25,13:30,OSMANLISPOR FUTBOL KULÜBÜ,ANTALYASPOR A.Ş.,0,0,180533,https://www.tff.org/Default.aspx?hafta=23&pageID=1440
+2017-18,23,2018-02-25,13:30,EVKUR YENİ MALATYASPOR,KARDEMİR KARABÜKSPOR,3,1,180536,https://www.tff.org/Default.aspx?hafta=23&pageID=1440
+2017-18,23,2018-02-25,16:00,GÖZTEPE A.Ş.,DEMİR GRUP SİVASSPOR,1,0,180534,https://www.tff.org/Default.aspx?hafta=23&pageID=1440
+2017-18,23,2018-02-25,19:00,BEŞİKTAŞ A.Ş.,FENERBAHÇE A.Ş.,3,1,180535,https://www.tff.org/Default.aspx?hafta=23&pageID=1440
+2017-18,23,2018-02-26,20:00,MEDİPOL BAŞAKŞEHİR FK,GENÇLERBİRLİĞİ,1,1,180539,https://www.tff.org/Default.aspx?hafta=23&pageID=1440
+2017-18,24,2018-03-02,20:00,BURSASPOR,KAYSERİSPOR,1,0,180549,https://www.tff.org/Default.aspx?hafta=24&pageID=1440
+2017-18,24,2018-03-03,13:30,KASIMPAŞA A.Ş.,OSMANLISPOR FUTBOL KULÜBÜ,1,1,180548,https://www.tff.org/Default.aspx?hafta=24&pageID=1440
+2017-18,24,2018-03-03,16:00,MEDİPOL BAŞAKŞEHİR FK,GÖZTEPE A.Ş.,2,0,180550,https://www.tff.org/Default.aspx?hafta=24&pageID=1440
+2017-18,24,2018-03-03,19:00,KARDEMİR KARABÜKSPOR,GALATASARAY A.Ş.,0,7,180542,https://www.tff.org/Default.aspx?hafta=24&pageID=1440
+2017-18,24,2018-03-04,13:30,GENÇLERBİRLİĞİ,AYTEMİZ ALANYASPOR,0,1,180547,https://www.tff.org/Default.aspx?hafta=24&pageID=1440
+2017-18,24,2018-03-04,16:00,ATİKER KONYASPOR,EVKUR YENİ MALATYASPOR,0,1,180545,https://www.tff.org/Default.aspx?hafta=24&pageID=1440
+2017-18,24,2018-03-04,19:00,ANTALYASPOR A.Ş.,DEMİR GRUP SİVASSPOR,1,4,180544,https://www.tff.org/Default.aspx?hafta=24&pageID=1440
+2017-18,24,2018-03-04,19:00,FENERBAHÇE A.Ş.,TELESET MOBİLYA AKHİSARSPOR,2,3,180546,https://www.tff.org/Default.aspx?hafta=24&pageID=1440
+2017-18,24,2018-03-05,20:00,TRABZONSPOR A.Ş.,BEŞİKTAŞ A.Ş.,0,2,180543,https://www.tff.org/Default.aspx?hafta=24&pageID=1440
+2017-18,25,2018-03-09,20:00,AYTEMİZ ALANYASPOR,MEDİPOL BAŞAKŞEHİR FK,4,1,180557,https://www.tff.org/Default.aspx?hafta=25&pageID=1440
+2017-18,25,2018-03-10,13:30,DEMİR GRUP SİVASSPOR,KASIMPAŞA A.Ş.,2,2,180555,https://www.tff.org/Default.aspx?hafta=25&pageID=1440
+2017-18,25,2018-03-10,16:00,OSMANLISPOR FUTBOL KULÜBÜ,BURSASPOR,2,1,180552,https://www.tff.org/Default.aspx?hafta=25&pageID=1440
+2017-18,25,2018-03-10,19:00,BEŞİKTAŞ A.Ş.,GENÇLERBİRLİĞİ,1,0,180558,https://www.tff.org/Default.aspx?hafta=25&pageID=1440
+2017-18,25,2018-03-11,13:30,KAYSERİSPOR,KARDEMİR KARABÜKSPOR,3,2,180554,https://www.tff.org/Default.aspx?hafta=25&pageID=1440
+2017-18,25,2018-03-11,13:30,GÖZTEPE A.Ş.,ANTALYASPOR A.Ş.,2,1,180556,https://www.tff.org/Default.aspx?hafta=25&pageID=1440
+2017-18,25,2018-03-11,16:03,EVKUR YENİ MALATYASPOR,FENERBAHÇE A.Ş.,0,2,180551,https://www.tff.org/Default.aspx?hafta=25&pageID=1440
+2017-18,25,2018-03-11,19:00,GALATASARAY A.Ş.,ATİKER KONYASPOR,2,1,180559,https://www.tff.org/Default.aspx?hafta=25&pageID=1440
+2017-18,25,2018-03-12,20:00,TELESET MOBİLYA AKHİSARSPOR,TRABZONSPOR A.Ş.,1,3,180553,https://www.tff.org/Default.aspx?hafta=25&pageID=1440
+2017-18,26,2018-03-16,20:00,KASIMPAŞA A.Ş.,ANTALYASPOR A.Ş.,2,3,180561,https://www.tff.org/Default.aspx?hafta=26&pageID=1440
+2017-18,26,2018-03-16,20:00,KARDEMİR KARABÜKSPOR,OSMANLISPOR FUTBOL KULÜBÜ,0,4,180567,https://www.tff.org/Default.aspx?hafta=26&pageID=1440
+2017-18,26,2018-03-17,13:30,GENÇLERBİRLİĞİ,TELESET MOBİLYA AKHİSARSPOR,1,1,180560,https://www.tff.org/Default.aspx?hafta=26&pageID=1440
+2017-18,26,2018-03-17,16:00,BURSASPOR,DEMİR GRUP SİVASSPOR,1,0,180566,https://www.tff.org/Default.aspx?hafta=26&pageID=1440
+2017-18,26,2018-03-17,19:00,FENERBAHÇE A.Ş.,GALATASARAY A.Ş.,0,0,180563,https://www.tff.org/Default.aspx?hafta=26&pageID=1440
+2017-18,26,2018-03-18,13:30,ATİKER KONYASPOR,KAYSERİSPOR,2,0,180562,https://www.tff.org/Default.aspx?hafta=26&pageID=1440
+2017-18,26,2018-03-18,13:30,AYTEMİZ ALANYASPOR,GÖZTEPE A.Ş.,1,1,180568,https://www.tff.org/Default.aspx?hafta=26&pageID=1440
+2017-18,26,2018-03-18,16:00,TRABZONSPOR A.Ş.,EVKUR YENİ MALATYASPOR,4,1,180564,https://www.tff.org/Default.aspx?hafta=26&pageID=1440
+2017-18,26,2018-03-18,19:00,MEDİPOL BAŞAKŞEHİR FK,BEŞİKTAŞ A.Ş.,1,0,180565,https://www.tff.org/Default.aspx?hafta=26&pageID=1440
+2017-18,27,2018-03-30,20:00,DEMİR GRUP SİVASSPOR,KARDEMİR KARABÜKSPOR,1,0,180572,https://www.tff.org/Default.aspx?hafta=27&pageID=1440
+2017-18,27,2018-03-31,13:30,EVKUR YENİ MALATYASPOR,GENÇLERBİRLİĞİ,4,1,180569,https://www.tff.org/Default.aspx?hafta=27&pageID=1440
+2017-18,27,2018-03-31,16:00,ANTALYASPOR A.Ş.,BURSASPOR,2,0,180573,https://www.tff.org/Default.aspx?hafta=27&pageID=1440
+2017-18,27,2018-03-31,19:00,BEŞİKTAŞ A.Ş.,AYTEMİZ ALANYASPOR,1,0,180575,https://www.tff.org/Default.aspx?hafta=27&pageID=1440
+2017-18,27,2018-04-01,13:30,OSMANLISPOR FUTBOL KULÜBÜ,ATİKER KONYASPOR,0,0,180570,https://www.tff.org/Default.aspx?hafta=27&pageID=1440
+2017-18,27,2018-04-01,13:30,GÖZTEPE A.Ş.,KASIMPAŞA A.Ş.,0,2,180574,https://www.tff.org/Default.aspx?hafta=27&pageID=1440
+2017-18,27,2018-04-01,16:00,TELESET MOBİLYA AKHİSARSPOR,MEDİPOL BAŞAKŞEHİR FK,1,2,180576,https://www.tff.org/Default.aspx?hafta=27&pageID=1440
+2017-18,27,2018-04-01,19:00,GALATASARAY A.Ş.,TRABZONSPOR A.Ş.,2,1,180577,https://www.tff.org/Default.aspx?hafta=27&pageID=1440
+2017-18,27,2018-04-02,20:00,KAYSERİSPOR,FENERBAHÇE A.Ş.,0,5,180571,https://www.tff.org/Default.aspx?hafta=27&pageID=1440
+2017-18,28,2018-04-06,20:00,MEDİPOL BAŞAKŞEHİR FK,EVKUR YENİ MALATYASPOR,1,0,180582,https://www.tff.org/Default.aspx?hafta=28&pageID=1440
+2017-18,28,2018-04-07,13:30,KARDEMİR KARABÜKSPOR,ANTALYASPOR A.Ş.,1,2,180578,https://www.tff.org/Default.aspx?hafta=28&pageID=1440
+2017-18,28,2018-04-07,16:00,TRABZONSPOR A.Ş.,KAYSERİSPOR,4,0,180586,https://www.tff.org/Default.aspx?hafta=28&pageID=1440
+2017-18,28,2018-04-07,19:00,BEŞİKTAŞ A.Ş.,GÖZTEPE A.Ş.,5,1,180580,https://www.tff.org/Default.aspx?hafta=28&pageID=1440
+2017-18,28,2018-04-08,13:30,ATİKER KONYASPOR,DEMİR GRUP SİVASSPOR,5,0,180579,https://www.tff.org/Default.aspx?hafta=28&pageID=1440
+2017-18,28,2018-04-08,16:00,AYTEMİZ ALANYASPOR,TELESET MOBİLYA AKHİSARSPOR,3,1,180583,https://www.tff.org/Default.aspx?hafta=28&pageID=1440
+2017-18,28,2018-04-08,16:00,BURSASPOR,KASIMPAŞA A.Ş.,0,1,180584,https://www.tff.org/Default.aspx?hafta=28&pageID=1440
+2017-18,28,2018-04-08,19:00,FENERBAHÇE A.Ş.,OSMANLISPOR FUTBOL KULÜBÜ,2,0,180585,https://www.tff.org/Default.aspx?hafta=28&pageID=1440
+2017-18,28,2018-04-09,20:00,GENÇLERBİRLİĞİ,GALATASARAY A.Ş.,1,0,180581,https://www.tff.org/Default.aspx?hafta=28&pageID=1440
+2017-18,29,2018-04-13,20:00,TELESET MOBİLYA AKHİSARSPOR,BEŞİKTAŞ A.Ş.,0,3,180593,https://www.tff.org/Default.aspx?hafta=29&pageID=1440
+2017-18,29,2018-04-14,13:30,KASIMPAŞA A.Ş.,KARDEMİR KARABÜKSPOR,2,0,180591,https://www.tff.org/Default.aspx?hafta=29&pageID=1440
+2017-18,29,2018-04-14,16:00,EVKUR YENİ MALATYASPOR,AYTEMİZ ALANYASPOR,1,1,180587,https://www.tff.org/Default.aspx?hafta=29&pageID=1440
+2017-18,29,2018-04-14,19:00,DEMİR GRUP SİVASSPOR,FENERBAHÇE A.Ş.,1,2,180590,https://www.tff.org/Default.aspx?hafta=29&pageID=1440
+2017-18,29,2018-04-15,13:30,KAYSERİSPOR,GENÇLERBİRLİĞİ,3,2,180588,https://www.tff.org/Default.aspx?hafta=29&pageID=1440
+2017-18,29,2018-04-15,16:00,ANTALYASPOR A.Ş.,ATİKER KONYASPOR,0,0,180589,https://www.tff.org/Default.aspx?hafta=29&pageID=1440
+2017-18,29,2018-04-15,16:00,GÖZTEPE A.Ş.,BURSASPOR,2,1,180592,https://www.tff.org/Default.aspx?hafta=29&pageID=1440
+2017-18,29,2018-04-15,19:00,GALATASARAY A.Ş.,MEDİPOL BAŞAKŞEHİR FK,2,0,180594,https://www.tff.org/Default.aspx?hafta=29&pageID=1440
+2017-18,29,2018-04-16,20:00,OSMANLISPOR FUTBOL KULÜBÜ,TRABZONSPOR A.Ş.,3,3,180595,https://www.tff.org/Default.aspx?hafta=29&pageID=1440
+2017-18,30,2018-04-20,20:00,MEDİPOL BAŞAKŞEHİR FK,KAYSERİSPOR,3,1,180603,https://www.tff.org/Default.aspx?hafta=30&pageID=1440
+2017-18,30,2018-04-21,13:30,GENÇLERBİRLİĞİ,OSMANLISPOR FUTBOL KULÜBÜ,0,3,180598,https://www.tff.org/Default.aspx?hafta=30&pageID=1440
+2017-18,30,2018-04-21,13:30,KARDEMİR KARABÜKSPOR,BURSASPOR,1,4,180600,https://www.tff.org/Default.aspx?hafta=30&pageID=1440
+2017-18,30,2018-04-21,16:00,TRABZONSPOR A.Ş.,DEMİR GRUP SİVASSPOR,0,2,180597,https://www.tff.org/Default.aspx?hafta=30&pageID=1440
+2017-18,30,2018-04-21,19:00,AYTEMİZ ALANYASPOR,GALATASARAY A.Ş.,2,3,180596,https://www.tff.org/Default.aspx?hafta=30&pageID=1440
+2017-18,30,2018-04-22,16:00,ATİKER KONYASPOR,KASIMPAŞA A.Ş.,2,0,180601,https://www.tff.org/Default.aspx?hafta=30&pageID=1440
+2017-18,30,2018-04-22,16:00,TELESET MOBİLYA AKHİSARSPOR,GÖZTEPE A.Ş.,1,1,180604,https://www.tff.org/Default.aspx?hafta=30&pageID=1440
+2017-18,30,2018-04-22,19:00,BEŞİKTAŞ A.Ş.,EVKUR YENİ MALATYASPOR,3,1,180599,https://www.tff.org/Default.aspx?hafta=30&pageID=1440
+2017-18,30,2018-04-23,20:00,FENERBAHÇE A.Ş.,ANTALYASPOR A.Ş.,4,1,180602,https://www.tff.org/Default.aspx?hafta=30&pageID=1440
+2017-18,31,2018-04-27,20:00,GÖZTEPE A.Ş.,KARDEMİR KARABÜKSPOR,5,0,180609,https://www.tff.org/Default.aspx?hafta=31&pageID=1440
+2017-18,31,2018-04-28,13:30,KAYSERİSPOR,AYTEMİZ ALANYASPOR,1,2,180610,https://www.tff.org/Default.aspx?hafta=31&pageID=1440
+2017-18,31,2018-04-28,13:30,DEMİR GRUP SİVASSPOR,GENÇLERBİRLİĞİ,1,0,180612,https://www.tff.org/Default.aspx?hafta=31&pageID=1440
+2017-18,31,2018-04-28,19:00,KASIMPAŞA A.Ş.,FENERBAHÇE A.Ş.,1,4,180608,https://www.tff.org/Default.aspx?hafta=31&pageID=1440
+2017-18,31,2018-04-28,19:00,ANTALYASPOR A.Ş.,TRABZONSPOR A.Ş.,1,2,180613,https://www.tff.org/Default.aspx?hafta=31&pageID=1440
+2017-18,31,2018-04-29,13:30,EVKUR YENİ MALATYASPOR,TELESET MOBİLYA AKHİSARSPOR,0,0,180605,https://www.tff.org/Default.aspx?hafta=31&pageID=1440
+2017-18,31,2018-04-29,16:00,OSMANLISPOR FUTBOL KULÜBÜ,MEDİPOL BAŞAKŞEHİR FK,1,4,180611,https://www.tff.org/Default.aspx?hafta=31&pageID=1440
+2017-18,31,2018-04-29,19:00,GALATASARAY A.Ş.,BEŞİKTAŞ A.Ş.,2,0,180606,https://www.tff.org/Default.aspx?hafta=31&pageID=1440
+2017-18,31,2018-04-30,20:00,BURSASPOR,ATİKER KONYASPOR,2,1,180607,https://www.tff.org/Default.aspx?hafta=31&pageID=1440
+2017-18,32,2018-05-04,20:00,MEDİPOL BAŞAKŞEHİR FK,DEMİR GRUP SİVASSPOR,1,1,180620,https://www.tff.org/Default.aspx?hafta=32&pageID=1440
+2017-18,32,2018-05-05,16:00,KARDEMİR KARABÜKSPOR,ATİKER KONYASPOR,0,1,180622,https://www.tff.org/Default.aspx?hafta=32&pageID=1440
+2017-18,32,2018-05-05,19:00,TRABZONSPOR A.Ş.,KASIMPAŞA A.Ş.,2,5,180615,https://www.tff.org/Default.aspx?hafta=32&pageID=1440
+2017-18,32,2018-05-05,19:00,AYTEMİZ ALANYASPOR,OSMANLISPOR FUTBOL KULÜBÜ,1,1,180616,https://www.tff.org/Default.aspx?hafta=32&pageID=1440
+2017-18,32,2018-05-06,16:00,FENERBAHÇE A.Ş.,BURSASPOR,2,1,180618,https://www.tff.org/Default.aspx?hafta=32&pageID=1440
+2017-18,32,2018-05-06,16:00,GENÇLERBİRLİĞİ,ANTALYASPOR A.Ş.,0,1,180619,https://www.tff.org/Default.aspx?hafta=32&pageID=1440
+2017-18,32,2018-05-06,19:00,TELESET MOBİLYA AKHİSARSPOR,GALATASARAY A.Ş.,1,2,180614,https://www.tff.org/Default.aspx?hafta=32&pageID=1440
+2017-18,32,2018-05-07,20:00,GÖZTEPE A.Ş.,EVKUR YENİ MALATYASPOR,0,0,180617,https://www.tff.org/Default.aspx?hafta=32&pageID=1440
+2017-18,32,2018-05-07,20:00,BEŞİKTAŞ A.Ş.,KAYSERİSPOR,2,0,180621,https://www.tff.org/Default.aspx?hafta=32&pageID=1440
+2017-18,33,2018-05-11,20:00,ANTALYASPOR A.Ş.,MEDİPOL BAŞAKŞEHİR FK,0,2,180630,https://www.tff.org/Default.aspx?hafta=33&pageID=1440
+2017-18,33,2018-05-12,16:00,KASIMPAŞA A.Ş.,GENÇLERBİRLİĞİ,3,1,180624,https://www.tff.org/Default.aspx?hafta=33&pageID=1440
+2017-18,33,2018-05-12,19:00,ATİKER KONYASPOR,GÖZTEPE A.Ş.,1,1,180625,https://www.tff.org/Default.aspx?hafta=33&pageID=1440
+2017-18,33,2018-05-12,19:00,GALATASARAY A.Ş.,EVKUR YENİ MALATYASPOR,2,0,180627,https://www.tff.org/Default.aspx?hafta=33&pageID=1440
+2017-18,33,2018-05-13,16:00,BURSASPOR,TRABZONSPOR A.Ş.,1,3,180631,https://www.tff.org/Default.aspx?hafta=33&pageID=1440
+2017-18,33,2018-05-13,19:00,OSMANLISPOR FUTBOL KULÜBÜ,BEŞİKTAŞ A.Ş.,2,3,180623,https://www.tff.org/Default.aspx?hafta=33&pageID=1440
+2017-18,33,2018-05-13,19:00,DEMİR GRUP SİVASSPOR,AYTEMİZ ALANYASPOR,2,2,180629,https://www.tff.org/Default.aspx?hafta=33&pageID=1440
+2017-18,33,2018-05-14,20:00,KARDEMİR KARABÜKSPOR,FENERBAHÇE A.Ş.,0,7,180626,https://www.tff.org/Default.aspx?hafta=33&pageID=1440
+2017-18,33,2018-05-14,20:00,KAYSERİSPOR,TELESET MOBİLYA AKHİSARSPOR,1,2,180628,https://www.tff.org/Default.aspx?hafta=33&pageID=1440
+2017-18,34,2018-05-18,18:00,AYTEMİZ ALANYASPOR,ANTALYASPOR A.Ş.,3,2,180633,https://www.tff.org/Default.aspx?hafta=34&pageID=1440
+2017-18,34,2018-05-18,18:00,EVKUR YENİ MALATYASPOR,KAYSERİSPOR,3,2,180634,https://www.tff.org/Default.aspx?hafta=34&pageID=1440
+2017-18,34,2018-05-18,18:00,TRABZONSPOR A.Ş.,KARDEMİR KARABÜKSPOR,3,0,180635,https://www.tff.org/Default.aspx?hafta=34&pageID=1440
+2017-18,34,2018-05-18,18:00,GENÇLERBİRLİĞİ,BURSASPOR,1,0,180636,https://www.tff.org/Default.aspx?hafta=34&pageID=1440
+2017-18,34,2018-05-18,18:00,TELESET MOBİLYA AKHİSARSPOR,OSMANLISPOR FUTBOL KULÜBÜ,2,1,180639,https://www.tff.org/Default.aspx?hafta=34&pageID=1440
+2017-18,34,2018-05-19,19:00,GÖZTEPE A.Ş.,GALATASARAY A.Ş.,0,1,180632,https://www.tff.org/Default.aspx?hafta=34&pageID=1440
+2017-18,34,2018-05-19,19:00,MEDİPOL BAŞAKŞEHİR FK,KASIMPAŞA A.Ş.,3,2,180637,https://www.tff.org/Default.aspx?hafta=34&pageID=1440
+2017-18,34,2018-05-19,19:00,BEŞİKTAŞ A.Ş.,DEMİR GRUP SİVASSPOR,5,1,180638,https://www.tff.org/Default.aspx?hafta=34&pageID=1440
+2017-18,34,2018-05-19,19:00,FENERBAHÇE A.Ş.,ATİKER KONYASPOR,3,2,180640,https://www.tff.org/Default.aspx?hafta=34&pageID=1440
+2018-19,1,2018-08-10,21:57,MKE ANKARAGÜCÜ,GALATASARAY A.Ş.,1,3,194514,https://www.tff.org/Default.aspx?hafta=1&pageID=1467
+2018-19,1,2018-08-11,19:30,DEMİR GRUP SİVASSPOR,AYTEMİZ ALANYASPOR,1,0,194517,https://www.tff.org/Default.aspx?hafta=1&pageID=1467
+2018-19,1,2018-08-11,19:38,ÇAYKUR RİZESPOR A.Ş.,KASIMPAŞA A.Ş.,2,3,194516,https://www.tff.org/Default.aspx?hafta=1&pageID=1467
+2018-19,1,2018-08-11,21:45,FENERBAHÇE A.Ş.,BURSASPOR,2,1,194521,https://www.tff.org/Default.aspx?hafta=1&pageID=1467
+2018-19,1,2018-08-12,19:30,MEDİPOL BAŞAKŞEHİR FK,TRABZONSPOR A.Ş.,2,0,194515,https://www.tff.org/Default.aspx?hafta=1&pageID=1467
+2018-19,1,2018-08-12,19:30,ATİKER KONYASPOR,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,3,2,194519,https://www.tff.org/Default.aspx?hafta=1&pageID=1467
+2018-19,1,2018-08-12,21:45,BEŞİKTAŞ A.Ş.,AKHİSARSPOR,2,1,194518,https://www.tff.org/Default.aspx?hafta=1&pageID=1467
+2018-19,1,2018-08-12,21:45,GÖZTEPE A.Ş.,YENİ MALATYASPOR,1,3,194522,https://www.tff.org/Default.aspx?hafta=1&pageID=1467
+2018-19,1,2018-08-13,21:45,KAYSERİSPOR,ANTALYASPOR A.Ş.,2,0,194520,https://www.tff.org/Default.aspx?hafta=1&pageID=1467
+2018-19,2,2018-08-17,21:45,TRABZONSPOR A.Ş.,DEMİR GRUP SİVASSPOR,3,1,194523,https://www.tff.org/Default.aspx?hafta=2&pageID=1467
+2018-19,2,2018-08-18,19:15,BURSASPOR,KAYSERİSPOR,0,0,194524,https://www.tff.org/Default.aspx?hafta=2&pageID=1467
+2018-19,2,2018-08-18,21:45,ANTALYASPOR A.Ş.,ATİKER KONYASPOR,3,3,194525,https://www.tff.org/Default.aspx?hafta=2&pageID=1467
+2018-19,2,2018-08-18,21:45,EVKUR YENİ MALATYASPOR,FENERBAHÇE A.Ş.,1,0,194531,https://www.tff.org/Default.aspx?hafta=2&pageID=1467
+2018-19,2,2018-08-19,19:15,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,BEŞİKTAŞ A.Ş.,1,3,194526,https://www.tff.org/Default.aspx?hafta=2&pageID=1467
+2018-19,2,2018-08-19,19:15,AKHİSARSPOR,ÇAYKUR RİZESPOR A.Ş.,1,1,194530,https://www.tff.org/Default.aspx?hafta=2&pageID=1467
+2018-19,2,2018-08-19,21:45,AYTEMİZ ALANYASPOR,MKE ANKARAGÜCÜ,0,2,194528,https://www.tff.org/Default.aspx?hafta=2&pageID=1467
+2018-19,2,2018-08-19,21:45,GALATASARAY A.Ş.,GÖZTEPE A.Ş.,1,0,194529,https://www.tff.org/Default.aspx?hafta=2&pageID=1467
+2018-19,2,2018-08-20,21:45,KASIMPAŞA A.Ş.,MEDİPOL BAŞAKŞEHİR FK,2,1,194527,https://www.tff.org/Default.aspx?hafta=2&pageID=1467
+2018-19,3,2018-08-24,19:15,ÇAYKUR RİZESPOR A.Ş.,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,0,0,194537,https://www.tff.org/Default.aspx?hafta=3&pageID=1467
+2018-19,3,2018-08-25,19:15,MKE ANKARAGÜCÜ,TRABZONSPOR A.Ş.,2,2,194535,https://www.tff.org/Default.aspx?hafta=3&pageID=1467
+2018-19,3,2018-08-25,21:45,GÖZTEPE A.Ş.,FENERBAHÇE A.Ş.,1,0,194532,https://www.tff.org/Default.aspx?hafta=3&pageID=1467
+2018-19,3,2018-08-25,21:45,KAYSERİSPOR,EVKUR YENİ MALATYASPOR,0,0,194538,https://www.tff.org/Default.aspx?hafta=3&pageID=1467
+2018-19,3,2018-08-26,19:15,DEMİR GRUP SİVASSPOR,KASIMPAŞA A.Ş.,0,3,194533,https://www.tff.org/Default.aspx?hafta=3&pageID=1467
+2018-19,3,2018-08-26,21:45,BEŞİKTAŞ A.Ş.,ANTALYASPOR A.Ş.,2,3,194534,https://www.tff.org/Default.aspx?hafta=3&pageID=1467
+2018-19,3,2018-08-26,21:45,ATİKER KONYASPOR,BURSASPOR,1,1,194540,https://www.tff.org/Default.aspx?hafta=3&pageID=1467
+2018-19,3,2018-08-27,19:15,MEDİPOL BAŞAKŞEHİR FK,AKHİSARSPOR,3,1,194536,https://www.tff.org/Default.aspx?hafta=3&pageID=1467
+2018-19,3,2018-08-27,21:45,GALATASARAY A.Ş.,AYTEMİZ ALANYASPOR,6,0,194539,https://www.tff.org/Default.aspx?hafta=3&pageID=1467
+2018-19,4,2018-08-31,21:45,EVKUR YENİ MALATYASPOR,ATİKER KONYASPOR,0,1,194549,https://www.tff.org/Default.aspx?hafta=4&pageID=1467
+2018-19,4,2018-09-01,19:15,FENERBAHÇE A.Ş.,KAYSERİSPOR,2,3,194543,https://www.tff.org/Default.aspx?hafta=4&pageID=1467
+2018-19,4,2018-09-01,19:15,AKHİSARSPOR,DEMİR GRUP SİVASSPOR,1,1,194545,https://www.tff.org/Default.aspx?hafta=4&pageID=1467
+2018-19,4,2018-09-01,21:45,TRABZONSPOR A.Ş.,GALATASARAY A.Ş.,4,0,194546,https://www.tff.org/Default.aspx?hafta=4&pageID=1467
+2018-19,4,2018-09-01,21:45,AYTEMİZ ALANYASPOR,GÖZTEPE A.Ş.,1,0,194547,https://www.tff.org/Default.aspx?hafta=4&pageID=1467
+2018-19,4,2018-09-02,19:15,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,MEDİPOL BAŞAKŞEHİR FK,0,1,194541,https://www.tff.org/Default.aspx?hafta=4&pageID=1467
+2018-19,4,2018-09-02,19:15,KASIMPAŞA A.Ş.,MKE ANKARAGÜCÜ,2,1,194542,https://www.tff.org/Default.aspx?hafta=4&pageID=1467
+2018-19,4,2018-09-02,21:45,ANTALYASPOR A.Ş.,ÇAYKUR RİZESPOR A.Ş.,2,1,194544,https://www.tff.org/Default.aspx?hafta=4&pageID=1467
+2018-19,4,2018-09-02,21:45,BURSASPOR,BEŞİKTAŞ A.Ş.,1,1,194548,https://www.tff.org/Default.aspx?hafta=4&pageID=1467
+2018-19,5,2018-09-14,21:00,GALATASARAY A.Ş.,KASIMPAŞA A.Ş.,4,1,194552,https://www.tff.org/Default.aspx?hafta=5&pageID=1467
+2018-19,5,2018-09-15,17:00,MKE ANKARAGÜCÜ,AKHİSARSPOR,1,0,194550,https://www.tff.org/Default.aspx?hafta=5&pageID=1467
+2018-19,5,2018-09-15,20:00,GÖZTEPE A.Ş.,KAYSERİSPOR,2,0,194553,https://www.tff.org/Default.aspx?hafta=5&pageID=1467
+2018-19,5,2018-09-15,20:00,BEŞİKTAŞ A.Ş.,EVKUR YENİ MALATYASPOR,2,1,194557,https://www.tff.org/Default.aspx?hafta=5&pageID=1467
+2018-19,5,2018-09-16,17:00,DEMİR GRUP SİVASSPOR,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,2,2,194554,https://www.tff.org/Default.aspx?hafta=5&pageID=1467
+2018-19,5,2018-09-16,17:00,MEDİPOL BAŞAKŞEHİR FK,ANTALYASPOR A.Ş.,4,0,194555,https://www.tff.org/Default.aspx?hafta=5&pageID=1467
+2018-19,5,2018-09-16,20:00,ÇAYKUR RİZESPOR A.Ş.,BURSASPOR,1,1,194556,https://www.tff.org/Default.aspx?hafta=5&pageID=1467
+2018-19,5,2018-09-16,20:00,ATİKER KONYASPOR,FENERBAHÇE A.Ş.,0,1,194558,https://www.tff.org/Default.aspx?hafta=5&pageID=1467
+2018-19,5,2018-09-17,20:00,AYTEMİZ ALANYASPOR,TRABZONSPOR A.Ş.,1,0,194551,https://www.tff.org/Default.aspx?hafta=5&pageID=1467
+2018-19,6,2018-09-21,20:00,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,MKE ANKARAGÜCÜ,0,1,194563,https://www.tff.org/Default.aspx?hafta=6&pageID=1467
+2018-19,6,2018-09-21,20:00,BURSASPOR,MEDİPOL BAŞAKŞEHİR FK,0,0,194567,https://www.tff.org/Default.aspx?hafta=6&pageID=1467
+2018-19,6,2018-09-22,13:30,EVKUR YENİ MALATYASPOR,ÇAYKUR RİZESPOR A.Ş.,1,0,194561,https://www.tff.org/Default.aspx?hafta=6&pageID=1467
+2018-19,6,2018-09-22,16:00,KAYSERİSPOR,ATİKER KONYASPOR,0,2,194565,https://www.tff.org/Default.aspx?hafta=6&pageID=1467
+2018-19,6,2018-09-22,19:00,TRABZONSPOR A.Ş.,GÖZTEPE A.Ş.,1,2,194560,https://www.tff.org/Default.aspx?hafta=6&pageID=1467
+2018-19,6,2018-09-23,16:00,KASIMPAŞA A.Ş.,AYTEMİZ ALANYASPOR,1,2,194559,https://www.tff.org/Default.aspx?hafta=6&pageID=1467
+2018-19,6,2018-09-23,19:00,ANTALYASPOR A.Ş.,DEMİR GRUP SİVASSPOR,2,1,194562,https://www.tff.org/Default.aspx?hafta=6&pageID=1467
+2018-19,6,2018-09-23,19:00,AKHİSARSPOR,GALATASARAY A.Ş.,3,0,194564,https://www.tff.org/Default.aspx?hafta=6&pageID=1467
+2018-19,6,2018-09-24,21:00,FENERBAHÇE A.Ş.,BEŞİKTAŞ A.Ş.,1,1,194566,https://www.tff.org/Default.aspx?hafta=6&pageID=1467
+2018-19,7,2018-09-28,20:00,GALATASARAY A.Ş.,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,1,0,194575,https://www.tff.org/Default.aspx?hafta=7&pageID=1467
+2018-19,7,2018-09-29,16:00,TRABZONSPOR A.Ş.,KASIMPAŞA A.Ş.,4,2,194570,https://www.tff.org/Default.aspx?hafta=7&pageID=1467
+2018-19,7,2018-09-29,16:00,AYTEMİZ ALANYASPOR,AKHİSARSPOR,2,1,194574,https://www.tff.org/Default.aspx?hafta=7&pageID=1467
+2018-19,7,2018-09-29,19:00,BEŞİKTAŞ A.Ş.,KAYSERİSPOR,2,0,194573,https://www.tff.org/Default.aspx?hafta=7&pageID=1467
+2018-19,7,2018-09-30,13:30,DEMİR GRUP SİVASSPOR,BURSASPOR,2,0,194571,https://www.tff.org/Default.aspx?hafta=7&pageID=1467
+2018-19,7,2018-09-30,16:00,GÖZTEPE A.Ş.,ATİKER KONYASPOR,3,2,194576,https://www.tff.org/Default.aspx?hafta=7&pageID=1467
+2018-19,7,2018-09-30,19:00,ÇAYKUR RİZESPOR A.Ş.,FENERBAHÇE A.Ş.,3,0,194569,https://www.tff.org/Default.aspx?hafta=7&pageID=1467
+2018-19,7,2018-10-01,20:00,MKE ANKARAGÜCÜ,ANTALYASPOR A.Ş.,0,1,194568,https://www.tff.org/Default.aspx?hafta=7&pageID=1467
+2018-19,7,2018-10-01,20:00,MEDİPOL BAŞAKŞEHİR FK,EVKUR YENİ MALATYASPOR,1,1,194572,https://www.tff.org/Default.aspx?hafta=7&pageID=1467
+2018-19,8,2018-10-05,20:00,KASIMPAŞA A.Ş.,GÖZTEPE A.Ş.,3,1,194582,https://www.tff.org/Default.aspx?hafta=8&pageID=1467
+2018-19,8,2018-10-06,13:30,KAYSERİSPOR,ÇAYKUR RİZESPOR A.Ş.,2,2,194584,https://www.tff.org/Default.aspx?hafta=8&pageID=1467
+2018-19,8,2018-10-06,16:00,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,AYTEMİZ ALANYASPOR,1,0,194578,https://www.tff.org/Default.aspx?hafta=8&pageID=1467
+2018-19,8,2018-10-06,16:00,BURSASPOR,MKE ANKARAGÜCÜ,1,0,194585,https://www.tff.org/Default.aspx?hafta=8&pageID=1467
+2018-19,8,2018-10-06,19:00,ANTALYASPOR A.Ş.,GALATASARAY A.Ş.,0,1,194580,https://www.tff.org/Default.aspx?hafta=8&pageID=1467
+2018-19,8,2018-10-07,13:30,EVKUR YENİ MALATYASPOR,DEMİR GRUP SİVASSPOR,4,4,194577,https://www.tff.org/Default.aspx?hafta=8&pageID=1467
+2018-19,8,2018-10-07,18:00,FENERBAHÇE A.Ş.,MEDİPOL BAŞAKŞEHİR FK,0,0,194579,https://www.tff.org/Default.aspx?hafta=8&pageID=1467
+2018-19,8,2018-10-07,19:00,AKHİSARSPOR,TRABZONSPOR A.Ş.,1,3,194581,https://www.tff.org/Default.aspx?hafta=8&pageID=1467
+2018-19,8,2018-10-07,20:30,ATİKER KONYASPOR,BEŞİKTAŞ A.Ş.,2,2,194583,https://www.tff.org/Default.aspx?hafta=8&pageID=1467
+2018-19,9,2018-10-19,20:30,GALATASARAY A.Ş.,BURSASPOR,1,1,194588,https://www.tff.org/Default.aspx?hafta=9&pageID=1467
+2018-19,9,2018-10-20,13:30,KASIMPAŞA A.Ş.,AKHİSARSPOR,5,0,194587,https://www.tff.org/Default.aspx?hafta=9&pageID=1467
+2018-19,9,2018-10-20,16:00,MEDİPOL BAŞAKŞEHİR FK,KAYSERİSPOR,1,0,194586,https://www.tff.org/Default.aspx?hafta=9&pageID=1467
+2018-19,9,2018-10-20,19:00,DEMİR GRUP SİVASSPOR,FENERBAHÇE A.Ş.,0,0,194590,https://www.tff.org/Default.aspx?hafta=9&pageID=1467
+2018-19,9,2018-10-21,13:30,ÇAYKUR RİZESPOR A.Ş.,ATİKER KONYASPOR,1,1,194591,https://www.tff.org/Default.aspx?hafta=9&pageID=1467
+2018-19,9,2018-10-21,16:00,MKE ANKARAGÜCÜ,EVKUR YENİ MALATYASPOR,1,0,194589,https://www.tff.org/Default.aspx?hafta=9&pageID=1467
+2018-19,9,2018-10-21,16:00,AYTEMİZ ALANYASPOR,ANTALYASPOR A.Ş.,0,1,194593,https://www.tff.org/Default.aspx?hafta=9&pageID=1467
+2018-19,9,2018-10-21,19:00,GÖZTEPE A.Ş.,BEŞİKTAŞ A.Ş.,2,0,194594,https://www.tff.org/Default.aspx?hafta=9&pageID=1467
+2018-19,9,2018-10-22,20:00,TRABZONSPOR A.Ş.,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,0,0,194592,https://www.tff.org/Default.aspx?hafta=9&pageID=1467
+2018-19,10,2018-10-26,20:30,BURSASPOR,AYTEMİZ ALANYASPOR,2,0,194596,https://www.tff.org/Default.aspx?hafta=10&pageID=1467
+2018-19,10,2018-10-27,13:30,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,KASIMPAŞA A.Ş.,1,1,194599,https://www.tff.org/Default.aspx?hafta=10&pageID=1467
+2018-19,10,2018-10-27,16:00,ATİKER KONYASPOR,MEDİPOL BAŞAKŞEHİR FK,0,1,194602,https://www.tff.org/Default.aspx?hafta=10&pageID=1467
+2018-19,10,2018-10-27,19:00,ANTALYASPOR A.Ş.,TRABZONSPOR A.Ş.,1,1,194598,https://www.tff.org/Default.aspx?hafta=10&pageID=1467
+2018-19,10,2018-10-28,13:30,KAYSERİSPOR,DEMİR GRUP SİVASSPOR,2,0,194595,https://www.tff.org/Default.aspx?hafta=10&pageID=1467
+2018-19,10,2018-10-28,18:00,EVKUR YENİ MALATYASPOR,GALATASARAY A.Ş.,2,0,194597,https://www.tff.org/Default.aspx?hafta=10&pageID=1467
+2018-19,10,2018-10-28,20:30,FENERBAHÇE A.Ş.,MKE ANKARAGÜCÜ,1,3,194603,https://www.tff.org/Default.aspx?hafta=10&pageID=1467
+2018-19,10,2018-10-29,20:00,AKHİSARSPOR,GÖZTEPE A.Ş.,1,0,194600,https://www.tff.org/Default.aspx?hafta=10&pageID=1467
+2018-19,10,2018-10-29,20:00,BEŞİKTAŞ A.Ş.,ÇAYKUR RİZESPOR A.Ş.,4,1,194601,https://www.tff.org/Default.aspx?hafta=10&pageID=1467
+2018-19,11,2018-11-02,21:00,GALATASARAY A.Ş.,FENERBAHÇE A.Ş.,2,2,194612,https://www.tff.org/Default.aspx?hafta=11&pageID=1467
+2018-19,11,2018-11-03,13:30,KASIMPAŞA A.Ş.,ANTALYASPOR A.Ş.,1,2,194604,https://www.tff.org/Default.aspx?hafta=11&pageID=1467
+2018-19,11,2018-11-03,16:00,AKHİSARSPOR,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,1,1,194610,https://www.tff.org/Default.aspx?hafta=11&pageID=1467
+2018-19,11,2018-11-03,19:00,MEDİPOL BAŞAKŞEHİR FK,BEŞİKTAŞ A.Ş.,1,0,194609,https://www.tff.org/Default.aspx?hafta=11&pageID=1467
+2018-19,11,2018-11-04,13:30,MKE ANKARAGÜCÜ,KAYSERİSPOR,3,1,194607,https://www.tff.org/Default.aspx?hafta=11&pageID=1467
+2018-19,11,2018-11-04,16:00,AYTEMİZ ALANYASPOR,EVKUR YENİ MALATYASPOR,0,1,194611,https://www.tff.org/Default.aspx?hafta=11&pageID=1467
+2018-19,11,2018-11-04,19:00,TRABZONSPOR A.Ş.,BURSASPOR,1,1,194605,https://www.tff.org/Default.aspx?hafta=11&pageID=1467
+2018-19,11,2018-11-05,20:00,GÖZTEPE A.Ş.,ÇAYKUR RİZESPOR A.Ş.,2,0,194606,https://www.tff.org/Default.aspx?hafta=11&pageID=1467
+2018-19,11,2018-11-05,20:00,DEMİR GRUP SİVASSPOR,ATİKER KONYASPOR,0,0,194608,https://www.tff.org/Default.aspx?hafta=11&pageID=1467
+2018-19,12,2018-11-09,20:00,EVKUR YENİ MALATYASPOR,TRABZONSPOR A.Ş.,5,0,194616,https://www.tff.org/Default.aspx?hafta=12&pageID=1467
+2018-19,12,2018-11-10,13:30,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,GÖZTEPE A.Ş.,2,1,194618,https://www.tff.org/Default.aspx?hafta=12&pageID=1467
+2018-19,12,2018-11-10,13:30,ATİKER KONYASPOR,MKE ANKARAGÜCÜ,2,0,194620,https://www.tff.org/Default.aspx?hafta=12&pageID=1467
+2018-19,12,2018-11-10,16:00,ÇAYKUR RİZESPOR A.Ş.,MEDİPOL BAŞAKŞEHİR FK,1,2,194619,https://www.tff.org/Default.aspx?hafta=12&pageID=1467
+2018-19,12,2018-11-10,19:00,KAYSERİSPOR,GALATASARAY A.Ş.,0,3,194614,https://www.tff.org/Default.aspx?hafta=12&pageID=1467
+2018-19,12,2018-11-11,13:30,BURSASPOR,KASIMPAŞA A.Ş.,1,2,194615,https://www.tff.org/Default.aspx?hafta=12&pageID=1467
+2018-19,12,2018-11-11,18:00,FENERBAHÇE A.Ş.,AYTEMİZ ALANYASPOR,2,0,194621,https://www.tff.org/Default.aspx?hafta=12&pageID=1467
+2018-19,12,2018-11-11,19:00,ANTALYASPOR A.Ş.,AKHİSARSPOR,1,2,194617,https://www.tff.org/Default.aspx?hafta=12&pageID=1467
+2018-19,12,2018-11-11,20:30,BEŞİKTAŞ A.Ş.,DEMİR GRUP SİVASSPOR,1,2,194613,https://www.tff.org/Default.aspx?hafta=12&pageID=1467
+2018-19,13,2018-11-23,20:30,GALATASARAY A.Ş.,ATİKER KONYASPOR,1,1,194629,https://www.tff.org/Default.aspx?hafta=13&pageID=1467
+2018-19,13,2018-11-24,13:30,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,ANTALYASPOR A.Ş.,1,0,194626,https://www.tff.org/Default.aspx?hafta=13&pageID=1467
+2018-19,13,2018-11-24,16:00,AYTEMİZ ALANYASPOR,KAYSERİSPOR,5,0,194624,https://www.tff.org/Default.aspx?hafta=13&pageID=1467
+2018-19,13,2018-11-24,19:00,MKE ANKARAGÜCÜ,BEŞİKTAŞ A.Ş.,1,4,205810,https://www.tff.org/Default.aspx?hafta=13&pageID=1467
+2018-19,13,2018-11-25,13:30,DEMİR GRUP SİVASSPOR,ÇAYKUR RİZESPOR A.Ş.,1,1,194625,https://www.tff.org/Default.aspx?hafta=13&pageID=1467
+2018-19,13,2018-11-25,16:00,AKHİSARSPOR,BURSASPOR,2,4,194627,https://www.tff.org/Default.aspx?hafta=13&pageID=1467
+2018-19,13,2018-11-25,19:00,TRABZONSPOR A.Ş.,FENERBAHÇE A.Ş.,2,1,194623,https://www.tff.org/Default.aspx?hafta=13&pageID=1467
+2018-19,13,2018-11-25,19:00,KASIMPAŞA A.Ş.,EVKUR YENİ MALATYASPOR,3,0,194628,https://www.tff.org/Default.aspx?hafta=13&pageID=1467
+2018-19,13,2018-11-26,20:00,GÖZTEPE A.Ş.,MEDİPOL BAŞAKŞEHİR FK,0,2,194630,https://www.tff.org/Default.aspx?hafta=13&pageID=1467
+2018-19,14,2018-11-30,20:00,ÇAYKUR RİZESPOR A.Ş.,MKE ANKARAGÜCÜ,1,1,194632,https://www.tff.org/Default.aspx?hafta=14&pageID=1467
+2018-19,14,2018-11-30,20:00,ATİKER KONYASPOR,AYTEMİZ ALANYASPOR,2,0,194637,https://www.tff.org/Default.aspx?hafta=14&pageID=1467
+2018-19,14,2018-12-01,16:00,MEDİPOL BAŞAKŞEHİR FK,DEMİR GRUP SİVASSPOR,0,1,194631,https://www.tff.org/Default.aspx?hafta=14&pageID=1467
+2018-19,14,2018-12-01,16:00,ANTALYASPOR A.Ş.,GÖZTEPE A.Ş.,1,0,194635,https://www.tff.org/Default.aspx?hafta=14&pageID=1467
+2018-19,14,2018-12-01,19:00,KAYSERİSPOR,TRABZONSPOR A.Ş.,0,2,194638,https://www.tff.org/Default.aspx?hafta=14&pageID=1467
+2018-19,14,2018-12-02,16:00,BURSASPOR,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,2,1,194633,https://www.tff.org/Default.aspx?hafta=14&pageID=1467
+2018-19,14,2018-12-02,20:00,BEŞİKTAŞ A.Ş.,GALATASARAY A.Ş.,1,0,194636,https://www.tff.org/Default.aspx?hafta=14&pageID=1467
+2018-19,14,2018-12-03,20:00,EVKUR YENİ MALATYASPOR,AKHİSARSPOR,1,1,194634,https://www.tff.org/Default.aspx?hafta=14&pageID=1467
+2018-19,14,2018-12-03,20:00,FENERBAHÇE A.Ş.,KASIMPAŞA A.Ş.,2,2,194639,https://www.tff.org/Default.aspx?hafta=14&pageID=1467
+2018-19,15,2018-12-07,20:00,AYTEMİZ ALANYASPOR,BEŞİKTAŞ A.Ş.,0,0,194642,https://www.tff.org/Default.aspx?hafta=15&pageID=1467
+2018-19,15,2018-12-08,13:30,DEMİR GRUP SİVASSPOR,GÖZTEPE A.Ş.,2,0,194643,https://www.tff.org/Default.aspx?hafta=15&pageID=1467
+2018-19,15,2018-12-08,16:00,TRABZONSPOR A.Ş.,ATİKER KONYASPOR,3,0,194646,https://www.tff.org/Default.aspx?hafta=15&pageID=1467
+2018-19,15,2018-12-08,19:00,GALATASARAY A.Ş.,ÇAYKUR RİZESPOR A.Ş.,2,2,194647,https://www.tff.org/Default.aspx?hafta=15&pageID=1467
+2018-19,15,2018-12-09,13:30,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,EVKUR YENİ MALATYASPOR,1,3,194644,https://www.tff.org/Default.aspx?hafta=15&pageID=1467
+2018-19,15,2018-12-09,16:00,BURSASPOR,ANTALYASPOR A.Ş.,0,2,194648,https://www.tff.org/Default.aspx?hafta=15&pageID=1467
+2018-19,15,2018-12-09,19:00,AKHİSARSPOR,FENERBAHÇE A.Ş.,3,0,194641,https://www.tff.org/Default.aspx?hafta=15&pageID=1467
+2018-19,15,2018-12-10,20:00,MKE ANKARAGÜCÜ,MEDİPOL BAŞAKŞEHİR FK,0,1,194640,https://www.tff.org/Default.aspx?hafta=15&pageID=1467
+2018-19,15,2018-12-10,20:00,KASIMPAŞA A.Ş.,KAYSERİSPOR,0,3,194645,https://www.tff.org/Default.aspx?hafta=15&pageID=1467
+2018-19,16,2018-12-14,20:30,GÖZTEPE A.Ş.,BURSASPOR,0,0,194651,https://www.tff.org/Default.aspx?hafta=16&pageID=1467
+2018-19,16,2018-12-15,13:30,ÇAYKUR RİZESPOR A.Ş.,AYTEMİZ ALANYASPOR,1,1,194649,https://www.tff.org/Default.aspx?hafta=16&pageID=1467
+2018-19,16,2018-12-15,13:30,DEMİR GRUP SİVASSPOR,MKE ANKARAGÜCÜ,4,0,194653,https://www.tff.org/Default.aspx?hafta=16&pageID=1467
+2018-19,16,2018-12-15,16:00,ATİKER KONYASPOR,KASIMPAŞA A.Ş.,3,2,194656,https://www.tff.org/Default.aspx?hafta=16&pageID=1467
+2018-19,16,2018-12-15,19:00,MEDİPOL BAŞAKŞEHİR FK,GALATASARAY A.Ş.,1,1,194654,https://www.tff.org/Default.aspx?hafta=16&pageID=1467
+2018-19,16,2018-12-16,13:30,EVKUR YENİ MALATYASPOR,ANTALYASPOR A.Ş.,2,0,194652,https://www.tff.org/Default.aspx?hafta=16&pageID=1467
+2018-19,16,2018-12-16,16:00,KAYSERİSPOR,AKHİSARSPOR,1,0,194650,https://www.tff.org/Default.aspx?hafta=16&pageID=1467
+2018-19,16,2018-12-16,19:00,BEŞİKTAŞ A.Ş.,TRABZONSPOR A.Ş.,2,2,194655,https://www.tff.org/Default.aspx?hafta=16&pageID=1467
+2018-19,16,2018-12-17,20:00,FENERBAHÇE A.Ş.,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,2,2,194657,https://www.tff.org/Default.aspx?hafta=16&pageID=1467
+2018-19,17,2018-12-22,13:30,MKE ANKARAGÜCÜ,GÖZTEPE A.Ş.,0,3,194658,https://www.tff.org/Default.aspx?hafta=17&pageID=1467
+2018-19,17,2018-12-22,16:00,AYTEMİZ ALANYASPOR,MEDİPOL BAŞAKŞEHİR FK,1,1,194665,https://www.tff.org/Default.aspx?hafta=17&pageID=1467
+2018-19,17,2018-12-22,19:00,KASIMPAŞA A.Ş.,BEŞİKTAŞ A.Ş.,4,1,194659,https://www.tff.org/Default.aspx?hafta=17&pageID=1467
+2018-19,17,2018-12-23,13:30,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,KAYSERİSPOR,1,1,194662,https://www.tff.org/Default.aspx?hafta=17&pageID=1467
+2018-19,17,2018-12-23,16:00,TRABZONSPOR A.Ş.,ÇAYKUR RİZESPOR A.Ş.,4,1,194664,https://www.tff.org/Default.aspx?hafta=17&pageID=1467
+2018-19,17,2018-12-23,16:00,BURSASPOR,EVKUR YENİ MALATYASPOR,1,1,194666,https://www.tff.org/Default.aspx?hafta=17&pageID=1467
+2018-19,17,2018-12-23,19:00,GALATASARAY A.Ş.,DEMİR GRUP SİVASSPOR,4,2,194660,https://www.tff.org/Default.aspx?hafta=17&pageID=1467
+2018-19,17,2018-12-24,20:00,ANTALYASPOR A.Ş.,FENERBAHÇE A.Ş.,0,0,194661,https://www.tff.org/Default.aspx?hafta=17&pageID=1467
+2018-19,17,2018-12-24,20:00,AKHİSARSPOR,ATİKER KONYASPOR,0,0,194663,https://www.tff.org/Default.aspx?hafta=17&pageID=1467
+2018-19,18,2019-01-18,20:30,AKHİSARSPOR,BEŞİKTAŞ A.Ş.,0,3,194671,https://www.tff.org/Default.aspx?hafta=18&pageID=1467
+2018-19,18,2019-01-19,13:30,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,ATİKER KONYASPOR,1,2,194672,https://www.tff.org/Default.aspx?hafta=18&pageID=1467
+2018-19,18,2019-01-19,13:30,EVKUR YENİ MALATYASPOR,GÖZTEPE A.Ş.,3,2,194675,https://www.tff.org/Default.aspx?hafta=18&pageID=1467
+2018-19,18,2019-01-19,16:00,ANTALYASPOR A.Ş.,İSTİKBAL MOBİLYA KAYSERİSPOR,0,0,194673,https://www.tff.org/Default.aspx?hafta=18&pageID=1467
+2018-19,18,2019-01-19,19:00,GALATASARAY A.Ş.,MKE ANKARAGÜCÜ,6,0,194667,https://www.tff.org/Default.aspx?hafta=18&pageID=1467
+2018-19,18,2019-01-20,16:00,AYTEMİZ ALANYASPOR,DEMİR GRUP SİVASSPOR,2,0,194670,https://www.tff.org/Default.aspx?hafta=18&pageID=1467
+2018-19,18,2019-01-20,19:00,TRABZONSPOR A.Ş.,MEDİPOL BAŞAKŞEHİR FK,2,4,194668,https://www.tff.org/Default.aspx?hafta=18&pageID=1467
+2018-19,18,2019-01-21,20:00,KASIMPAŞA A.Ş.,ÇAYKUR RİZESPOR A.Ş.,0,1,194669,https://www.tff.org/Default.aspx?hafta=18&pageID=1467
+2018-19,18,2019-01-21,20:00,BURSASPOR,FENERBAHÇE A.Ş.,1,1,194674,https://www.tff.org/Default.aspx?hafta=18&pageID=1467
+2018-19,19,2019-01-25,20:30,BEŞİKTAŞ A.Ş.,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,1,1,194679,https://www.tff.org/Default.aspx?hafta=19&pageID=1467
+2018-19,19,2019-01-26,16:00,İSTİKBAL MOBİLYA KAYSERİSPOR,BURSASPOR,1,1,194677,https://www.tff.org/Default.aspx?hafta=19&pageID=1467
+2018-19,19,2019-01-26,19:00,GÖZTEPE A.Ş.,GALATASARAY A.Ş.,0,1,194682,https://www.tff.org/Default.aspx?hafta=19&pageID=1467
+2018-19,19,2019-01-27,13:30,ÇAYKUR RİZESPOR A.Ş.,AKHİSARSPOR,3,1,194683,https://www.tff.org/Default.aspx?hafta=19&pageID=1467
+2018-19,19,2019-01-27,16:00,ATİKER KONYASPOR,ANTALYASPOR A.Ş.,2,0,194678,https://www.tff.org/Default.aspx?hafta=19&pageID=1467
+2018-19,19,2019-01-27,19:00,DEMİR GRUP SİVASSPOR,TRABZONSPOR A.Ş.,1,1,194676,https://www.tff.org/Default.aspx?hafta=19&pageID=1467
+2018-19,19,2019-01-28,20:00,MEDİPOL BAŞAKŞEHİR FK,KASIMPAŞA A.Ş.,2,0,194680,https://www.tff.org/Default.aspx?hafta=19&pageID=1467
+2018-19,19,2019-01-28,20:00,MKE ANKARAGÜCÜ,AYTEMİZ ALANYASPOR,0,2,194681,https://www.tff.org/Default.aspx?hafta=19&pageID=1467
+2018-19,19,2019-01-28,20:00,FENERBAHÇE A.Ş.,EVKUR YENİ MALATYASPOR,3,2,194684,https://www.tff.org/Default.aspx?hafta=19&pageID=1467
+2018-19,20,2019-02-01,20:30,FENERBAHÇE A.Ş.,GÖZTEPE A.Ş.,2,0,194685,https://www.tff.org/Default.aspx?hafta=20&pageID=1467
+2018-19,20,2019-02-02,13:30,EVKUR YENİ MALATYASPOR,İSTİKBAL MOBİLYA KAYSERİSPOR,1,1,194691,https://www.tff.org/Default.aspx?hafta=20&pageID=1467
+2018-19,20,2019-02-02,16:00,KASIMPAŞA A.Ş.,DEMİR GRUP SİVASSPOR,1,3,194686,https://www.tff.org/Default.aspx?hafta=20&pageID=1467
+2018-19,20,2019-02-02,16:00,TRABZONSPOR A.Ş.,MKE ANKARAGÜCÜ,1,0,194688,https://www.tff.org/Default.aspx?hafta=20&pageID=1467
+2018-19,20,2019-02-02,19:00,AYTEMİZ ALANYASPOR,GALATASARAY A.Ş.,1,1,194692,https://www.tff.org/Default.aspx?hafta=20&pageID=1467
+2018-19,20,2019-02-03,13:30,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,ÇAYKUR RİZESPOR A.Ş.,0,1,194690,https://www.tff.org/Default.aspx?hafta=20&pageID=1467
+2018-19,20,2019-02-03,16:00,AKHİSARSPOR,MEDİPOL BAŞAKŞEHİR FK,0,3,194689,https://www.tff.org/Default.aspx?hafta=20&pageID=1467
+2018-19,20,2019-02-03,19:00,ANTALYASPOR A.Ş.,BEŞİKTAŞ A.Ş.,2,6,194687,https://www.tff.org/Default.aspx?hafta=20&pageID=1467
+2018-19,20,2019-02-04,20:00,BURSASPOR,ATİKER KONYASPOR,0,0,194693,https://www.tff.org/Default.aspx?hafta=20&pageID=1467
+2018-19,21,2019-02-08,20:30,İSTİKBAL MOBİLYA KAYSERİSPOR,FENERBAHÇE A.Ş.,1,0,194696,https://www.tff.org/Default.aspx?hafta=21&pageID=1467
+2018-19,21,2019-02-09,16:00,MEDİPOL BAŞAKŞEHİR FK,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,1,1,194694,https://www.tff.org/Default.aspx?hafta=21&pageID=1467
+2018-19,21,2019-02-09,16:00,ÇAYKUR RİZESPOR A.Ş.,ANTALYASPOR A.Ş.,1,1,194697,https://www.tff.org/Default.aspx?hafta=21&pageID=1467
+2018-19,21,2019-02-09,19:00,BEŞİKTAŞ A.Ş.,BURSASPOR,2,0,194701,https://www.tff.org/Default.aspx?hafta=21&pageID=1467
+2018-19,21,2019-02-10,13:30,ATİKER KONYASPOR,EVKUR YENİ MALATYASPOR,1,1,194702,https://www.tff.org/Default.aspx?hafta=21&pageID=1467
+2018-19,21,2019-02-10,16:00,GÖZTEPE A.Ş.,AYTEMİZ ALANYASPOR,3,2,194700,https://www.tff.org/Default.aspx?hafta=21&pageID=1467
+2018-19,21,2019-02-10,19:00,GALATASARAY A.Ş.,TRABZONSPOR A.Ş.,3,1,194699,https://www.tff.org/Default.aspx?hafta=21&pageID=1467
+2018-19,21,2019-02-11,20:00,MKE ANKARAGÜCÜ,KASIMPAŞA A.Ş.,3,0,194695,https://www.tff.org/Default.aspx?hafta=21&pageID=1467
+2018-19,21,2019-02-11,20:00,DEMİR GRUP SİVASSPOR,AKHİSARSPOR,2,1,194698,https://www.tff.org/Default.aspx?hafta=21&pageID=1467
+2018-19,22,2019-02-15,20:30,EVKUR YENİ MALATYASPOR,BEŞİKTAŞ A.Ş.,1,2,194710,https://www.tff.org/Default.aspx?hafta=22&pageID=1467
+2018-19,22,2019-02-16,13:30,AKHİSARSPOR,MKE ANKARAGÜCÜ,0,0,194703,https://www.tff.org/Default.aspx?hafta=22&pageID=1467
+2018-19,22,2019-02-16,16:00,BURSASPOR,ÇAYKUR RİZESPOR A.Ş.,0,2,194709,https://www.tff.org/Default.aspx?hafta=22&pageID=1467
+2018-19,22,2019-02-16,19:00,FENERBAHÇE A.Ş.,ATİKER KONYASPOR,1,1,194711,https://www.tff.org/Default.aspx?hafta=22&pageID=1467
+2018-19,22,2019-02-17,13:30,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,DEMİR GRUP SİVASSPOR,4,2,194707,https://www.tff.org/Default.aspx?hafta=22&pageID=1467
+2018-19,22,2019-02-17,16:00,TRABZONSPOR A.Ş.,AYTEMİZ ALANYASPOR,0,2,194704,https://www.tff.org/Default.aspx?hafta=22&pageID=1467
+2018-19,22,2019-02-17,16:00,İSTİKBAL MOBİLYA KAYSERİSPOR,GÖZTEPE A.Ş.,2,1,194706,https://www.tff.org/Default.aspx?hafta=22&pageID=1467
+2018-19,22,2019-02-17,19:00,KASIMPAŞA A.Ş.,GALATASARAY A.Ş.,1,4,194705,https://www.tff.org/Default.aspx?hafta=22&pageID=1467
+2018-19,22,2019-02-18,20:00,ANTALYASPOR A.Ş.,MEDİPOL BAŞAKŞEHİR FK,0,1,194708,https://www.tff.org/Default.aspx?hafta=22&pageID=1467
+2018-19,23,2019-02-22,20:30,GÖZTEPE A.Ş.,TRABZONSPOR A.Ş.,1,3,194713,https://www.tff.org/Default.aspx?hafta=23&pageID=1467
+2018-19,23,2019-02-22,20:30,ÇAYKUR RİZESPOR A.Ş.,EVKUR YENİ MALATYASPOR,3,0,194714,https://www.tff.org/Default.aspx?hafta=23&pageID=1467
+2018-19,23,2019-02-23,13:30,DEMİR GRUP SİVASSPOR,ANTALYASPOR A.Ş.,1,2,194715,https://www.tff.org/Default.aspx?hafta=23&pageID=1467
+2018-19,23,2019-02-23,16:00,AYTEMİZ ALANYASPOR,KASIMPAŞA A.Ş.,3,0,194712,https://www.tff.org/Default.aspx?hafta=23&pageID=1467
+2018-19,23,2019-02-24,13:30,MKE ANKARAGÜCÜ,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,2,1,194716,https://www.tff.org/Default.aspx?hafta=23&pageID=1467
+2018-19,23,2019-02-24,16:00,ATİKER KONYASPOR,İSTİKBAL MOBİLYA KAYSERİSPOR,0,1,194718,https://www.tff.org/Default.aspx?hafta=23&pageID=1467
+2018-19,23,2019-02-24,19:00,GALATASARAY A.Ş.,AKHİSARSPOR,1,0,194717,https://www.tff.org/Default.aspx?hafta=23&pageID=1467
+2018-19,23,2019-02-24,19:00,MEDİPOL BAŞAKŞEHİR FK,BURSASPOR,3,0,194720,https://www.tff.org/Default.aspx?hafta=23&pageID=1467
+2018-19,23,2019-02-25,21:00,BEŞİKTAŞ A.Ş.,FENERBAHÇE A.Ş.,3,3,194719,https://www.tff.org/Default.aspx?hafta=23&pageID=1467
+2018-19,24,2019-03-01,20:30,ANTALYASPOR A.Ş.,MKE ANKARAGÜCÜ,2,4,194721,https://www.tff.org/Default.aspx?hafta=24&pageID=1467
+2018-19,24,2019-03-02,16:00,BURSASPOR,DEMİR GRUP SİVASSPOR,3,2,194724,https://www.tff.org/Default.aspx?hafta=24&pageID=1467
+2018-19,24,2019-03-02,16:00,İSTİKBAL MOBİLYA KAYSERİSPOR,BEŞİKTAŞ A.Ş.,2,2,194726,https://www.tff.org/Default.aspx?hafta=24&pageID=1467
+2018-19,24,2019-03-02,19:00,FENERBAHÇE A.Ş.,ÇAYKUR RİZESPOR A.Ş.,3,2,194722,https://www.tff.org/Default.aspx?hafta=24&pageID=1467
+2018-19,24,2019-03-03,13:30,ATİKER KONYASPOR,GÖZTEPE A.Ş.,1,1,194729,https://www.tff.org/Default.aspx?hafta=24&pageID=1467
+2018-19,24,2019-03-03,16:00,EVKUR YENİ MALATYASPOR,MEDİPOL BAŞAKŞEHİR FK,0,2,194725,https://www.tff.org/Default.aspx?hafta=24&pageID=1467
+2018-19,24,2019-03-03,19:00,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,GALATASARAY A.Ş.,1,1,194728,https://www.tff.org/Default.aspx?hafta=24&pageID=1467
+2018-19,24,2019-03-04,20:00,KASIMPAŞA A.Ş.,TRABZONSPOR A.Ş.,2,2,194723,https://www.tff.org/Default.aspx?hafta=24&pageID=1467
+2018-19,24,2019-03-04,20:00,AKHİSARSPOR,AYTEMİZ ALANYASPOR,3,1,194727,https://www.tff.org/Default.aspx?hafta=24&pageID=1467
+2018-19,25,2019-03-08,20:30,DEMİR GRUP SİVASSPOR,EVKUR YENİ MALATYASPOR,2,0,194730,https://www.tff.org/Default.aspx?hafta=25&pageID=1467
+2018-19,25,2019-03-09,16:00,TRABZONSPOR A.Ş.,AKHİSARSPOR,2,1,194734,https://www.tff.org/Default.aspx?hafta=25&pageID=1467
+2018-19,25,2019-03-09,19:00,MEDİPOL BAŞAKŞEHİR FK,FENERBAHÇE A.Ş.,2,1,194732,https://www.tff.org/Default.aspx?hafta=25&pageID=1467
+2018-19,25,2019-03-09,19:00,MKE ANKARAGÜCÜ,BURSASPOR,0,0,194738,https://www.tff.org/Default.aspx?hafta=25&pageID=1467
+2018-19,25,2019-03-10,13:30,AYTEMİZ ALANYASPOR,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,2,1,194731,https://www.tff.org/Default.aspx?hafta=25&pageID=1467
+2018-19,25,2019-03-10,16:00,GÖZTEPE A.Ş.,KASIMPAŞA A.Ş.,0,0,194735,https://www.tff.org/Default.aspx?hafta=25&pageID=1467
+2018-19,25,2019-03-10,16:00,ÇAYKUR RİZESPOR A.Ş.,İSTİKBAL MOBİLYA KAYSERİSPOR,3,0,194737,https://www.tff.org/Default.aspx?hafta=25&pageID=1467
+2018-19,25,2019-03-10,19:00,BEŞİKTAŞ A.Ş.,ATİKER KONYASPOR,3,2,194736,https://www.tff.org/Default.aspx?hafta=25&pageID=1467
+2018-19,25,2019-03-11,20:00,GALATASARAY A.Ş.,ANTALYASPOR A.Ş.,5,0,194733,https://www.tff.org/Default.aspx?hafta=25&pageID=1467
+2018-19,26,2019-03-15,20:30,FENERBAHÇE A.Ş.,DEMİR GRUP SİVASSPOR,2,1,194743,https://www.tff.org/Default.aspx?hafta=26&pageID=1467
+2018-19,26,2019-03-16,13:34,ATİKER KONYASPOR,ÇAYKUR RİZESPOR A.Ş.,0,2,194744,https://www.tff.org/Default.aspx?hafta=26&pageID=1467
+2018-19,26,2019-03-16,16:00,AKHİSARSPOR,KASIMPAŞA A.Ş.,2,3,194740,https://www.tff.org/Default.aspx?hafta=26&pageID=1467
+2018-19,26,2019-03-16,16:00,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,TRABZONSPOR A.Ş.,0,1,194745,https://www.tff.org/Default.aspx?hafta=26&pageID=1467
+2018-19,26,2019-03-16,19:00,ANTALYASPOR A.Ş.,AYTEMİZ ALANYASPOR,3,0,194746,https://www.tff.org/Default.aspx?hafta=26&pageID=1467
+2018-19,26,2019-03-16,19:00,BEŞİKTAŞ A.Ş.,GÖZTEPE A.Ş.,1,0,194747,https://www.tff.org/Default.aspx?hafta=26&pageID=1467
+2018-19,26,2019-03-17,13:30,EVKUR YENİ MALATYASPOR,MKE ANKARAGÜCÜ,3,1,194742,https://www.tff.org/Default.aspx?hafta=26&pageID=1467
+2018-19,26,2019-03-17,16:00,İSTİKBAL MOBİLYA KAYSERİSPOR,MEDİPOL BAŞAKŞEHİR FK,1,1,194739,https://www.tff.org/Default.aspx?hafta=26&pageID=1467
+2018-19,26,2019-03-17,19:00,BURSASPOR,GALATASARAY A.Ş.,2,3,194741,https://www.tff.org/Default.aspx?hafta=26&pageID=1467
+2018-19,27,2019-04-05,20:30,TRABZONSPOR A.Ş.,ANTALYASPOR A.Ş.,4,1,194751,https://www.tff.org/Default.aspx?hafta=27&pageID=1467
+2018-19,27,2019-04-06,16:00,DEMİR GRUP SİVASSPOR,İSTİKBAL MOBİLYA KAYSERİSPOR,1,3,194748,https://www.tff.org/Default.aspx?hafta=27&pageID=1467
+2018-19,27,2019-04-06,16:00,AYTEMİZ ALANYASPOR,BURSASPOR,1,0,194749,https://www.tff.org/Default.aspx?hafta=27&pageID=1467
+2018-19,27,2019-04-06,19:00,GALATASARAY A.Ş.,EVKUR YENİ MALATYASPOR,3,0,194750,https://www.tff.org/Default.aspx?hafta=27&pageID=1467
+2018-19,27,2019-04-07,13:30,KASIMPAŞA A.Ş.,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,2,1,194752,https://www.tff.org/Default.aspx?hafta=27&pageID=1467
+2018-19,27,2019-04-07,16:00,GÖZTEPE A.Ş.,AKHİSARSPOR,0,1,194753,https://www.tff.org/Default.aspx?hafta=27&pageID=1467
+2018-19,27,2019-04-07,16:00,MKE ANKARAGÜCÜ,FENERBAHÇE A.Ş.,1,1,194756,https://www.tff.org/Default.aspx?hafta=27&pageID=1467
+2018-19,27,2019-04-07,19:00,MEDİPOL BAŞAKŞEHİR FK,ATİKER KONYASPOR,2,0,194755,https://www.tff.org/Default.aspx?hafta=27&pageID=1467
+2018-19,27,2019-04-08,20:00,ÇAYKUR RİZESPOR A.Ş.,BEŞİKTAŞ A.Ş.,2,7,194754,https://www.tff.org/Default.aspx?hafta=27&pageID=1467
+2018-19,28,2019-04-12,20:30,BURSASPOR,TRABZONSPOR A.Ş.,0,1,194758,https://www.tff.org/Default.aspx?hafta=28&pageID=1467
+2018-19,28,2019-04-13,16:00,ÇAYKUR RİZESPOR A.Ş.,GÖZTEPE A.Ş.,1,0,194759,https://www.tff.org/Default.aspx?hafta=28&pageID=1467
+2018-19,28,2019-04-13,16:00,ATİKER KONYASPOR,DEMİR GRUP SİVASSPOR,1,1,194761,https://www.tff.org/Default.aspx?hafta=28&pageID=1467
+2018-19,28,2019-04-13,19:00,BEŞİKTAŞ A.Ş.,MEDİPOL BAŞAKŞEHİR FK,2,1,194762,https://www.tff.org/Default.aspx?hafta=28&pageID=1467
+2018-19,28,2019-04-14,13:30,İSTİKBAL MOBİLYA KAYSERİSPOR,MKE ANKARAGÜCÜ,0,2,194760,https://www.tff.org/Default.aspx?hafta=28&pageID=1467
+2018-19,28,2019-04-14,16:00,ANTALYASPOR A.Ş.,KASIMPAŞA A.Ş.,1,0,194757,https://www.tff.org/Default.aspx?hafta=28&pageID=1467
+2018-19,28,2019-04-14,16:00,EVKUR YENİ MALATYASPOR,AYTEMİZ ALANYASPOR,1,1,194764,https://www.tff.org/Default.aspx?hafta=28&pageID=1467
+2018-19,28,2019-04-14,19:00,FENERBAHÇE A.Ş.,GALATASARAY A.Ş.,1,1,194765,https://www.tff.org/Default.aspx?hafta=28&pageID=1467
+2018-19,28,2019-04-15,20:00,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,AKHİSARSPOR,2,1,194763,https://www.tff.org/Default.aspx?hafta=28&pageID=1467
+2018-19,29,2019-04-19,20:30,KASIMPAŞA A.Ş.,BURSASPOR,1,1,194768,https://www.tff.org/Default.aspx?hafta=29&pageID=1467
+2018-19,29,2019-04-20,16:00,TRABZONSPOR A.Ş.,EVKUR YENİ MALATYASPOR,2,1,194769,https://www.tff.org/Default.aspx?hafta=29&pageID=1467
+2018-19,29,2019-04-20,16:00,AKHİSARSPOR,ANTALYASPOR A.Ş.,1,2,194770,https://www.tff.org/Default.aspx?hafta=29&pageID=1467
+2018-19,29,2019-04-20,19:00,GALATASARAY A.Ş.,İSTİKBAL MOBİLYA KAYSERİSPOR,3,1,194767,https://www.tff.org/Default.aspx?hafta=29&pageID=1467
+2018-19,29,2019-04-20,19:00,GÖZTEPE A.Ş.,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,0,1,194771,https://www.tff.org/Default.aspx?hafta=29&pageID=1467
+2018-19,29,2019-04-21,13:30,MKE ANKARAGÜCÜ,ATİKER KONYASPOR,0,0,194773,https://www.tff.org/Default.aspx?hafta=29&pageID=1467
+2018-19,29,2019-04-21,16:00,MEDİPOL BAŞAKŞEHİR FK,ÇAYKUR RİZESPOR A.Ş.,1,1,194772,https://www.tff.org/Default.aspx?hafta=29&pageID=1467
+2018-19,29,2019-04-21,19:00,AYTEMİZ ALANYASPOR,FENERBAHÇE A.Ş.,1,0,194774,https://www.tff.org/Default.aspx?hafta=29&pageID=1467
+2018-19,29,2019-04-22,20:00,DEMİR GRUP SİVASSPOR,BEŞİKTAŞ A.Ş.,1,2,194766,https://www.tff.org/Default.aspx?hafta=29&pageID=1467
+2018-19,30,2019-04-26,20:30,MEDİPOL BAŞAKŞEHİR FK,GÖZTEPE A.Ş.,0,2,194783,https://www.tff.org/Default.aspx?hafta=30&pageID=1467
+2018-19,30,2019-04-27,16:00,ÇAYKUR RİZESPOR A.Ş.,DEMİR GRUP SİVASSPOR,0,0,194778,https://www.tff.org/Default.aspx?hafta=30&pageID=1467
+2018-19,30,2019-04-27,16:00,ANTALYASPOR A.Ş.,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,1,1,194779,https://www.tff.org/Default.aspx?hafta=30&pageID=1467
+2018-19,30,2019-04-27,19:00,FENERBAHÇE A.Ş.,TRABZONSPOR A.Ş.,1,1,194776,https://www.tff.org/Default.aspx?hafta=30&pageID=1467
+2018-19,30,2019-04-28,16:00,İSTİKBAL MOBİLYA KAYSERİSPOR,AYTEMİZ ALANYASPOR,1,1,194777,https://www.tff.org/Default.aspx?hafta=30&pageID=1467
+2018-19,30,2019-04-28,16:00,BURSASPOR,AKHİSARSPOR,0,0,194780,https://www.tff.org/Default.aspx?hafta=30&pageID=1467
+2018-19,30,2019-04-28,19:00,BEŞİKTAŞ A.Ş.,MKE ANKARAGÜCÜ,4,1,194775,https://www.tff.org/Default.aspx?hafta=30&pageID=1467
+2018-19,30,2019-04-29,20:00,EVKUR YENİ MALATYASPOR,KASIMPAŞA A.Ş.,2,1,194781,https://www.tff.org/Default.aspx?hafta=30&pageID=1467
+2018-19,30,2019-04-29,20:00,ATİKER KONYASPOR,GALATASARAY A.Ş.,0,0,194782,https://www.tff.org/Default.aspx?hafta=30&pageID=1467
+2018-19,31,2019-05-03,20:30,DEMİR GRUP SİVASSPOR,MEDİPOL BAŞAKŞEHİR FK,0,0,194784,https://www.tff.org/Default.aspx?hafta=31&pageID=1467
+2018-19,31,2019-05-04,16:00,MKE ANKARAGÜCÜ,ÇAYKUR RİZESPOR A.Ş.,2,2,194785,https://www.tff.org/Default.aspx?hafta=31&pageID=1467
+2018-19,31,2019-05-04,16:00,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,BURSASPOR,2,0,194786,https://www.tff.org/Default.aspx?hafta=31&pageID=1467
+2018-19,31,2019-05-04,19:00,KASIMPAŞA A.Ş.,FENERBAHÇE A.Ş.,1,3,194792,https://www.tff.org/Default.aspx?hafta=31&pageID=1467
+2018-19,31,2019-05-05,16:00,AKHİSARSPOR,EVKUR YENİ MALATYASPOR,0,2,194787,https://www.tff.org/Default.aspx?hafta=31&pageID=1467
+2018-19,31,2019-05-05,16:00,GÖZTEPE A.Ş.,ANTALYASPOR A.Ş.,4,1,194788,https://www.tff.org/Default.aspx?hafta=31&pageID=1467
+2018-19,31,2019-05-05,19:00,GALATASARAY A.Ş.,BEŞİKTAŞ A.Ş.,2,0,194789,https://www.tff.org/Default.aspx?hafta=31&pageID=1467
+2018-19,31,2019-05-06,20:30,AYTEMİZ ALANYASPOR,ATİKER KONYASPOR,2,4,194790,https://www.tff.org/Default.aspx?hafta=31&pageID=1467
+2018-19,31,2019-05-06,20:30,TRABZONSPOR A.Ş.,İSTİKBAL MOBİLYA KAYSERİSPOR,4,2,194791,https://www.tff.org/Default.aspx?hafta=31&pageID=1467
+2018-19,32,2019-05-10,20:30,ANTALYASPOR A.Ş.,BURSASPOR,0,1,194801,https://www.tff.org/Default.aspx?hafta=32&pageID=1467
+2018-19,32,2019-05-11,16:00,ÇAYKUR RİZESPOR A.Ş.,GALATASARAY A.Ş.,2,3,194800,https://www.tff.org/Default.aspx?hafta=32&pageID=1467
+2018-19,32,2019-05-11,19:00,FENERBAHÇE A.Ş.,AKHİSARSPOR,2,1,194794,https://www.tff.org/Default.aspx?hafta=32&pageID=1467
+2018-19,32,2019-05-11,19:00,GÖZTEPE A.Ş.,DEMİR GRUP SİVASSPOR,3,3,194796,https://www.tff.org/Default.aspx?hafta=32&pageID=1467
+2018-19,32,2019-05-12,16:00,İSTİKBAL MOBİLYA KAYSERİSPOR,KASIMPAŞA A.Ş.,2,1,194798,https://www.tff.org/Default.aspx?hafta=32&pageID=1467
+2018-19,32,2019-05-12,16:00,ATİKER KONYASPOR,TRABZONSPOR A.Ş.,2,2,194799,https://www.tff.org/Default.aspx?hafta=32&pageID=1467
+2018-19,32,2019-05-12,19:00,MEDİPOL BAŞAKŞEHİR FK,MKE ANKARAGÜCÜ,2,1,194793,https://www.tff.org/Default.aspx?hafta=32&pageID=1467
+2018-19,32,2019-05-12,19:00,EVKUR YENİ MALATYASPOR,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,3,1,194797,https://www.tff.org/Default.aspx?hafta=32&pageID=1467
+2018-19,32,2019-05-13,20:00,BEŞİKTAŞ A.Ş.,AYTEMİZ ALANYASPOR,2,1,194795,https://www.tff.org/Default.aspx?hafta=32&pageID=1467
+2018-19,33,2019-05-17,20:30,KASIMPAŞA A.Ş.,ATİKER KONYASPOR,1,1,194809,https://www.tff.org/Default.aspx?hafta=33&pageID=1467
+2018-19,33,2019-05-18,19:00,ANTALYASPOR A.Ş.,EVKUR YENİ MALATYASPOR,3,0,194805,https://www.tff.org/Default.aspx?hafta=33&pageID=1467
+2018-19,33,2019-05-18,19:00,TRABZONSPOR A.Ş.,BEŞİKTAŞ A.Ş.,2,1,194808,https://www.tff.org/Default.aspx?hafta=33&pageID=1467
+2018-19,33,2019-05-19,16:00,AKHİSARSPOR,İSTİKBAL MOBİLYA KAYSERİSPOR,2,2,194803,https://www.tff.org/Default.aspx?hafta=33&pageID=1467
+2018-19,33,2019-05-19,16:00,BURSASPOR,GÖZTEPE A.Ş.,0,0,194804,https://www.tff.org/Default.aspx?hafta=33&pageID=1467
+2018-19,33,2019-05-19,19:00,AYTEMİZ ALANYASPOR,ÇAYKUR RİZESPOR A.Ş.,1,1,194802,https://www.tff.org/Default.aspx?hafta=33&pageID=1467
+2018-19,33,2019-05-19,19:00,GALATASARAY A.Ş.,MEDİPOL BAŞAKŞEHİR FK,2,1,194807,https://www.tff.org/Default.aspx?hafta=33&pageID=1467
+2018-19,33,2019-05-20,20:00,MKE ANKARAGÜCÜ,DEMİR GRUP SİVASSPOR,3,1,194806,https://www.tff.org/Default.aspx?hafta=33&pageID=1467
+2018-19,33,2019-05-20,20:00,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,FENERBAHÇE A.Ş.,0,1,194810,https://www.tff.org/Default.aspx?hafta=33&pageID=1467
+2018-19,34,2019-05-24,18:00,MEDİPOL BAŞAKŞEHİR FK,AYTEMİZ ALANYASPOR,1,1,194818,https://www.tff.org/Default.aspx?hafta=34&pageID=1467
+2018-19,34,2019-05-24,21:00,BEŞİKTAŞ A.Ş.,KASIMPAŞA A.Ş.,3,2,194812,https://www.tff.org/Default.aspx?hafta=34&pageID=1467
+2018-19,34,2019-05-24,21:00,DEMİR GRUP SİVASSPOR,GALATASARAY A.Ş.,4,3,194813,https://www.tff.org/Default.aspx?hafta=34&pageID=1467
+2018-19,34,2019-05-24,21:00,ÇAYKUR RİZESPOR A.Ş.,TRABZONSPOR A.Ş.,2,3,194817,https://www.tff.org/Default.aspx?hafta=34&pageID=1467
+2018-19,34,2019-05-25,19:00,ATİKER KONYASPOR,AKHİSARSPOR,0,0,194816,https://www.tff.org/Default.aspx?hafta=34&pageID=1467
+2018-19,34,2019-05-26,19:00,GÖZTEPE A.Ş.,MKE ANKARAGÜCÜ,2,1,194811,https://www.tff.org/Default.aspx?hafta=34&pageID=1467
+2018-19,34,2019-05-26,19:00,FENERBAHÇE A.Ş.,ANTALYASPOR A.Ş.,3,1,194814,https://www.tff.org/Default.aspx?hafta=34&pageID=1467
+2018-19,34,2019-05-26,19:00,İSTİKBAL MOBİLYA KAYSERİSPOR,BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,0,2,194815,https://www.tff.org/Default.aspx?hafta=34&pageID=1467
+2018-19,34,2019-05-26,19:00,EVKUR YENİ MALATYASPOR,BURSASPOR,1,2,194819,https://www.tff.org/Default.aspx?hafta=34&pageID=1467

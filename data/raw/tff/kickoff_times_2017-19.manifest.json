@@ -1,0 +1,554 @@
+{
+  "description": "Immutable source-derived TFF kickoff snapshot for Football-Data seasons without Time.",
+  "acquired_at_utc": "2026-09-13T11:26:18+00:00",
+  "snapshot_path": "data/raw/tff/kickoff_times_2017-19.csv",
+  "snapshot_sha256": "a96fd1a4176ac80a40bbaf9c82e24bfe88c59563117c2eebad6957d7e61593d1",
+  "snapshot_bytes": 80969,
+  "row_count": 612,
+  "source_pages": [
+    {
+      "season": "2017-18",
+      "week": 1,
+      "url": "https://www.tff.org/Default.aspx?hafta=1&pageID=1440",
+      "response_sha256": "8dc67f8a36f40207d2cbf996a618fa7d5afcfb78d092900bbc82453fa5a58649",
+      "response_bytes": 272560,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 2,
+      "url": "https://www.tff.org/Default.aspx?hafta=2&pageID=1440",
+      "response_sha256": "db231181ea34905899656e05a744bef420a72a46de1465d82b95b0d92d431839",
+      "response_bytes": 272560,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 3,
+      "url": "https://www.tff.org/Default.aspx?hafta=3&pageID=1440",
+      "response_sha256": "e1d58b5645e52560d3bc62a5d6366b0c0eb22bdf07194fcafb6003f410fec215",
+      "response_bytes": 272577,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 4,
+      "url": "https://www.tff.org/Default.aspx?hafta=4&pageID=1440",
+      "response_sha256": "98cc735197e0cdae7bbece4e527af7859edf72ea757c37b1cabaaad482bac58b",
+      "response_bytes": 272571,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 5,
+      "url": "https://www.tff.org/Default.aspx?hafta=5&pageID=1440",
+      "response_sha256": "4e3036a9103142222d9211213c0bbd239e336b47833f62679ddcb164886120c6",
+      "response_bytes": 272582,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 6,
+      "url": "https://www.tff.org/Default.aspx?hafta=6&pageID=1440",
+      "response_sha256": "def5b656671988bda3465b13eba18703a3cc7d92419675106b05d43185333618",
+      "response_bytes": 272595,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 7,
+      "url": "https://www.tff.org/Default.aspx?hafta=7&pageID=1440",
+      "response_sha256": "b8dbf5bde44c3cf233b11b86a0d0d1d91e4929dc4ee61047dedf146a9ffeb59d",
+      "response_bytes": 272603,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 8,
+      "url": "https://www.tff.org/Default.aspx?hafta=8&pageID=1440",
+      "response_sha256": "85cc00b25b40058f20833b59d00009f344c8b05cfa129e24ea361e4841b5bd00",
+      "response_bytes": 272610,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 9,
+      "url": "https://www.tff.org/Default.aspx?hafta=9&pageID=1440",
+      "response_sha256": "6d023d3c1253de4205094b5501f6bf074d15ba31159c8b9eccf121431f5da1d2",
+      "response_bytes": 272610,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 10,
+      "url": "https://www.tff.org/Default.aspx?hafta=10&pageID=1440",
+      "response_sha256": "88cb3414ad890cb7ec12f0526cb285dc5aafc15022a76299689a5a6edc566c3a",
+      "response_bytes": 272706,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 11,
+      "url": "https://www.tff.org/Default.aspx?hafta=11&pageID=1440",
+      "response_sha256": "532c86b39e86585782bc7c5ded92e03fe89509039bfa9f957aab5715d1314f31",
+      "response_bytes": 272708,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 12,
+      "url": "https://www.tff.org/Default.aspx?hafta=12&pageID=1440",
+      "response_sha256": "5d20c58fac9dcbcff4122c7aa2a0760db849c557fcb532f482a826cc5f5a97b8",
+      "response_bytes": 272710,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 13,
+      "url": "https://www.tff.org/Default.aspx?hafta=13&pageID=1440",
+      "response_sha256": "4f0698966a12f490af6c6d7f26f2cd5d1f3817ad6db8f64a87e23e551815ed8d",
+      "response_bytes": 272711,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 14,
+      "url": "https://www.tff.org/Default.aspx?hafta=14&pageID=1440",
+      "response_sha256": "8955db3ff249387ace4f0a3e8f9cb2ffe3b80ecb10430c6604b2402200055ba3",
+      "response_bytes": 272718,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 15,
+      "url": "https://www.tff.org/Default.aspx?hafta=15&pageID=1440",
+      "response_sha256": "ea6730c15c77fe3f6645dc48329edd5b0d086b125deff5d2ab80669ac07ee44a",
+      "response_bytes": 272719,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 16,
+      "url": "https://www.tff.org/Default.aspx?hafta=16&pageID=1440",
+      "response_sha256": "12f93a78f4aad7d764210049ba0dee6861687fb58e13462bc054cacd032691ac",
+      "response_bytes": 272722,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 17,
+      "url": "https://www.tff.org/Default.aspx?hafta=17&pageID=1440",
+      "response_sha256": "450e461f2e209da71afeb3b5a569d0d74ab0e9bca9c57a3d26b0f9b339caab45",
+      "response_bytes": 272722,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 18,
+      "url": "https://www.tff.org/Default.aspx?hafta=18&pageID=1440",
+      "response_sha256": "dc0ef719fb34fa9a85e03ce5b4fbf23a8425682874050e7d114dcf9bbf131645",
+      "response_bytes": 272724,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 19,
+      "url": "https://www.tff.org/Default.aspx?hafta=19&pageID=1440",
+      "response_sha256": "b14a2f16b103f4c45bfbf3664db9916806b09a861e49c0c568a5ca52e4ac9ce4",
+      "response_bytes": 272725,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 20,
+      "url": "https://www.tff.org/Default.aspx?hafta=20&pageID=1440",
+      "response_sha256": "6a0b53b0b4d3e977b9cac3c2b84acccddb48c51807d31ad1cb940a61b95fd6b8",
+      "response_bytes": 272727,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 21,
+      "url": "https://www.tff.org/Default.aspx?hafta=21&pageID=1440",
+      "response_sha256": "bf4b969279fbf0f532c0a8434dbd8ca10b9b08f552d482f1bb568d079926c80f",
+      "response_bytes": 272727,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 22,
+      "url": "https://www.tff.org/Default.aspx?hafta=22&pageID=1440",
+      "response_sha256": "316bb420aeeb3b5f5d14169c9c3bfad13549c49cfcd5bb4a8641812a1b129609",
+      "response_bytes": 272728,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 23,
+      "url": "https://www.tff.org/Default.aspx?hafta=23&pageID=1440",
+      "response_sha256": "3050487851cef59d6f231710a068508358459eb187ffac24922eee6ba9451d92",
+      "response_bytes": 272735,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 24,
+      "url": "https://www.tff.org/Default.aspx?hafta=24&pageID=1440",
+      "response_sha256": "ef577065c31f01cbe2180d1d380207d05caa9db92dfab7f0a05d467813e6ca0f",
+      "response_bytes": 272736,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 25,
+      "url": "https://www.tff.org/Default.aspx?hafta=25&pageID=1440",
+      "response_sha256": "da057229cbb2b55f4fd023af872a9c2a2a6339bedd23e0936874375b95ca4a82",
+      "response_bytes": 272737,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 26,
+      "url": "https://www.tff.org/Default.aspx?hafta=26&pageID=1440",
+      "response_sha256": "00bf1f0dbe813c7ba15a219b66c8d19d443d6e6d0aa2d8cd73ff478ac8ca2a48",
+      "response_bytes": 272738,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 27,
+      "url": "https://www.tff.org/Default.aspx?hafta=27&pageID=1440",
+      "response_sha256": "d16f7aae35a8e6f55c5c4c90d280ed7d1e8af1fb57e4ffce445a70f6c108b7d9",
+      "response_bytes": 272742,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 28,
+      "url": "https://www.tff.org/Default.aspx?hafta=28&pageID=1440",
+      "response_sha256": "0f0235a439bdf39e88766969603a339bd8013afa1f0f3515e6029eab39adb7d4",
+      "response_bytes": 272744,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 29,
+      "url": "https://www.tff.org/Default.aspx?hafta=29&pageID=1440",
+      "response_sha256": "1b09b619b0ded3259531b522e2106334236dba88257f143f8f8d71078de60c6a",
+      "response_bytes": 272745,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 30,
+      "url": "https://www.tff.org/Default.aspx?hafta=30&pageID=1440",
+      "response_sha256": "53305918ed262499cf764e668f890c8ce5168a65457d1b7c5e613c2ac36b4284",
+      "response_bytes": 272747,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 31,
+      "url": "https://www.tff.org/Default.aspx?hafta=31&pageID=1440",
+      "response_sha256": "65f28c14436a2c7f1276af58a6674914af84512d98edbf4282c7307bb67dcf18",
+      "response_bytes": 272748,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 32,
+      "url": "https://www.tff.org/Default.aspx?hafta=32&pageID=1440",
+      "response_sha256": "26039ad97385f8c0070647bd3bc4e626bcb46aa0c9d5bea66fa20edfd6aaa9f4",
+      "response_bytes": 272749,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 33,
+      "url": "https://www.tff.org/Default.aspx?hafta=33&pageID=1440",
+      "response_sha256": "ed6bcaeef8836b8cdbaf25fbfe876af4df56efd51daba3553ed6fc868148f5a6",
+      "response_bytes": 272752,
+      "match_rows": 9
+    },
+    {
+      "season": "2017-18",
+      "week": 34,
+      "url": "https://www.tff.org/Default.aspx?hafta=34&pageID=1440",
+      "response_sha256": "c2cd3fc7100723012b8f2e5a626dc3d5a41d6974c24f909ae61ff3abc385feae",
+      "response_bytes": 272754,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 1,
+      "url": "https://www.tff.org/Default.aspx?hafta=1&pageID=1467",
+      "response_sha256": "efa0ed8648e29d42849704fcaef13c8a2614dcad2d7c068c58ba478be503b026",
+      "response_bytes": 269778,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 2,
+      "url": "https://www.tff.org/Default.aspx?hafta=2&pageID=1467",
+      "response_sha256": "72caf0142dbd2bc9297109527327aca15d729e4b9bcc597f0604f11fa93e7693",
+      "response_bytes": 269789,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 3,
+      "url": "https://www.tff.org/Default.aspx?hafta=3&pageID=1467",
+      "response_sha256": "8cf3368d8fc28a82e8b5789dbfe4bbac52dd3996a7d9f7ef17137e387e3d4b06",
+      "response_bytes": 269791,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 4,
+      "url": "https://www.tff.org/Default.aspx?hafta=4&pageID=1467",
+      "response_sha256": "b707298f3d6478c021b953b40eb94e2004a3ebc0e6f3ad1e585a4d4025553074",
+      "response_bytes": 269793,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 5,
+      "url": "https://www.tff.org/Default.aspx?hafta=5&pageID=1467",
+      "response_sha256": "9bfee983dd6839acb1d9064bfd1792946ce5e1d2e43dc9c83936d434bff1aa6a",
+      "response_bytes": 269795,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 6,
+      "url": "https://www.tff.org/Default.aspx?hafta=6&pageID=1467",
+      "response_sha256": "a532f346364278354cc2f1db7c2db70ed4e2a6f16e31619670445ceef795fbdb",
+      "response_bytes": 269806,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 7,
+      "url": "https://www.tff.org/Default.aspx?hafta=7&pageID=1467",
+      "response_sha256": "1c190c3e3f8b4ba86e66225c6b0219ff3dbe98eea07f39f387c694b43f75b972",
+      "response_bytes": 269816,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 8,
+      "url": "https://www.tff.org/Default.aspx?hafta=8&pageID=1467",
+      "response_sha256": "3fd008e8dfcee20bf2f80552bc3b4b6aee091fcbb839c14315ba1b93b9ad5ed4",
+      "response_bytes": 269826,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 9,
+      "url": "https://www.tff.org/Default.aspx?hafta=9&pageID=1467",
+      "response_sha256": "290828c2d23eebc2c09727a829ffa73b98890388662ff16b0e81af420525f844",
+      "response_bytes": 269827,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 10,
+      "url": "https://www.tff.org/Default.aspx?hafta=10&pageID=1467",
+      "response_sha256": "96e85b72fada804bfaed2baf7218944f60206d6419a7c9d783cbd0a9e9176dd8",
+      "response_bytes": 269921,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 11,
+      "url": "https://www.tff.org/Default.aspx?hafta=11&pageID=1467",
+      "response_sha256": "6ffe54d8e8d6faceee2743c78de166d8d919342a1c74f1947a8d962358bde94f",
+      "response_bytes": 269924,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 12,
+      "url": "https://www.tff.org/Default.aspx?hafta=12&pageID=1467",
+      "response_sha256": "19c68530719b0647bc95b801dfba7ba2ac4c4395de10ffe133871159564089b0",
+      "response_bytes": 269931,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 13,
+      "url": "https://www.tff.org/Default.aspx?hafta=13&pageID=1467",
+      "response_sha256": "87e47e56ab64b33ef9991ac3dfc4dcf77d8812bdd9bb1ba1672090d4b07de3d1",
+      "response_bytes": 269934,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 14,
+      "url": "https://www.tff.org/Default.aspx?hafta=14&pageID=1467",
+      "response_sha256": "bb4131e7b1d5892f84c5c8ac9ddf8d3dd3776e01e7642c6c088a2207aeddb474",
+      "response_bytes": 269935,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 15,
+      "url": "https://www.tff.org/Default.aspx?hafta=15&pageID=1467",
+      "response_sha256": "a3b1bfa35a5bd90a96a86c146f3634807d29d0b3677ca9bdc3711cbfbfb7b076",
+      "response_bytes": 269934,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 16,
+      "url": "https://www.tff.org/Default.aspx?hafta=16&pageID=1467",
+      "response_sha256": "56a42c208f428c6fd92c929cd772cba512bf36ce5ee99ee9a913c47c8a13012d",
+      "response_bytes": 269935,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 17,
+      "url": "https://www.tff.org/Default.aspx?hafta=17&pageID=1467",
+      "response_sha256": "3bff7eec87bee7c18e40e4899f4fff3615c671fb4829e2d2e5f914ebfded8a57",
+      "response_bytes": 269936,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 18,
+      "url": "https://www.tff.org/Default.aspx?hafta=18&pageID=1467",
+      "response_sha256": "9582442a95f5aac9fc26db02972231fddc445b4da24651d1fb932a4de1ea2b95",
+      "response_bytes": 269977,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 19,
+      "url": "https://www.tff.org/Default.aspx?hafta=19&pageID=1467",
+      "response_sha256": "6051e3f925d9115205082b31607d3d2f9f9b07704d54129c1877944604a69cbc",
+      "response_bytes": 269979,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 20,
+      "url": "https://www.tff.org/Default.aspx?hafta=20&pageID=1467",
+      "response_sha256": "0f64937f1ec8771fc826648fe1a24381d7f2ece98358c95556ea3fbc7886a2b2",
+      "response_bytes": 269979,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 21,
+      "url": "https://www.tff.org/Default.aspx?hafta=21&pageID=1467",
+      "response_sha256": "473924e70c225f3827f66e86e9397737e84b8462d2e1857963c5975e212442e8",
+      "response_bytes": 269983,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 22,
+      "url": "https://www.tff.org/Default.aspx?hafta=22&pageID=1467",
+      "response_sha256": "6e34f60b250e3cc2d0bc393d9ec10fc547cb86d995f374c7c27eac4fea7e7743",
+      "response_bytes": 269984,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 23,
+      "url": "https://www.tff.org/Default.aspx?hafta=23&pageID=1467",
+      "response_sha256": "12653d6c734f18cc5931e93c6821bcb252cc21009f2e03554ab2b10740edf2e3",
+      "response_bytes": 269987,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 24,
+      "url": "https://www.tff.org/Default.aspx?hafta=24&pageID=1467",
+      "response_sha256": "362289d3485ea7cf131fd6c6ea56c36d644ea6c57f77fdf798050f28b981fbb9",
+      "response_bytes": 269991,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 25,
+      "url": "https://www.tff.org/Default.aspx?hafta=25&pageID=1467",
+      "response_sha256": "904140d3f82374c359f76c76f04a05df7259afbf2f4172e8fd3604426839071b",
+      "response_bytes": 269991,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 26,
+      "url": "https://www.tff.org/Default.aspx?hafta=26&pageID=1467",
+      "response_sha256": "3ece5b4baa6f13893b60f3a0cd10b662230bd40f9717ad03802a54274ce4e04c",
+      "response_bytes": 269996,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 27,
+      "url": "https://www.tff.org/Default.aspx?hafta=27&pageID=1467",
+      "response_sha256": "c3b7f06fdab0f8b8125b36c3eb051208d503777094656537643480ba6983d6eb",
+      "response_bytes": 269999,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 28,
+      "url": "https://www.tff.org/Default.aspx?hafta=28&pageID=1467",
+      "response_sha256": "51f22a05e57cf0fb30f54946ad19f3aa889c69a85842115f8e005d0cc2d78b65",
+      "response_bytes": 270002,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 29,
+      "url": "https://www.tff.org/Default.aspx?hafta=29&pageID=1467",
+      "response_sha256": "827cd7dfb15a753e01e2fd27faf81a5ac138262fc0042ce85fbf5ea39eb5fb5c",
+      "response_bytes": 270003,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 30,
+      "url": "https://www.tff.org/Default.aspx?hafta=30&pageID=1467",
+      "response_sha256": "aa14a684501571c694982c63681e10119e58bb2f86f68d4fd745fd539e0a9b70",
+      "response_bytes": 270003,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 31,
+      "url": "https://www.tff.org/Default.aspx?hafta=31&pageID=1467",
+      "response_sha256": "adbfc73842c90613a7abf98d8253d480aa2b1a669cbba71700100f2860116e91",
+      "response_bytes": 270006,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 32,
+      "url": "https://www.tff.org/Default.aspx?hafta=32&pageID=1467",
+      "response_sha256": "bce8d79cbbe78f4cce51c6793505d314b34d1f7851510da9707f4194423f927a",
+      "response_bytes": 270009,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 33,
+      "url": "https://www.tff.org/Default.aspx?hafta=33&pageID=1467",
+      "response_sha256": "5e9020da076d1e2bed0b6e4224c8dd0a77a82f11041eac6fafe6807325dde792",
+      "response_bytes": 270010,
+      "match_rows": 9
+    },
+    {
+      "season": "2018-19",
+      "week": 34,
+      "url": "https://www.tff.org/Default.aspx?hafta=34&pageID=1467",
+      "response_sha256": "671ad13a2a9c6494c0320b956acca65d662bc1a8762efa879caccd09a1b09d4c",
+      "response_bytes": 270006,
+      "match_rows": 9
+    }
+  ]
+}

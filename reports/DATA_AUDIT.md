@@ -181,17 +181,18 @@ They are not applied to immutable raw files; raw labels remain available for lin
 | High | Administrative results | 31 source-confirmed rows; all set model_eligible=false | Including awarded goals would bias attack/defence strength and score tails. | Keep status overrides and exact-set regression tests active. |
 | High | Post-match leakage risk | Goals, shots, cards, corners, fouls, and closing odds coexist in raw rows. | Naive feature selection can produce impossible performance. | Enforce LEAKAGE_CONTRACT.md and walk-forward tests. |
 | Medium | Odds regime drift | Closing average absent in first two seasons; bookmaker roster changes later. | A single benchmark series would mix unlike sources. | Label source/regime and report benchmark coverage separately. |
-| Medium | Missing kickoff time | `Time` absent in 2017-18 and 2018-19. | Same-day strict ordering is unknowable. | Treat same-date matches as simultaneous for leakage boundaries. |
+| Medium | Raw-source kickoff gap | `Time` absent in 2017-18/2018-19; later values align to the UK clock. | Raw-only processing cannot strictly order same-day fixtures in Turkish local time. | Backfill from TFF and convert Europe/London to Europe/Istanbul; retain simultaneous fallback. |
 | Medium | Canonical team-name drift | 7 source-backed mappings approved for canonicalization. | Bad merges split or combine team histories. | Apply only the reviewed map and retain raw lineage. |
 | Low | Encoding/header variation | 2018-19 begins with UTF-8 BOM. | Over-strict loaders can reject a valid season. | Decode BOM for parsing; never rewrite raw bytes. |
 | Low | Isolated red-card missing value | 2018-19 Bursaspor-Alanyaspor has null AR; all other audited stats are present. | Does not affect score-only Dixon-Coles; unsafe to impute silently. | Keep AR nullable and preserve the source null. |
 
 ## Recommended canonical schema
 
-REQUIRED: `match_id`, `season`, `date`, `home_team`, `away_team`,
-`home_goals`, `away_goals`, `result`, `match_status`, `model_eligible`.
+REQUIRED: `match_id`, `season`, `date`, `kickoff_time`, timezone/source
+lineage, `home_team`, `away_team`, `home_goals`, `away_goals`, `result`,
+`match_status`, and `model_eligible`.
 
-OPTIONAL: `kickoff_time`, both half-time goal fields, and all audited shots,
+OPTIONAL: official-score override fields, both half-time goal fields, and all audited shots,
 shots-on-target, fouls, corners, yellow-card, and red-card fields. They are
 historical outcomes, not current-match features.
 
@@ -200,14 +201,16 @@ over/under and handicap markets, bookmaker maxima/counts, and all
 rolling/pre-match features. Full types and validation
 rules are in `DATA_CONTRACT.md`.
 
-## Explicit unresolved questions
+## Resolved and remaining questions
 
-1. Decide whether the closing-market benchmark starts in 2019-20 or uses
-   separately labelled Pinnacle closing odds for 2017-18 and 2018-19.
-2. Confirm the conservative same-calendar-date ordering rule for seasons without
-   kickoff times.
-3. Define how newly promoted 2026-27 teams not present in the audit receive
-   canonical identities and cold-start handling in a later phase.
+1. RESOLVED: 2019-20 onward is the primary market-average benchmark; the first
+   two seasons are a separately labelled secondary Pinnacle benchmark.
+2. RESOLVED: the official TFF archive backfills every missing kickoff time;
+   the conservative same-date rule remains the fallback for any future gap.
+3. DESIGN RESOLVED, IMPLEMENTATION DEFERRED: newly promoted clubs use the
+   training-only dynamic promoted-team prior specified in `MODEL_DESIGN.md`.
+4. UNRESOLVED BEFORE MODEL EVALUATION: freeze a conservative historical
+   result-availability lag because final-whistle timestamps are unavailable.
 
 ## Final decision
 
