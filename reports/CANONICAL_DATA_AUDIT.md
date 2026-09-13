@@ -7,6 +7,9 @@ including 3,057 played-match-eligible rows and 31 source-reviewed
 administrative exclusions. Kickoff time is complete for every row after an
 exact one-to-one, score-verified TFF backfill of the first two seasons and
 timezone-aware Europe/London-to-Europe/Istanbul conversion thereafter.
+Every eligible result also has a conservative availability timestamp. The
+fixed rule is kickoff plus 180 minutes, with the suspended Başakşehir-
+Bursaspor match anchored to its reviewed next-day resumption instead.
 
 The isolated market benchmark contains 3,054 rows: 2,445
 primary closing-market-average rows from 2019-20 onward and
@@ -19,17 +22,17 @@ in this phase.
 
 ## Coverage by season
 
-| Season | Matches | Eligible | Excluded | Kickoff complete | TFF backfill | Market rows | Market coverage | Regime |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 2017-18 | 306 | 306 | 0 | 306 | 306 | 303 | 99.02% | pinnacle_closing |
-| 2018-19 | 306 | 306 | 0 | 306 | 306 | 306 | 100.00% | pinnacle_closing |
-| 2019-20 | 306 | 306 | 0 | 306 | 0 | 306 | 100.00% | market_average_closing |
-| 2020-21 | 420 | 420 | 0 | 420 | 0 | 420 | 100.00% | market_average_closing |
-| 2021-22 | 380 | 380 | 0 | 380 | 0 | 380 | 100.00% | market_average_closing |
-| 2022-23 | 342 | 313 | 29 | 342 | 0 | 313 | 100.00% | market_average_closing |
-| 2023-24 | 380 | 379 | 1 | 380 | 0 | 379 | 100.00% | market_average_closing |
-| 2024-25 | 342 | 341 | 1 | 342 | 0 | 341 | 100.00% | market_average_closing |
-| 2025-26 | 306 | 306 | 0 | 306 | 0 | 306 | 100.00% | market_average_closing |
+| Season | Matches | Eligible | Excluded | Kickoff complete | Result available | TFF backfill | Market rows | Market coverage | Regime |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 2017-18 | 306 | 306 | 0 | 306 | 306 | 306 | 303 | 99.02% | pinnacle_closing |
+| 2018-19 | 306 | 306 | 0 | 306 | 306 | 306 | 306 | 100.00% | pinnacle_closing |
+| 2019-20 | 306 | 306 | 0 | 306 | 306 | 0 | 306 | 100.00% | market_average_closing |
+| 2020-21 | 420 | 420 | 0 | 420 | 420 | 0 | 420 | 100.00% | market_average_closing |
+| 2021-22 | 380 | 380 | 0 | 380 | 380 | 0 | 380 | 100.00% | market_average_closing |
+| 2022-23 | 342 | 313 | 29 | 342 | 313 | 0 | 313 | 100.00% | market_average_closing |
+| 2023-24 | 380 | 379 | 1 | 380 | 379 | 0 | 379 | 100.00% | market_average_closing |
+| 2024-25 | 342 | 341 | 1 | 342 | 341 | 0 | 341 | 100.00% | market_average_closing |
+| 2025-26 | 306 | 306 | 0 | 306 | 306 | 0 | 306 | 100.00% | market_average_closing |
 
 ## TFF kickoff join checks
 
@@ -55,15 +58,19 @@ so British daylight-saving transitions are not represented as Turkish time.
 matrix. Current-match outcomes remain forbidden predictive inputs under
 `LEAKAGE_CONTRACT.md`. `market_benchmark.csv` is a separate table and may be
 joined only after model predictions are frozen.
-An earlier kickoff is not treated as an available result until the future
-evaluation code applies the completion rule in `LEAKAGE_CONTRACT.md`.
+For any future prediction at time `t`, history is restricted to rows whose
+`result_available_at < t`; kickoff order alone never exposes an outcome.
+A kickoff-only ordering would affect 1,367 of
+3,057 eligible predictions
+(44.72%),
+with up to 6 unavailable results
+at one prediction cutoff.
 
 ## Remaining modeling work
 
 Chronological evaluation scaffolding, naive baselines, independent Poisson,
 time-decayed Dixon-Coles, and the dynamic promoted-team prior remain
 unimplemented. Their design boundary is recorded in `MODEL_DESIGN.md`.
-The conservative result-availability lag must be frozen before evaluation.
 
 ## Reviewed source links
 

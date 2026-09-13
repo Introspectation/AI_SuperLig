@@ -1,0 +1,2 @@
+season,prediction_date,home_team,away_team,result_anchor_date,result_anchor_time,result_availability_rule,evidence_ids,reason
+2018-19,2019-02-23,Istanbul Basaksehir,Bursaspor,2019-02-24,19:00,reviewed_resumption_plus_180_minutes,TFF_2019_WEEK23|ASPOR_2019_RESUMED_MATCH,The match began on 23 February but was suspended after five minutes and completed after resuming on 24 February.

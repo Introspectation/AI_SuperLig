@@ -209,8 +209,8 @@ rules are in `DATA_CONTRACT.md`.
    the conservative same-date rule remains the fallback for any future gap.
 3. DESIGN RESOLVED, IMPLEMENTATION DEFERRED: newly promoted clubs use the
    training-only dynamic promoted-team prior specified in `MODEL_DESIGN.md`.
-4. UNRESOLVED BEFORE MODEL EVALUATION: freeze a conservative historical
-   result-availability lag because final-whistle timestamps are unavailable.
+4. RESOLVED: results become available after a fixed 180-minute safety lag;
+   the suspended Başakşehir-Bursaspor match anchors to its reviewed resumption.
 
 ## Final decision
 

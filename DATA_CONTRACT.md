@@ -17,6 +17,8 @@ of duplicate keys and non-played/administrative results.
 | kickoff_time | REQUIRED | time | Time / reviewed TFF backfill | Time is interpreted as UK clock after TFF cross-checks; TFF supplies two missing seasons. |
 | kickoff_timezone | REQUIRED | string | derived | Europe/Istanbul after timezone-aware conversion. |
 | kickoff_time_source | REQUIRED | enum | derived lineage | football_data_europe_london_converted or tff_archive. |
+| result_available_at | REQUIRED FOR ELIGIBLE | nullable timezone-aware datetime | derived / reviewed override | Kickoff or reviewed resumption anchor plus the fixed 180-minute safety lag. |
+| result_availability_rule | REQUIRED | enum | derived lineage | Standard 180-minute lag, reviewed resumption lag, or not_model_eligible. |
 | home_team | REQUIRED | string | HomeTeam | Alias changes require review. |
 | away_team | REQUIRED | string | AwayTeam | Must differ from home team. |
 | home_goals | REQUIRED | integer | FTHG | Non-negative full-time goals. |
@@ -112,6 +114,8 @@ the original source names remain available for lineage.
 - result agrees with full-time goals; home and away teams differ;
 - natural match keys and `match_id` values are unique;
 - kickoff time is complete after the TFF join and UK-to-Turkey conversion;
+- every eligible result has a timezone-aware availability timestamp strictly after kickoff;
+- ineligible administrative rows never expose a result-availability timestamp;
 - raw checksums and exact ordered schemas match their locks;
 - all 31 reviewed administrative results set `model_eligible=false`;
 - review config must match the detected candidate set exactly;
