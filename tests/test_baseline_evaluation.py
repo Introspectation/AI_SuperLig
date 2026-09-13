@@ -31,6 +31,7 @@ class BaselineEvaluationTests(unittest.TestCase):
             {"2021-22", "2022-23", "2023-24", "2024-25"},
         )
         self.assertNotIn("2025-26", set(self.predictions["season"]))
+        self.assertNotIn("2026-27", set(self.predictions["season"]))
         self.assertEqual(self.predictions["match_id"].nunique(), 1413)
         self.assertEqual(len(self.predictions), 2826)
 

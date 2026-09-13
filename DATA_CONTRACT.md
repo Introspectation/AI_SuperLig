@@ -30,23 +30,25 @@ of duplicate keys and non-played/administrative results.
 | match_status | REQUIRED | enum | curation/default | played, not_played_forfeit, abandoned_forfeit, or played_then_awarded_forfeit. |
 | model_eligible | REQUIRED | boolean | derived from match_status | False for non-played/abandoned exclusions; true for the fully played awarded result. |
 | source_provider | REQUIRED | string | lineage | football_data. |
+| source_snapshot_id | REQUIRED | string | snapshot catalog | Immutable source-version identity used to materialize the row. |
+| source_snapshot_captured_at | REQUIRED FOR CURRENT SEASON | nullable timezone-aware datetime | snapshot catalog | Required for 2026-27 live rows; unavailable for the original historical capture. |
 | source_file | REQUIRED | string | lineage | Immutable raw CSV path. |
 | source_row | REQUIRED | integer | lineage | One-based raw CSV row including header. |
 | tff_match_id | OPTIONAL | nullable string | TFF kickoff snapshot | Present for the two kickoff-backfilled seasons. |
-| home_ht_goals | OPTIONAL | nullable integer | HTHG | Overall 99.00%; weakest season 91.52%. |
-| away_ht_goals | OPTIONAL | nullable integer | HTAG | Overall 99.00%; weakest season 91.52%. |
-| home_shots | OPTIONAL | nullable integer | HS | Overall 99.00%; weakest season 91.52%. |
-| away_shots | OPTIONAL | nullable integer | AS | Overall 99.00%; weakest season 91.52%. |
-| home_shots_on_target | OPTIONAL | nullable integer | HST | Overall 99.00%; weakest season 91.52%. |
-| away_shots_on_target | OPTIONAL | nullable integer | AST | Overall 99.00%; weakest season 91.52%. |
-| home_fouls | OPTIONAL | nullable integer | HF | Overall 99.00%; weakest season 91.52%. |
-| away_fouls | OPTIONAL | nullable integer | AF | Overall 99.00%; weakest season 91.52%. |
-| home_corners | OPTIONAL | nullable integer | HC | Overall 99.00%; weakest season 91.52%. |
-| away_corners | OPTIONAL | nullable integer | AC | Overall 99.00%; weakest season 91.52%. |
-| home_yellow_cards | OPTIONAL | nullable integer | HY | Overall 99.00%; weakest season 91.52%. |
-| away_yellow_cards | OPTIONAL | nullable integer | AY | Overall 99.00%; weakest season 91.52%. |
-| home_red_cards | OPTIONAL | nullable integer | HR | Overall 99.00%; weakest season 91.52%. |
-| away_red_cards | OPTIONAL | nullable integer | AR | Overall 98.96%; weakest season 91.52%. |
+| home_ht_goals | OPTIONAL | nullable integer | HTHG | Overall 99.01%; weakest season 91.52%. |
+| away_ht_goals | OPTIONAL | nullable integer | HTAG | Overall 99.01%; weakest season 91.52%. |
+| home_shots | OPTIONAL | nullable integer | HS | Overall 99.01%; weakest season 91.52%. |
+| away_shots | OPTIONAL | nullable integer | AS | Overall 99.01%; weakest season 91.52%. |
+| home_shots_on_target | OPTIONAL | nullable integer | HST | Overall 99.01%; weakest season 91.52%. |
+| away_shots_on_target | OPTIONAL | nullable integer | AST | Overall 99.01%; weakest season 91.52%. |
+| home_fouls | OPTIONAL | nullable integer | HF | Overall 99.01%; weakest season 91.52%. |
+| away_fouls | OPTIONAL | nullable integer | AF | Overall 99.01%; weakest season 91.52%. |
+| home_corners | OPTIONAL | nullable integer | HC | Overall 99.01%; weakest season 91.52%. |
+| away_corners | OPTIONAL | nullable integer | AC | Overall 99.01%; weakest season 91.52%. |
+| home_yellow_cards | OPTIONAL | nullable integer | HY | Overall 99.01%; weakest season 91.52%. |
+| away_yellow_cards | OPTIONAL | nullable integer | AY | Overall 99.01%; weakest season 91.52%. |
+| home_red_cards | OPTIONAL | nullable integer | HR | Overall 99.01%; weakest season 91.52%. |
+| away_red_cards | OPTIONAL | nullable integer | AR | Overall 98.98%; weakest season 91.52%. |
 
 `match_id` is proposed as a SHA-256 of
 `season|date_iso|approved_home_team|approved_away_team`. Inputs are delimited
@@ -62,11 +64,14 @@ overrides set `model_eligible=false`; raw source scores remain in lineage.
 The played Akhisarspor-Besiktas match remains model eligible with its 1-3
 on-pitch score; the later official 0-3 award is retained only in the nullable
 official-score fields.
+Every current-season row retains the exact snapshot identity and capture time.
+A live or replayed fit may use it only when `source_snapshot_captured_at <= t`.
 
 ## Fields rejected from the MVP match table
 
 - `Div`: constant source code and already represented by dataset scope.
 - `HTR`: derivable from half-time goals when those goals exist.
+- `HxG/AxG`: newly observed in 2026-27 but outside the approved roadmap stage.
 - all 1X2, over/under, and Asian-handicap odds: market data is isolated below.
 - bookmaker counts, maxima, and exchange fields: not needed for the first
   closing-probability benchmark.
@@ -117,6 +122,7 @@ the original source names remain available for lineage.
 - every eligible result has a timezone-aware availability timestamp strictly after kickoff;
 - ineligible administrative rows never expose a result-availability timestamp;
 - raw checksums and exact ordered schemas match their locks;
+- current-season rows retain a non-null snapshot capture boundary;
 - all 31 reviewed administrative results set `model_eligible=false`;
 - review config must match the detected candidate set exactly;
 - market rows never enter a predictive feature dataset.

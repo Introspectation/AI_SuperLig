@@ -2,12 +2,19 @@ name: Bootstrap Football-Data snapshot
 
 on:
   workflow_dispatch:
+  schedule:
+    # 05:30 Europe/Istanbul while Turkey remains UTC+3.
+    - cron: "30 2 * * *"
   push:
     paths:
       - .github/workflows/bootstrap-football-data.yml
 
 permissions:
   contents: read
+
+concurrency:
+  group: football-data-acquisition
+  cancel-in-progress: false
 
 jobs:
   download-raw-snapshot:
@@ -68,4 +75,4 @@ jobs:
           name: football-data-superlig-2017-2027
           path: data/raw/football_data/*.csv
           if-no-files-found: error
-          retention-days: 1
+          retention-days: 7

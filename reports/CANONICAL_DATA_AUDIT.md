@@ -2,8 +2,10 @@
 
 ## Answer first
 
-**GO.** The canonical match table contains all 3,088 audited fixtures,
-including 3,057 played-match-eligible rows and 31 source-reviewed
+**GO-WITH-CONSTRAINTS.** The canonical match table contains 3,124
+audited fixtures across the nine frozen historical seasons and the active
+versioned 2026-27 snapshot, including 3,093 played-match-eligible rows
+and 31 source-reviewed
 administrative exclusions. Kickoff time is complete for every row after an
 exact one-to-one, score-verified TFF backfill of the first two seasons and
 timezone-aware Europe/London-to-Europe/Istanbul conversion thereafter.
@@ -11,14 +13,20 @@ Every eligible result also has a conservative availability timestamp. The
 fixed rule is kickoff plus 180 minutes, with the suspended Başakşehir-
 Bursaspor match anchored to its reviewed next-day resumption instead.
 
-The isolated market benchmark contains 3,054 rows: 2,445
+The active live snapshot was captured at 2026-09-13T19:28:13Z and
+contains 36 results through 2026-09-07.
+Its capture time and immutable snapshot identity are present on every 2026-27
+canonical row. This is an as-of data boundary, not a claim that the upstream
+provider already contains every completed fixture.
+
+The isolated market benchmark contains 3,090 rows: 2,481
 primary closing-market-average rows from 2019-20 onward and
 609 separately labelled Pinnacle-closing rows for 2017-18 and
 2018-19. Three eligible 2017-18 matches have no complete Pinnacle triplet
 and remain absent from the benchmark rather than being imputed.
 
-No predictive feature, baseline, Poisson model, or Dixon-Coles model is built
-in this phase.
+This canonical build does not fit or evaluate a predictive model. The naive
+baseline evaluator remains a separate downstream step.
 
 ## Coverage by season
 
@@ -33,6 +41,7 @@ in this phase.
 | 2023-24 | 380 | 379 | 1 | 380 | 379 | 0 | 379 | 100.00% | market_average_closing |
 | 2024-25 | 342 | 341 | 1 | 342 | 341 | 0 | 341 | 100.00% | market_average_closing |
 | 2025-26 | 306 | 306 | 0 | 306 | 306 | 0 | 306 | 100.00% | market_average_closing |
+| 2026-27 | 36 | 36 | 0 | 36 | 36 | 0 | 36 | 100.00% | market_average_closing |
 
 ## TFF kickoff join checks
 
@@ -60,17 +69,19 @@ matrix. Current-match outcomes remain forbidden predictive inputs under
 joined only after model predictions are frozen.
 For any future prediction at time `t`, history is restricted to rows whose
 `result_available_at < t`; kickoff order alone never exposes an outcome.
-A kickoff-only ordering would affect 1,367 of
-3,057 eligible predictions
-(44.72%),
+Current-season history additionally requires `source_snapshot_captured_at <= t`
+and a successful pre-prediction freshness/coverage check.
+A kickoff-only ordering would affect 1,381 of
+3,093 eligible predictions
+(44.65%),
 with up to 6 unavailable results
 at one prediction cutoff.
 
 ## Remaining modeling work
 
-Chronological evaluation scaffolding, naive baselines, independent Poisson,
-time-decayed Dixon-Coles, and the dynamic promoted-team prior remain
-unimplemented. Their design boundary is recorded in `MODEL_DESIGN.md`.
+Naive baselines are implemented. Independent Poisson, time-decayed
+Dixon-Coles, and the dynamic promoted-team prior remain future roadmap
+steps under `MODEL_DESIGN.md` and `ROADMAP.md`.
 
 ## Reviewed source links
 

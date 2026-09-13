@@ -11,12 +11,14 @@ explicitly replaces it.
 | Warm-up history | 2017-18 through 2020-21 | Historical observations available to the first development prediction. |
 | Development walk-forward | 2021-22 through 2024-25 | Model development, comparison, and training-only tuning. |
 | Final holdout | 2025-26 | Sealed until the candidate model and decision rule are frozen. |
-| Live target | 2026-27 | Future pre-match predictions only; never tuning data. |
+| Live-only current season | 2026-27 | Versioned observations may update a live fit; never development tuning data. |
 
 The machine-readable assignment is `config/evaluation_splits.csv`. The first
 baseline command fails if that exact assignment changes unexpectedly. The
 2025-26 final holdout is schema-validated but is not scored or used for model
 fitting, tuning, or selection by the baseline evaluator.
+The in-progress 2026-27 season is also absent from development metrics. Its
+versioned snapshots exist only for timestamped live research predictions.
 
 ## Walk-forward rule
 

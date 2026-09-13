@@ -76,6 +76,8 @@ CANONICAL_COLUMNS = [
     "model_eligible",
     *OPTIONAL_FIELD_MAP.keys(),
     "source_provider",
+    "source_snapshot_id",
+    "source_snapshot_captured_at",
     "source_file",
     "source_row",
     "tff_match_id",
@@ -220,6 +222,15 @@ def build_base_matches(
 
     pieces: list[pd.DataFrame] = []
     for season, raw in frames.items():
+        raw_path = raw.attrs.get("raw_path")
+        snapshot_id = raw.attrs.get("snapshot_id")
+        snapshot_captured_at = raw.attrs.get("snapshot_captured_at")
+        if not raw_path:
+            raise CanonicalBuildError(f"{season}: raw source lineage path is missing")
+        if not snapshot_id:
+            raise CanonicalBuildError(f"{season}: raw snapshot identity is missing")
+        if season == audit.CURRENT_SEASON and not snapshot_captured_at:
+            raise CanonicalBuildError("Current-season source needs a captured_at boundary")
         dates = audit.parse_dates(raw["Date"])
         if dates.isna().any():
             raise CanonicalBuildError(f"{season}: canonical build found invalid dates")
@@ -233,7 +244,9 @@ def build_base_matches(
                 "away_goals": pd.to_numeric(raw["FTAG"], errors="raise").astype("int64"),
                 "result": raw["FTR"].astype("string"),
                 "source_provider": "football_data",
-                "source_file": f"data/raw/football_data/{season}.csv",
+                "source_snapshot_id": snapshot_id,
+                "source_snapshot_captured_at": snapshot_captured_at,
+                "source_file": raw_path,
                 "source_row": raw.index.to_series().astype("int64") + 2,
             }
         )
@@ -673,6 +686,8 @@ def finalize_matches(matches: pd.DataFrame) -> pd.DataFrame:
     if matches[required].isna().any(axis=None):
         nulls = matches[required].isna().sum()
         raise CanonicalBuildError(f"Canonical required fields contain nulls: {nulls[nulls > 0].to_dict()}")
+    if matches["source_snapshot_id"].isna().any():
+        raise CanonicalBuildError("Canonical snapshot identity contains nulls")
     if matches.duplicated(natural_key).any() or matches["match_id"].duplicated().any():
         raise CanonicalBuildError("Canonical match IDs or natural keys are duplicated")
     if (matches["home_team"] == matches["away_team"]).any():
@@ -711,10 +726,28 @@ def finalize_matches(matches: pd.DataFrame) -> pd.DataFrame:
         "not_model_eligible"
     ).all():
         raise CanonicalBuildError("Ineligible matches need the ineligible availability rule")
-    if len(matches) != 3088 or int((~matches["model_eligible"]).sum()) != 31:
+    historical = matches[matches["season"].isin(audit.HISTORICAL_SEASONS)]
+    current = matches[matches["season"] == audit.CURRENT_SEASON]
+    expected_current_rows = int(audit.active_current_snapshot()["row_count"])
+    if len(historical) != 3088 or len(current) != expected_current_rows:
         raise CanonicalBuildError(
-            "Canonical row or reviewed-exclusion count changed unexpectedly"
+            "Canonical historical or active current-snapshot row count changed unexpectedly"
         )
+    active_snapshot = audit.active_current_snapshot()
+    if not current["source_snapshot_id"].eq(active_snapshot["snapshot_id"]).all():
+        raise CanonicalBuildError("Current rows do not use the active snapshot identity")
+    captured = pd.to_datetime(
+        current["source_snapshot_captured_at"], format="ISO8601", errors="coerce", utc=True
+    )
+    if captured.isna().any() or not captured.eq(pd.Timestamp(active_snapshot["captured_at"])).all():
+        raise CanonicalBuildError("Current rows do not preserve the active capture boundary")
+    if matches.loc[
+        matches["season"].isin(audit.HISTORICAL_SEASONS),
+        "source_snapshot_captured_at",
+    ].notna().any():
+        raise CanonicalBuildError("Historical rows cannot invent unavailable capture times")
+    if int((~matches["model_eligible"]).sum()) != 31:
+        raise CanonicalBuildError("Canonical reviewed-exclusion count changed unexpectedly")
     if int((matches["match_status"] == "not_played_forfeit").sum()) != 29:
         raise CanonicalBuildError("Expected 29 not-played forfeits")
     if int((matches["match_status"] == "abandoned_forfeit").sum()) != 2:
@@ -881,6 +914,7 @@ def generate_report(
     primary = int((market["benchmark_tier"] == "primary_market_average").sum())
     secondary = int((market["benchmark_tier"] == "secondary_single_bookmaker").sum())
     availability_risk = availability_risk_summary(canonical)
+    active_snapshot = audit.active_current_snapshot()
     table_rows = []
     for row in quality.itertuples(index=False):
         table_rows.append(
@@ -915,8 +949,10 @@ def generate_report(
         "",
         "## Answer first",
         "",
-        "**GO.** The canonical match table contains all 3,088 audited fixtures,",
-        f"including {eligible:,} played-match-eligible rows and 31 source-reviewed",
+        f"**GO-WITH-CONSTRAINTS.** The canonical match table contains {len(canonical):,}",
+        "audited fixtures across the nine frozen historical seasons and the active",
+        f"versioned 2026-27 snapshot, including {eligible:,} played-match-eligible rows",
+        "and 31 source-reviewed",
         "administrative exclusions. Kickoff time is complete for every row after an",
         "exact one-to-one, score-verified TFF backfill of the first two seasons and",
         "timezone-aware Europe/London-to-Europe/Istanbul conversion thereafter.",
@@ -924,14 +960,20 @@ def generate_report(
         "fixed rule is kickoff plus 180 minutes, with the suspended Başakşehir-",
         "Bursaspor match anchored to its reviewed next-day resumption instead.",
         "",
+        f"The active live snapshot was captured at {active_snapshot['captured_at']} and",
+        f"contains {int(active_snapshot['row_count'])} results through {active_snapshot['date_max']}.",
+        "Its capture time and immutable snapshot identity are present on every 2026-27",
+        "canonical row. This is an as-of data boundary, not a claim that the upstream",
+        "provider already contains every completed fixture.",
+        "",
         f"The isolated market benchmark contains {len(market):,} rows: {primary:,}",
         "primary closing-market-average rows from 2019-20 onward and",
         f"{secondary:,} separately labelled Pinnacle-closing rows for 2017-18 and",
         "2018-19. Three eligible 2017-18 matches have no complete Pinnacle triplet",
         "and remain absent from the benchmark rather than being imputed.",
         "",
-        "No predictive feature, baseline, Poisson model, or Dixon-Coles model is built",
-        "in this phase.",
+        "This canonical build does not fit or evaluate a predictive model. The naive",
+        "baseline evaluator remains a separate downstream step.",
         "",
         "## Coverage by season",
         "",
@@ -986,6 +1028,8 @@ def generate_report(
         "joined only after model predictions are frozen.",
         "For any future prediction at time `t`, history is restricted to rows whose",
         "`result_available_at < t`; kickoff order alone never exposes an outcome.",
+        "Current-season history additionally requires `source_snapshot_captured_at <= t`",
+        "and a successful pre-prediction freshness/coverage check.",
         f"A kickoff-only ordering would affect {availability_risk['affected_predictions']:,} of",
         f"{availability_risk['eligible_predictions']:,} eligible predictions",
         f"({audit.pct(availability_risk['affected_predictions'] / availability_risk['eligible_predictions'])}),",
@@ -994,9 +1038,9 @@ def generate_report(
         "",
         "## Remaining modeling work",
         "",
-        "Chronological evaluation scaffolding, naive baselines, independent Poisson,",
-        "time-decayed Dixon-Coles, and the dynamic promoted-team prior remain",
-        "unimplemented. Their design boundary is recorded in `MODEL_DESIGN.md`.",
+        "Naive baselines are implemented. Independent Poisson, time-decayed",
+        "Dixon-Coles, and the dynamic promoted-team prior remain future roadmap",
+        "steps under `MODEL_DESIGN.md` and `ROADMAP.md`.",
         "",
         "## Reviewed source links",
         "",
@@ -1044,7 +1088,7 @@ def main() -> int:
             f"{len(market)} market benchmark rows."
         )
         print(f"Report: {QUALITY_REPORT}")
-        print("Verdict: GO")
+        print("Verdict: GO-WITH-CONSTRAINTS")
         return 0
     except (audit.AuditError, CanonicalBuildError, ValueError) as exc:
         print(f"CANONICAL BUILD FAILED: {exc}", file=sys.stderr)

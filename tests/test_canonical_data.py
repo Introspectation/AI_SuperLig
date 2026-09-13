@@ -31,7 +31,7 @@ class CanonicalDataTests(unittest.TestCase):
 
     def test_canonical_grain_required_fields_and_kickoffs(self) -> None:
         self.assertEqual(self.matches.columns.tolist(), canonical_build.CANONICAL_COLUMNS)
-        self.assertEqual(len(self.matches), 3088)
+        self.assertEqual(len(self.matches), 3124)
         self.assertFalse(self.matches["match_id"].duplicated().any())
         self.assertFalse(
             self.matches.duplicated(["season", "date", "home_team", "away_team"]).any()
@@ -40,7 +40,7 @@ class CanonicalDataTests(unittest.TestCase):
         self.assertEqual(
             self.matches["kickoff_time_source"].value_counts().to_dict(),
             {
-                "football_data_europe_london_converted": 2476,
+                "football_data_europe_london_converted": 2512,
                 "tff_archive": 612,
             },
         )
@@ -59,11 +59,11 @@ class CanonicalDataTests(unittest.TestCase):
         self.assertEqual(summer.kickoff_timezone, "Europe/Istanbul")
 
     def test_statuses_preserve_on_pitch_and_official_results(self) -> None:
-        self.assertEqual(int(self.matches["model_eligible"].sum()), 3057)
+        self.assertEqual(int(self.matches["model_eligible"].sum()), 3093)
         self.assertEqual(
             self.matches["match_status"].value_counts().to_dict(),
             {
-                "played": 3056,
+                "played": 3092,
                 "not_played_forfeit": 29,
                 "abandoned_forfeit": 2,
                 "played_then_awarded_forfeit": 1,
@@ -92,11 +92,11 @@ class CanonicalDataTests(unittest.TestCase):
         self.assertEqual(int(totals["duplicate_canonical_keys"]), 0)
 
     def test_result_availability_is_conservative_and_source_reviewed(self) -> None:
-        self.assertEqual(int(self.matches["result_available_at"].notna().sum()), 3057)
+        self.assertEqual(int(self.matches["result_available_at"].notna().sum()), 3093)
         self.assertEqual(
             self.matches["result_availability_rule"].value_counts().to_dict(),
             {
-                "kickoff_plus_180_minutes": 3056,
+                "kickoff_plus_180_minutes": 3092,
                 "not_model_eligible": 31,
                 "reviewed_resumption_plus_180_minutes": 1,
             },
@@ -148,7 +148,9 @@ class CanonicalDataTests(unittest.TestCase):
         leakage_contract = (ROOT / "LEAKAGE_CONTRACT.md").read_text(encoding="utf-8")
         self.assertIn("result_available_at < t", leakage_contract)
         self.assertEqual(
-            canonical_build.availability_risk_summary(self.matches),
+            canonical_build.availability_risk_summary(
+                self.matches[self.matches["season"].isin(audit.HISTORICAL_SEASONS)]
+            ),
             {
                 "eligible_predictions": 3057,
                 "affected_predictions": 1367,
@@ -163,7 +165,7 @@ class CanonicalDataTests(unittest.TestCase):
 
     def test_market_is_isolated_normalized_and_regime_labeled(self) -> None:
         self.assertEqual(self.market.columns.tolist(), canonical_build.MARKET_COLUMNS)
-        self.assertEqual(len(self.market), 3054)
+        self.assertEqual(len(self.market), 3090)
         self.assertFalse(self.market["match_id"].duplicated().any())
         self.assertTrue(set(self.market["match_id"]).issubset(set(self.matches["match_id"])))
         probabilities = self.market[["market_p_home", "market_p_draw", "market_p_away"]]
@@ -172,9 +174,22 @@ class CanonicalDataTests(unittest.TestCase):
         self.assertTrue(probabilities.le(1.0).all(axis=None))
         self.assertEqual(
             self.market["benchmark_tier"].value_counts().to_dict(),
-            {"primary_market_average": 2445, "secondary_single_bookmaker": 609},
+            {"primary_market_average": 2481, "secondary_single_bookmaker": 609},
         )
         self.assertFalse(any("odds" in column.lower() for column in self.matches.columns))
+
+    def test_current_rows_preserve_as_of_snapshot_lineage(self) -> None:
+        current = self.matches[self.matches["season"] == audit.CURRENT_SEASON]
+        active = audit.active_current_snapshot()
+        self.assertEqual(len(current), 36)
+        self.assertTrue(current["source_snapshot_id"].eq(active["snapshot_id"]).all())
+        self.assertTrue(
+            current["source_snapshot_captured_at"].eq(active["captured_at"]).all()
+        )
+        historical = self.matches[
+            self.matches["season"].isin(audit.HISTORICAL_SEASONS)
+        ]
+        self.assertTrue(historical["source_snapshot_captured_at"].isna().all())
 
     def test_dynamic_promoted_team_prior_is_a_deferred_contract(self) -> None:
         design = (ROOT / "MODEL_DESIGN.md").read_text(encoding="utf-8")

@@ -1,11 +1,12 @@
-# Turkish Super Lig data audit: 2017-18 through 2025-26
+# Turkish Super Lig data audit: 2017-18 through 2026-27
 
 ## Answer first
 
-**Verdict: GO for proceeding to a score-only baseline and Dixon-Coles phase.**
-No model is implemented in this phase.
+**Verdict: GO-WITH-CONSTRAINTS for continuing model research.**
+The audit itself does not fit a model; naive baselines are a separate downstream stage.
 
-The nine Football-Data snapshots contain 3,088 rows. Date, teams,
+The active ten-season view contains 3,124 rows: nine frozen historical
+seasons plus one immutable 2026-27 current-season snapshot. Date, teams,
 full-time goals, and FTR are complete and internally consistent enough for a
 score-based MVP. The raw schemas are not concat-compatible: they range from 61
 to 131 columns and change odds providers and closing-market coverage over time.
@@ -18,7 +19,11 @@ row remains in lineage but is explicitly ineligible for played-match model fitti
 Reliable MVP columns are `Date`, `HomeTeam`, `AwayTeam`, `FTHG`, `FTAG`, and
 `FTR`. Half-time and match-stat fields are retained as optional historical
 outcomes. Closing market-average 1X2 odds are absent before 2019-20, so market
-benchmark coverage is not homogeneous across all nine seasons.
+benchmark coverage is not homogeneous across all seasons.
+The active current-season snapshot was captured at 2026-09-13T19:28:13Z but
+ends at match date 2026-09-07 (6 calendar days earlier).
+It is safe as versioned evidence but too stale to call
+fully current without a pre-prediction refresh and coverage check.
 
 ## Dataset and grain
 
@@ -30,15 +35,21 @@ Raw CSV bytes are checksum-locked and never rewritten.
 
 Source page: [https://www.football-data.co.uk/turkeym.php](https://www.football-data.co.uk/turkeym.php).
 Field definitions: [https://www.football-data.co.uk/notes.txt](https://www.football-data.co.uk/notes.txt).
-Snapshot date: 2026-08-08.
+Frozen historical acquisition date: 2026-08-08.
 
 The first local request was rejected:
 The local network request returned an access-blocked HTML page instead of CSV. Header validation rejected it and no raw file was promoted.
 No mirror or invented substitute entered the audit. The successful acquisition
 used direct HTTPS from a GitHub-hosted Ubuntu Actions runner in [this workflow run](https://github.com/Introspectation/AI_SuperLig/actions/runs/31259394478).
-Artifact digest: `sha256:dccda407ebb1cb21d211e3a66065ae3acca3f2b8964031027e0b4535c3619e77`. Nine expected season files; artifact-to-workspace SHA-256 equality; per-file hashes locked in raw_sources.csv.
+Historical artifact digest: `sha256:dccda407ebb1cb21d211e3a66065ae3acca3f2b8964031027e0b4535c3619e77`. Nine expected season files; artifact-to-workspace SHA-256 equality; per-file hashes locked in raw_sources.csv.
+The active 2026-27 snapshot was acquired separately in
+[this workflow run](https://github.com/Introspectation/AI_SuperLig/actions/runs/34777775161).
+Its artifact digest is `sha256:f5f323a34753f869e959d633e9f2948180a177b7bf150ddc9996369f81f5970e` and its raw
+SHA-256 is `d208797586a0def53b07a21ea6fcd00d3c272d45e45184931d0811392058668d`. The snapshot catalog and revision
+audit retain every future capture instead of overwriting earlier bytes.
 The per-file URLs, byte sizes, and hashes are reproduced in
-`raw_file_manifest.csv`.
+`raw_file_manifest.csv`; live capture and revision evidence is in
+`current_season_snapshot_audit.csv`.
 
 | Season | Rows | Cols | Teams | Exact dupes | Match dupes | Date fails | Invalid team rows | Score complete | All stats complete | Closing avg complete | Reviewed exclusions |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -51,6 +62,7 @@ The per-file URLs, byte sizes, and hashes are reproduced in
 | 2023-24 | 380 | 105 | 20 | 0 | 0 | 0 | 0 | 100.00% | 99.74% | 100.00% | 1 |
 | 2024-25 | 342 | 119 | 19 | 0 | 0 | 0 | 0 | 100.00% | 99.71% | 100.00% | 1 |
 | 2025-26 | 306 | 131 | 18 | 0 | 0 | 0 | 0 | 100.00% | 100.00% | 100.00% | 0 |
+| 2026-27 | 36 | 113 | 18 | 0 | 0 | 0 | 0 | 100.00% | 100.00% | 100.00% | 0 |
 
 Duplicate counts report excess rows after the first occurrence; affected-row
 counts are retained in `season_summary.csv`. Missing/blank teams, same-team rows,
@@ -69,9 +81,10 @@ invalid scores, invalid FTR values, and score/FTR mismatches are also in that fi
 | 2023-24 | 100.00% | 100.00% | 100.00% | 99.74% | 99.74% | 99.74% | 99.74% | 99.74% | 99.74% | 99.74% | 99.74% | 99.74% | 99.74% | 99.74% | 99.74% | 99.74% | 99.74% |
 | 2024-25 | 100.00% | 100.00% | 100.00% | 99.71% | 99.71% | 99.71% | 99.71% | 99.71% | 99.71% | 99.71% | 99.71% | 99.71% | 99.71% | 99.71% | 99.71% | 99.71% | 99.71% |
 | 2025-26 | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% |
+| 2026-27 | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% |
 
-Shots coverage is 3,057/3,088 (99.00%) overall;
-shots-on-target coverage is 3,057/3,088 (99.00%).
+Shots coverage is 3,093/3,124 (99.01%) overall;
+shots-on-target coverage is 3,093/3,124 (99.01%).
 The weakest season is 91.52%, driven by the 2022-23
 administrative-result candidates rather than scattered ordinary-match missingness.
 This is acceptable for optional descriptive outcomes, but not as a REQUIRED MVP
@@ -79,13 +92,13 @@ field and never as a current-match predictive input.
 
 ## Schema evolution
 
-Columns common to every season (34):
+Columns common to every season (28):
 
 ```text
-Div,Date,HomeTeam,AwayTeam,FTHG,FTAG,FTR,HTHG,HTAG,HTR,HS,AS,HST,AST,HF,AF,HC,AC,HY,AY,HR,AR,B365H,B365D,B365A,BWH,BWD,BWA,PSH,PSD,PSA,PSCH,PSCD,PSCA
+Div,Date,HomeTeam,AwayTeam,FTHG,FTAG,FTR,HTHG,HTAG,HTR,HS,AS,HST,AST,HF,AF,HC,AC,HY,AY,HR,AR,B365H,B365D,B365A,BWH,BWD,BWA
 ```
 
-The union contains 179 distinct raw column names. Consecutive
+The union contains 193 distinct raw column names. Consecutive
 changes are shown below; the complete season-by-union matrix is in
 `schema_by_season.csv`.
 
@@ -99,6 +112,7 @@ changes are shown below; the complete season-by-union matrix is in
 | 2022-23 -> 2023-24 | 0 | none | 0 | none |
 | 2023-24 -> 2024-25 | 26 | 1XBA\|1XBCA\|1XBCD\|1XBCH\|1XBD\|1XBH\|BFA\|BFCA\|BFCD\|BFCH\|BFD\|BFE<2.5\|BFE>2.5\|BFEA\|BFEAHA\|BFEAHH\|BFEC<2.5\|BFEC>2.5\|BFECA\|BFECAHA\|BFECAHH\|BFECD\|BFECH\|BFED\|BFEH\|BFH | 12 | IWA\|IWCA\|IWCD\|IWCH\|IWD\|IWH\|VCA\|VCCA\|VCCD\|VCCH\|VCD\|VCH |
 | 2024-25 -> 2025-26 | 30 | BFDA\|BFDCA\|BFDCD\|BFDCH\|BFDD\|BFDH\|BMGMA\|BMGMCA\|BMGMCD\|BMGMCH\|BMGMD\|BMGMH\|BVA\|BVCA\|BVCD\|BVCH\|BVD\|BVH\|CLA\|CLCA\|CLCD\|CLCH\|CLD\|CLH\|LBA\|LBCA\|LBCD\|LBCH\|LBD\|LBH | 18 | 1XBA\|1XBCA\|1XBCD\|1XBCH\|1XBD\|1XBH\|BFA\|BFCA\|BFCD\|BFCH\|BFD\|BFH\|WHA\|WHCA\|WHCD\|WHCH\|WHD\|WHH |
+| 2025-26 -> 2026-27 | 14 | AxG\|HxG\|PPA\|PPCA\|PPCD\|PPCH\|PPD\|PPH\|SKBA\|SKBCA\|SKBCD\|SKBCH\|SKBD\|SKBH | 32 | BMGMA\|BMGMCA\|BMGMCD\|BMGMCH\|BMGMD\|BMGMH\|CLA\|CLCA\|CLCD\|CLCH\|CLD\|CLH\|LBA\|LBCA\|LBCD\|LBCH\|LBD\|LBH\|P<2.5\|P>2.5\|PAHA\|PAHH\|PC<2.5\|PC>2.5\|PCAHA\|PCAHH\|PSA\|PSCA\|PSCD\|PSCH\|PSD\|PSH |
 
 Major schema regimes:
 
@@ -108,6 +122,9 @@ Major schema regimes:
   (`AvgH/AvgD/AvgA`) and closing (`AvgCH/AvgCD/AvgCA`) averages.
 - 2024-25 expands to 119 columns with Betfair/1XBet/exchange fields.
 - 2025-26 expands to 131 columns and changes the individual bookmaker roster.
+- 2026-27 currently has 113 columns. It introduces `HxG/AxG` plus
+  `PP*`/`PPC*`/`SKB*` odds fields and removes 32 fields from the prior roster.
+  xG is audited for schema drift only and remains rejected from this roadmap stage.
 
 Major missingness (>=5% within a present column):
 
@@ -122,6 +139,7 @@ Major missingness (>=5% within a present column):
 | 2023-24 | 6 | IWA=55.53%, IWD=55.53%, IWH=55.53%, IWCA=55.26%, IWCD=55.26%, IWCH=55.26% |
 | 2024-25 | 16 | BFEAHA=44.74%, BFEAHH=44.74%, BWCA=40.06%, BWCD=40.06%, BWCH=40.06%, BWA=39.47%, BWD=39.47%, BWH=39.47%, WHA=26.32%, WHCA=26.32%, WHCD=26.32%, WHCH=26.32% |
 | 2025-26 | 43 | PSA=56.86%, PSD=56.86%, PSH=56.86%, P<2.5=56.54%, P>2.5=56.54%, PAHA=56.54%, PAHH=56.54%, PC<2.5=55.88%, PC>2.5=55.88%, PCAHA=55.88%, PCAHH=55.88%, PSCA=55.88% |
+| 2026-27 | 13 | BFEAHA=55.56%, BFEAHH=55.56%, BFE<2.5=13.89%, BFE>2.5=13.89%, BWCA=11.11%, BWCD=11.11%, BWCH=11.11%, BFDA=8.33%, BFDCA=8.33%, BFDCD=8.33%, BFDCH=8.33%, BFDD=8.33% |
 
 Meaning/composition cautions:
 
@@ -148,6 +166,7 @@ Meaning/composition cautions:
 | 2023-24 | AvgH/AvgD/AvgA | 100.00% | AvgCH/AvgCD/AvgCA | 100.00% | Bet365 (100.00%), Bet&Win (97.89%), Interwetten (44.74%), Pinnacle (100.00%), VC Bet (100.00%), William Hill (100.00%) |
 | 2024-25 | AvgH/AvgD/AvgA | 100.00% | AvgCH/AvgCD/AvgCA | 100.00% | 1XBet (100.00%), Bet365 (100.00%), Betfair (100.00%), Betfair Exchange (100.00%), Bet&Win (59.94%), Pinnacle (100.00%), William Hill (73.68%) |
 | 2025-26 | AvgH/AvgD/AvgA | 100.00% | AvgCH/AvgCD/AvgCA | 100.00% | Bet365 (100.00%), Betfred (99.02%), Betfair Exchange (93.79%), BetMGM (100.00%), BetVictor (99.02%), Bet&Win (100.00%), Coral (69.61%), Ladbrokes (72.22%), Pinnacle (44.12%) |
+| 2026-27 | AvgH/AvgD/AvgA | 100.00% | AvgCH/AvgCD/AvgCA | 100.00% | Bet365 (100.00%), Betfred (91.67%), Betfair Exchange (100.00%), BetVictor (97.22%), Bet&Win (88.89%) |
 
 `AvgH/AvgD/AvgA` are not closing odds. The market benchmark should prefer
 `AvgCH/AvgCD/AvgCA` from 2019-20 onward. The first two seasons have Pinnacle
@@ -164,12 +183,12 @@ transliterations, abbreviations, truncations, and historical labels.
 | Raw name | Proposed canonical | Confidence | Status | Seasons | Reason |
 | --- | --- | --- | --- | --- | --- |
 | Ad. Demirspor | Adana Demirspor | high | approved_for_canonicalization | 2021-22\|2022-23\|2023-24\|2024-25 | Same date opponent and 0-1 score identify the source abbreviation. |
-| Buyuksehyr | Istanbul Basaksehir | high | approved_for_canonicalization | 2017-18\|2018-19\|2019-20\|2020-21\|2021-22\|2022-23\|2023-24\|2024-25\|2025-26 | Same date opponent and 2-0 score identify Medipol Basaksehir FK. |
-| Goztep | Goztepe | high | approved_for_canonicalization | 2017-18\|2018-19\|2019-20\|2020-21\|2021-22\|2024-25\|2025-26 | Same date opponent and 1-3 score identify Goztepe AS. |
+| Buyuksehyr | Istanbul Basaksehir | high | approved_for_canonicalization | 2017-18\|2018-19\|2019-20\|2020-21\|2021-22\|2022-23\|2023-24\|2024-25\|2025-26\|2026-27 | Same date opponent and 2-0 score identify Medipol Basaksehir FK. |
+| Goztep | Goztepe | high | approved_for_canonicalization | 2017-18\|2018-19\|2019-20\|2020-21\|2021-22\|2024-25\|2025-26\|2026-27 | Same date opponent and 1-3 score identify Goztepe AS. |
 | Karagumruk | Fatih Karagumruk | high | approved_for_canonicalization | 2020-21\|2021-22\|2022-23\|2023-24\|2025-26 | Same date opponent and 3-0 score identify Fatih Karagumruk AS. |
 | Akhisar Belediyespor | Akhisarspor | high | approved_for_canonicalization | 2017-18\|2018-19 | Same date opponent and 1-2 score identify Akhisarspor. |
 | Erzurum BB | Erzurumspor FK | high | approved_for_canonicalization | 2018-19\|2020-21 | Fixture identity plus the club statement confirm the later name change. |
-| Gaziantep | Gaziantep FK | high | approved_for_canonicalization | 2019-20\|2020-21\|2021-22\|2022-23\|2023-24\|2024-25\|2025-26 | Same date opponent and score distinguish this club from historical Gaziantepspor. |
+| Gaziantep | Gaziantep FK | high | approved_for_canonicalization | 2019-20\|2020-21\|2021-22\|2022-23\|2023-24\|2024-25\|2025-26\|2026-27 | Same date opponent and score distinguish this club from historical Gaziantepspor. |
 
 All seven mappings are source-verified and approved for future canonicalization.
 They are not applied to immutable raw files; raw labels remain available for lineage.
@@ -178,6 +197,7 @@ They are not applied to immutable raw files; raw labels remain available for lin
 
 | Severity | Finding | Evidence | Modeling impact | Required action |
 | --- | --- | --- | --- | --- |
+| High | Current-season freshness | Captured 2026-09-13T19:28:13Z; latest included match date 2026-09-07 (6-day gap). | A live fit can omit newly completed matches even when acquisition itself just succeeded. | Refresh before every live forecast and require both recent capture and explicit coverage-through checks. |
 | High | Administrative results | 31 source-confirmed rows; all set model_eligible=false | Including awarded goals would bias attack/defence strength and score tails. | Keep status overrides and exact-set regression tests active. |
 | High | Post-match leakage risk | Goals, shots, cards, corners, fouls, and closing odds coexist in raw rows. | Naive feature selection can produce impossible performance. | Enforce LEAKAGE_CONTRACT.md and walk-forward tests. |
 | Medium | Odds regime drift | Closing average absent in first two seasons; bookmaker roster changes later. | A single benchmark series would mix unlike sources. | Label source/regime and report benchmark coverage separately. |
@@ -190,13 +210,14 @@ They are not applied to immutable raw files; raw labels remain available for lin
 
 REQUIRED: `match_id`, `season`, `date`, `kickoff_time`, timezone/source
 lineage, `home_team`, `away_team`, `home_goals`, `away_goals`, `result`,
-`match_status`, and `model_eligible`.
+`match_status`, `model_eligible`, and `source_snapshot_id`. Current-season
+rows also require `source_snapshot_captured_at`.
 
 OPTIONAL: official-score override fields, both half-time goal fields, and all audited shots,
 shots-on-target, fouls, corners, yellow-card, and red-card fields. They are
 historical outcomes, not current-match features.
 
-REJECTED FROM MVP: `Div`, derivable `HTR`, all odds in the match table,
+REJECTED FROM MVP: `Div`, derivable `HTR`, `HxG/AxG`, all odds in the match table,
 over/under and handicap markets, bookmaker maxima/counts, and all
 rolling/pre-match features. Full types and validation
 rules are in `DATA_CONTRACT.md`.
@@ -211,15 +232,19 @@ rules are in `DATA_CONTRACT.md`.
    training-only dynamic promoted-team prior specified in `MODEL_DESIGN.md`.
 4. RESOLVED: results become available after a fixed 180-minute safety lag;
    the suspended Başakşehir-Bursaspor match anchors to its reviewed resumption.
+5. OPEN LIVE-OPERATIONS CONSTRAINT: Football-Data may lag completed fixtures.
+   A forecast cannot be labelled current until a newly captured snapshot passes
+   an explicit required-through date check.
 
 ## Final decision
 
-**GO.** The score-and-result backbone is viable for the next score-only baseline
-and Dixon-Coles iteration. Administrative results and team aliases now have
-explicit source-backed decisions. Match statistics are sufficiently complete
+**GO-WITH-CONSTRAINTS.** The frozen historical score backbone is viable for
+independent Poisson and Dixon-Coles research. Administrative results and
+team aliases have explicit source-backed decisions. Match statistics are sufficiently complete
 as optional outcomes but are not necessary for Dixon-Coles. Market odds are
-useful as an external benchmark
-from 2019-20 onward and must stay logically isolated.
+useful as an external benchmark from 2019-20 onward and must stay logically
+isolated. The 2026-27 live layer
+must be refreshed and checked for coverage before every forecast.
 
 ## Exact columns by season
 
@@ -275,4 +300,10 @@ Div,Date,Time,HomeTeam,AwayTeam,FTHG,FTAG,FTR,HTHG,HTAG,HTR,HS,AS,HST,AST,HF,AF,
 
 ```text
 Div,Date,Time,HomeTeam,AwayTeam,FTHG,FTAG,FTR,HTHG,HTAG,HTR,HS,AS,HST,AST,HF,AF,HC,AC,HY,AY,HR,AR,B365H,B365D,B365A,BFDH,BFDD,BFDA,BMGMH,BMGMD,BMGMA,BVH,BVD,BVA,BWH,BWD,BWA,CLH,CLD,CLA,LBH,LBD,LBA,PSH,PSD,PSA,MaxH,MaxD,MaxA,AvgH,AvgD,AvgA,BFEH,BFED,BFEA,B365>2.5,B365<2.5,P>2.5,P<2.5,Max>2.5,Max<2.5,Avg>2.5,Avg<2.5,BFE>2.5,BFE<2.5,AHh,B365AHH,B365AHA,PAHH,PAHA,MaxAHH,MaxAHA,AvgAHH,AvgAHA,BFEAHH,BFEAHA,B365CH,B365CD,B365CA,BFDCH,BFDCD,BFDCA,BMGMCH,BMGMCD,BMGMCA,BVCH,BVCD,BVCA,BWCH,BWCD,BWCA,CLCH,CLCD,CLCA,LBCH,LBCD,LBCA,PSCH,PSCD,PSCA,MaxCH,MaxCD,MaxCA,AvgCH,AvgCD,AvgCA,BFECH,BFECD,BFECA,B365C>2.5,B365C<2.5,PC>2.5,PC<2.5,MaxC>2.5,MaxC<2.5,AvgC>2.5,AvgC<2.5,BFEC>2.5,BFEC<2.5,AHCh,B365CAHH,B365CAHA,PCAHH,PCAHA,MaxCAHH,MaxCAHA,AvgCAHH,AvgCAHA,BFECAHH,BFECAHA
+```
+
+### 2026-27 (36 rows x 113 columns)
+
+```text
+Div,Date,Time,HomeTeam,AwayTeam,FTHG,FTAG,FTR,HTHG,HTAG,HTR,HxG,AxG,HS,AS,HST,AST,HF,AF,HC,AC,HY,AY,HR,AR,B365H,B365D,B365A,BFDH,BFDD,BFDA,BVH,BVD,BVA,BWH,BWD,BWA,PPH,PPD,PPA,SKBH,SKBD,SKBA,MaxH,MaxD,MaxA,AvgH,AvgD,AvgA,BFEH,BFED,BFEA,B365>2.5,B365<2.5,Max>2.5,Max<2.5,Avg>2.5,Avg<2.5,BFE>2.5,BFE<2.5,AHh,B365AHH,B365AHA,MaxAHH,MaxAHA,AvgAHH,AvgAHA,BFEAHH,BFEAHA,B365CH,B365CD,B365CA,BFDCH,BFDCD,BFDCA,BVCH,BVCD,BVCA,BWCH,BWCD,BWCA,PPCH,PPCD,PPCA,SKBCH,SKBCD,SKBCA,MaxCH,MaxCD,MaxCA,AvgCH,AvgCD,AvgCA,BFECH,BFECD,BFECA,B365C>2.5,B365C<2.5,MaxC>2.5,MaxC<2.5,AvgC>2.5,AvgC<2.5,BFEC>2.5,BFEC<2.5,AHCh,B365CAHH,B365CAHA,MaxCAHH,MaxCAHA,AvgCAHH,AvgCAHA,BFECAHH,BFECAHA
 ```
