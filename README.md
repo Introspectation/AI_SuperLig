@@ -1,9 +1,9 @@
 # AI SuperLig
 
 Research repository for probabilistic prediction of the 2026-27 Turkish Super
-Lig. The current scope is the **data foundation**: source-data audit, immutable
-source snapshots, canonical match data, an isolated market benchmark, and
-source-backed review decisions. No predictive model is implemented yet.
+Lig. The audited data foundation is complete and the modeling stage begins with
+leakage-safe naive probabilistic baselines. No production or live model exists
+yet.
 
 ## Reproduce the data foundation
 
@@ -72,6 +72,21 @@ primary benchmark.
 Future evaluation code must obtain visible historical outcomes through
 `scripts/evaluation_time.py`, which enforces the strict availability boundary
 and rejects timezone-naive prediction timestamps.
+
+## Reproduce the first baselines
+
+Run the complete offline foundation and chronological baseline evaluation with:
+
+```powershell
+python scripts/run_baseline_evaluation.py
+```
+
+This creates per-match development predictions, aggregate metrics, and
+`reports/BASELINE_REPORT.md`. The split is frozen in
+`config/evaluation_splits.csv`: 2021-22 through 2024-25 are walk-forward
+development seasons, while 2025-26 remains a sealed final holdout. See
+`EVALUATION_PROTOCOL.md` for metric definitions and leakage rules, and
+`ROADMAP.md` for the ordered path to the 2026-27 prediction runner.
 
 ## Git and CI
 
