@@ -38,6 +38,7 @@ score is the mean sum of squared H/D/A probability errors.
 - Warm-up history: 2017-18 through 2020-21.
 - Development walk-forward: 2021-22 through 2024-25.
 - Final holdout: 2025-26, still sealed and absent from predictions/metrics.
+- Current season: 2026-27, live-only and absent from development metrics.
 - Each prediction uses only `result_available_at < prediction_time` history.
 - Same-kickoff fixtures share the same available history.
 

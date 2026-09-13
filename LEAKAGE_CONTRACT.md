@@ -64,6 +64,12 @@ data.
   season or evaluation fold may not influence a prior used earlier in time.
 - Any future backfill must retain an `as_of` or ingestion snapshot boundary so
   revised history cannot leak into an earlier prediction replay.
+- Every 2026-27 live input must come from a versioned immutable snapshot. For a
+  prediction at `t`, its `source_snapshot_captured_at` must be at or before `t`;
+  a snapshot acquired later may not be used to reconstruct an earlier forecast.
+- A recent acquisition timestamp does not prove source completeness. Before a
+  live forecast, the active snapshot must also pass an explicit coverage-through
+  check for the latest match date expected to be complete.
 
 ## Evaluation boundary
 

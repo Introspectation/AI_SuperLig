@@ -1,0 +1,2 @@
+season,snapshot_id,raw_path,captured_at,sha256,row_count,date_min,date_max,capture_to_latest_match_days,previous_snapshot_id,added_match_keys,removed_match_keys,revised_shared_rows,schema_changed_from_previous,is_active,freshness_status
+2026-27,20260913T192813Z_d208797586a0,data/raw/football_data/2026-27__20260913T192813Z__d208797586a0.csv,2026-09-13T19:28:13Z,d208797586a0def53b07a21ea6fcd00d3c272d45e45184931d0811392058668d,36,2026-08-14,2026-09-07,6,,36,0,0,False,True,REVIEW

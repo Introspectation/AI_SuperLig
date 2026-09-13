@@ -63,3 +63,10 @@ season,odds_type,odds_source,home_column,draw_column,away_column,complete_rows,r
 2025-26,individual_bookmaker_closing_1x2,Coral,CLCH,CLCD,CLCA,213,306,0.696078
 2025-26,individual_bookmaker_closing_1x2,Ladbrokes,LBCH,LBCD,LBCA,221,306,0.722222
 2025-26,individual_bookmaker_closing_1x2,Pinnacle,PSCH,PSCD,PSCA,135,306,0.441176
+2026-27,pre_closing_average_1x2,market_average_pre_closing,AvgH,AvgD,AvgA,36,36,1.000000
+2026-27,closing_market_average_1x2,market_average_closing,AvgCH,AvgCD,AvgCA,36,36,1.000000
+2026-27,individual_bookmaker_closing_1x2,Bet365,B365CH,B365CD,B365CA,36,36,1.000000
+2026-27,individual_bookmaker_closing_1x2,Betfred,BFDCH,BFDCD,BFDCA,33,36,0.916667
+2026-27,individual_bookmaker_closing_1x2,Betfair Exchange,BFECH,BFECD,BFECA,36,36,1.000000
+2026-27,individual_bookmaker_closing_1x2,BetVictor,BVCH,BVCD,BVCA,35,36,0.972222
+2026-27,individual_bookmaker_closing_1x2,Bet&Win,BWCH,BWCD,BWCA,32,36,0.888889

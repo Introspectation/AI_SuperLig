@@ -6,10 +6,11 @@ earlier stage.
 
 | Stage | Status | Deliverable | Gate to advance |
 | --- | --- | --- | --- |
-| 0. Data audit | Complete | Nine-season schema, missingness, team-name, result-status, and odds audit. | Audited verdict is GO or GO-WITH-CONSTRAINTS. |
+| 0. Data audit | Complete | Nine frozen historical seasons plus a versioned current-season audit. | Audited verdict is GO or GO-WITH-CONSTRAINTS. |
 | 1. Canonical foundation | Complete | Immutable raw lineage, canonical matches, kickoff times, isolated market benchmark. | Offline deterministic rebuild and CI pass. |
 | 2. Leakage boundary | Complete | Result-availability timestamps and strict chronological history helper. | Boundary tests cover overlaps and interruptions. |
 | 3. Naive baselines | Complete | Frozen development split, uniform H/D/A, expanding league H/D/A, log loss and Brier reporting. | Complete walk-forward predictions; 2025-26 stays sealed. |
+| 3A. Current-season snapshots | Complete | Immutable 2026-27 snapshots with capture time, hash, freshness, and revision checks. | Refresh is reproducible and stale sources are reported rather than treated as current. |
 | 4. Independent Poisson | Next | Team attack/defence plus home advantage, score matrix, H/D/A probabilities. | Beat or clearly characterize naive baselines on development data. |
 | 5. Time-decayed Dixon-Coles | Planned | Recency decay and low-score correction under the same evaluation contract. | Chronological tuning only; justify added complexity. |
 | 6. Promoted-team prior | Planned | Training-only dynamic promoted-team attack/defence shrinkage. | Improve cold-start behavior without holdout or market leakage. |

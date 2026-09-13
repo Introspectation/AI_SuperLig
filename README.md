@@ -5,6 +5,10 @@ Lig. The audited data foundation is complete and the modeling stage begins with
 leakage-safe naive probabilistic baselines. No production or live model exists
 yet.
 
+The current season is not treated as a frozen one-time download. See
+`CURRENT_SEASON_DATA.md` for immutable refresh, promotion, and pre-prediction
+freshness gates.
+
 ## Reproduce the data foundation
 
 Create a Python environment, install the pinned lightweight dependencies, then
@@ -35,6 +39,7 @@ immutable manifest and refuses to overwrite an existing snapshot.
 ## Phase 0 outputs
 
 - `reports/DATA_AUDIT.md`: answer-first audit and GO/NO-GO decision;
+- `reports/current_season_snapshot_audit.csv`: capture age, coverage, and source-revision evidence;
 - `reports/schema_by_season.csv`: season-by-column schema matrix;
 - `reports/missingness_by_season.csv`: column completeness evidence;
 - `reports/teams_by_season.csv`: every distinct source team by season;
@@ -87,6 +92,10 @@ This creates per-match development predictions, aggregate metrics, and
 development seasons, while 2025-26 remains a sealed final holdout. See
 `EVALUATION_PROTOCOL.md` for metric definitions and leakage rules, and
 `ROADMAP.md` for the ordered path to the 2026-27 prediction runner.
+
+Before any future live forecast, run the age-and-coverage gate documented in
+`CURRENT_SEASON_DATA.md`. A successful offline build alone does not mean the
+upstream current-season source is fresh.
 
 ## Git and CI
 

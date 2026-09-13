@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RAW_DIR = ROOT / "data" / "raw" / "football_data"
 REPORTS_DIR = ROOT / "reports"
 SOURCE_CATALOG = ROOT / "config" / "raw_sources.csv"
+CURRENT_SNAPSHOT_CATALOG = ROOT / "config" / "current_season_snapshots.csv"
 SCHEMA_LOCK = ROOT / "config" / "expected_schemas.json"
 DATA_CONTRACT = ROOT / "DATA_CONTRACT.md"
 ACQUISITION_PROVENANCE = ROOT / "config" / "acquisition_provenance.json"
@@ -28,7 +29,7 @@ MATCH_STATUS_OVERRIDES = ROOT / "config" / "match_status_overrides.csv"
 TEAM_ALIAS_DECISIONS = ROOT / "config" / "team_aliases.csv"
 REVIEW_SOURCE_CATALOG = ROOT / "config" / "review_sources.csv"
 
-SEASONS = [
+HISTORICAL_SEASONS = [
     "2017-18",
     "2018-19",
     "2019-20",
@@ -38,6 +39,23 @@ SEASONS = [
     "2023-24",
     "2024-25",
     "2025-26",
+]
+CURRENT_SEASON = "2026-27"
+SEASONS = [*HISTORICAL_SEASONS, CURRENT_SEASON]
+CURRENT_SNAPSHOT_COLUMNS = [
+    "season",
+    "snapshot_id",
+    "raw_path",
+    "source_url",
+    "captured_at",
+    "acquisition_run_url",
+    "artifact_name",
+    "artifact_digest",
+    "sha256",
+    "bytes",
+    "row_count",
+    "date_min",
+    "date_max",
 ]
 
 MINIMUM_SOURCE_COLUMNS = [
@@ -177,6 +195,48 @@ def write_csv(path: Path, frame: pd.DataFrame) -> None:
     )
 
 
+def load_current_snapshot_catalog() -> pd.DataFrame:
+    if not CURRENT_SNAPSHOT_CATALOG.exists():
+        raise AuditError(f"Missing current-season snapshot catalog: {CURRENT_SNAPSHOT_CATALOG}")
+    snapshots = pd.read_csv(CURRENT_SNAPSHOT_CATALOG, dtype="string")
+    if snapshots.columns.tolist() != CURRENT_SNAPSHOT_COLUMNS:
+        raise AuditError("Current-season snapshot catalog schema changed")
+    if snapshots.empty or snapshots[CURRENT_SNAPSHOT_COLUMNS].isna().any(axis=None):
+        raise AuditError("Current-season snapshot catalog is empty or contains nulls")
+    if set(snapshots["season"]) != {CURRENT_SEASON}:
+        raise AuditError("Snapshot catalog contains an unexpected season")
+    for column in ["snapshot_id", "raw_path", "captured_at"]:
+        if snapshots[column].duplicated().any():
+            raise AuditError(f"Snapshot catalog contains duplicate {column} values")
+    captured = pd.to_datetime(
+        snapshots["captured_at"], format="ISO8601", errors="coerce", utc=True
+    )
+    if captured.isna().any() or not captured.is_monotonic_increasing:
+        raise AuditError("Snapshot captured_at values must be valid and chronological")
+    if not snapshots["sha256"].str.fullmatch(r"[0-9a-f]{64}").all():
+        raise AuditError("Snapshot catalog contains an invalid SHA-256 value")
+    numeric = snapshots[["bytes", "row_count"]].apply(pd.to_numeric, errors="coerce")
+    if numeric.isna().any(axis=None) or numeric.le(0).any(axis=None):
+        raise AuditError("Snapshot byte and row counts must be positive integers")
+    parsed_min = pd.to_datetime(snapshots["date_min"], errors="coerce")
+    parsed_max = pd.to_datetime(snapshots["date_max"], errors="coerce")
+    if parsed_min.isna().any() or parsed_max.isna().any() or parsed_min.gt(parsed_max).any():
+        raise AuditError("Snapshot date coverage is invalid")
+    expected_prefix = f"data/raw/football_data/{CURRENT_SEASON}__"
+    if not snapshots["raw_path"].str.startswith(expected_prefix).all():
+        raise AuditError("Current-season snapshot paths must be immutable versioned files")
+    for row in snapshots.itertuples(index=False):
+        hash_prefix = str(row.sha256)[:12]
+        if hash_prefix not in Path(str(row.raw_path)).stem:
+            raise AuditError("Current-season snapshot filename must contain its hash prefix")
+    return snapshots
+
+
+def active_current_snapshot() -> pd.Series:
+    snapshots = load_current_snapshot_catalog()
+    return snapshots.iloc[-1]
+
+
 def load_source_catalog() -> pd.DataFrame:
     if not SOURCE_CATALOG.exists():
         raise AuditError(f"Missing source catalog: {SOURCE_CATALOG}")
@@ -185,14 +245,49 @@ def load_source_catalog() -> pd.DataFrame:
     missing = required.difference(sources.columns)
     if missing:
         raise AuditError(f"Source catalog is missing columns: {sorted(missing)}")
-    if sources["season"].tolist() != SEASONS:
+    if sources["season"].tolist() != HISTORICAL_SEASONS:
         raise AuditError(
-            "Source catalog season order changed. Expected "
-            f"{SEASONS}, found {sources['season'].tolist()}"
+            "Historical source catalog season order changed. Expected "
+            f"{HISTORICAL_SEASONS}, found {sources['season'].tolist()}"
         )
     if sources["season"].duplicated().any():
         raise AuditError("Source catalog contains duplicate seasons.")
-    return sources
+    sources = sources.copy()
+    sources["raw_path"] = sources["season"].map(
+        lambda season: f"data/raw/football_data/{season}.csv"
+    )
+    sources["snapshot_captured_at"] = pd.NA
+    sources["snapshot_row_count"] = pd.NA
+    sources["snapshot_date_min"] = pd.NA
+    sources["snapshot_date_max"] = pd.NA
+    sources["snapshot_kind"] = "historical_frozen"
+    sources["snapshot_id"] = sources.apply(
+        lambda row: f"historical_{row['season']}_{str(row['sha256'])[:12]}", axis=1
+    )
+
+    active = active_current_snapshot()
+    current = pd.DataFrame(
+        [
+            {
+                "season": CURRENT_SEASON,
+                "source_code": "2627",
+                "source_url": active["source_url"],
+                "sha256": active["sha256"],
+                "bytes": int(active["bytes"]),
+                "raw_path": active["raw_path"],
+                "snapshot_captured_at": active["captured_at"],
+                "snapshot_row_count": int(active["row_count"]),
+                "snapshot_date_min": active["date_min"],
+                "snapshot_date_max": active["date_max"],
+                "snapshot_kind": "current_versioned",
+                "snapshot_id": active["snapshot_id"],
+            }
+        ]
+    )
+    combined = pd.concat([sources, current], ignore_index=True)
+    if combined["season"].tolist() != SEASONS:
+        raise AuditError("Combined source catalog no longer matches audited seasons")
+    return combined
 
 
 def load_review_config() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
@@ -332,7 +427,9 @@ def ensure_raw_sources(sources: pd.DataFrame, offline: bool) -> pd.DataFrame:
 
     for _, source in sources.iterrows():
         season = str(source["season"])
-        target = RAW_DIR / f"{season}.csv"
+        target = (ROOT / str(source["raw_path"])).resolve()
+        if not target.is_relative_to(RAW_DIR.resolve()):
+            raise AuditError(f"Raw source path escapes the raw-data directory: {target}")
         try:
             if not target.exists():
                 if offline:
@@ -362,6 +459,8 @@ def ensure_raw_sources(sources: pd.DataFrame, offline: bool) -> pd.DataFrame:
                     "actual_sha256": actual_hash,
                     "bytes": actual_bytes,
                     "checksum_ok": True,
+                    "snapshot_kind": source["snapshot_kind"],
+                    "snapshot_captured_at": source["snapshot_captured_at"],
                 }
             )
         except AuditError as exc:
@@ -398,8 +497,9 @@ def raw_header(path: Path) -> list[str]:
 
 def read_raw_frames(sources: pd.DataFrame) -> OrderedDict[str, pd.DataFrame]:
     frames: OrderedDict[str, pd.DataFrame] = OrderedDict()
-    for season in sources["season"]:
-        path = RAW_DIR / f"{season}.csv"
+    for source in sources.itertuples(index=False):
+        season = str(source.season)
+        path = (ROOT / str(source.raw_path)).resolve()
         expected_header = raw_header(path)
         try:
             frame = pd.read_csv(path, encoding="utf-8-sig", low_memory=False)
@@ -413,8 +513,112 @@ def read_raw_frames(sources: pd.DataFrame) -> OrderedDict[str, pd.DataFrame]:
         missing_core = [column for column in MINIMUM_SOURCE_COLUMNS if column not in frame]
         if missing_core:
             raise AuditError(f"{season} is missing required source columns: {missing_core}")
-        frames[str(season)] = frame
+        if season == CURRENT_SEASON:
+            dates = pd.to_datetime(frame["Date"], dayfirst=True, errors="coerce")
+            if len(frame) != int(source.snapshot_row_count):
+                raise AuditError("Current snapshot row count disagrees with its catalog")
+            if dates.min().date().isoformat() != source.snapshot_date_min:
+                raise AuditError("Current snapshot minimum date disagrees with its catalog")
+            if dates.max().date().isoformat() != source.snapshot_date_max:
+                raise AuditError("Current snapshot maximum date disagrees with its catalog")
+        frame.attrs["raw_path"] = Path(str(source.raw_path)).as_posix()
+        frame.attrs["snapshot_id"] = str(source.snapshot_id)
+        frame.attrs["snapshot_kind"] = str(source.snapshot_kind)
+        frame.attrs["snapshot_captured_at"] = (
+            str(source.snapshot_captured_at)
+            if pd.notna(source.snapshot_captured_at)
+            else None
+        )
+        frames[season] = frame
     return frames
+
+
+def current_snapshot_audit() -> pd.DataFrame:
+    """Validate every registered live-season snapshot and measure source revisions."""
+    snapshots = load_current_snapshot_catalog()
+    rows: list[dict[str, Any]] = []
+    previous: pd.DataFrame | None = None
+    previous_id = ""
+    key = ["_date_iso", "HomeTeam", "AwayTeam"]
+
+    for position, snapshot in enumerate(snapshots.itertuples(index=False)):
+        path = (ROOT / str(snapshot.raw_path)).resolve()
+        if not path.is_relative_to(RAW_DIR.resolve()):
+            raise AuditError(f"Snapshot path escapes the raw-data directory: {path}")
+        if not path.exists():
+            raise AuditError(f"Registered current-season snapshot is missing: {path}")
+        if sha256_file(path) != snapshot.sha256:
+            raise AuditError(f"Registered snapshot checksum mismatch: {snapshot.snapshot_id}")
+        if path.stat().st_size != int(snapshot.bytes):
+            raise AuditError(f"Registered snapshot byte-size mismatch: {snapshot.snapshot_id}")
+
+        frame = pd.read_csv(path, encoding="utf-8-sig", low_memory=False)
+        if frame.columns.tolist() != raw_header(path):
+            raise AuditError(f"Parser changed snapshot header: {snapshot.snapshot_id}")
+        dates = parse_dates(frame["Date"])
+        if dates.isna().any():
+            raise AuditError(f"Snapshot contains invalid dates: {snapshot.snapshot_id}")
+        current = frame.copy()
+        current["_date_iso"] = dates.dt.strftime("%Y-%m-%d")
+        if current.duplicated(key).any():
+            raise AuditError(f"Snapshot contains duplicate match keys: {snapshot.snapshot_id}")
+        if len(current) != int(snapshot.row_count):
+            raise AuditError(f"Snapshot row count disagrees with catalog: {snapshot.snapshot_id}")
+        if current["_date_iso"].min() != snapshot.date_min:
+            raise AuditError(f"Snapshot minimum date disagrees with catalog: {snapshot.snapshot_id}")
+        if current["_date_iso"].max() != snapshot.date_max:
+            raise AuditError(f"Snapshot maximum date disagrees with catalog: {snapshot.snapshot_id}")
+
+        added = len(current)
+        removed = 0
+        revised = 0
+        schema_changed = False
+        if previous is not None:
+            previous_keys = set(map(tuple, previous[key].itertuples(index=False, name=None)))
+            current_keys = set(map(tuple, current[key].itertuples(index=False, name=None)))
+            added = len(current_keys - previous_keys)
+            removed = len(previous_keys - current_keys)
+            schema_changed = previous.drop(columns="_date_iso").columns.tolist() != frame.columns.tolist()
+            shared_columns = [
+                column
+                for column in frame.columns
+                if column in previous.columns and column not in {"Date", "HomeTeam", "AwayTeam"}
+            ]
+            left = previous.set_index(key).sort_index()[shared_columns]
+            right = current.set_index(key).sort_index()[shared_columns]
+            shared_keys = left.index.intersection(right.index)
+            if len(shared_keys):
+                left_shared = left.loc[shared_keys].astype("string").fillna("<NA>")
+                right_shared = right.loc[shared_keys].astype("string").fillna("<NA>")
+                revised = int(left_shared.ne(right_shared).any(axis=1).sum())
+
+        captured_at = pd.Timestamp(snapshot.captured_at)
+        latest_match = pd.Timestamp(snapshot.date_max, tz="UTC")
+        coverage_lag_days = int((captured_at.normalize() - latest_match).days)
+        rows.append(
+            {
+                "season": snapshot.season,
+                "snapshot_id": snapshot.snapshot_id,
+                "raw_path": snapshot.raw_path,
+                "captured_at": snapshot.captured_at,
+                "sha256": snapshot.sha256,
+                "row_count": int(snapshot.row_count),
+                "date_min": snapshot.date_min,
+                "date_max": snapshot.date_max,
+                "capture_to_latest_match_days": coverage_lag_days,
+                "previous_snapshot_id": previous_id,
+                "added_match_keys": added,
+                "removed_match_keys": removed,
+                "revised_shared_rows": revised,
+                "schema_changed_from_previous": schema_changed,
+                "is_active": position == len(snapshots) - 1,
+                "freshness_status": "REVIEW" if coverage_lag_days > 3 else "OK",
+            }
+        )
+        previous = current
+        previous_id = snapshot.snapshot_id
+
+    return pd.DataFrame(rows)
 
 
 def schema_payload(frames: OrderedDict[str, pd.DataFrame]) -> dict[str, Any]:
@@ -840,6 +1044,7 @@ def build_evidence(
 
     return {
         "raw_file_manifest": manifest,
+        "current_season_snapshot_audit": current_snapshot_audit(),
         "season_summary": pd.DataFrame(summaries),
         "schema_by_season": pd.DataFrame(schema_rows),
         "missingness_by_season": pd.DataFrame(missingness_rows),
@@ -944,6 +1149,20 @@ def generate_data_contract(evidence: dict[str, pd.DataFrame]) -> str:
             "False for non-played/abandoned exclusions; true for the fully played awarded result.",
         ],
         ["source_provider", "REQUIRED", "string", "lineage", "football_data."],
+        [
+            "source_snapshot_id",
+            "REQUIRED",
+            "string",
+            "snapshot catalog",
+            "Immutable source-version identity used to materialize the row.",
+        ],
+        [
+            "source_snapshot_captured_at",
+            "REQUIRED FOR CURRENT SEASON",
+            "nullable timezone-aware datetime",
+            "snapshot catalog",
+            "Required for 2026-27 live rows; unavailable for the original historical capture.",
+        ],
         ["source_file", "REQUIRED", "string", "lineage", "Immutable raw CSV path."],
         ["source_row", "REQUIRED", "integer", "lineage", "One-based raw CSV row including header."],
         [
@@ -1011,11 +1230,14 @@ def generate_data_contract(evidence: dict[str, pd.DataFrame]) -> str:
         "The played Akhisarspor-Besiktas match remains model eligible with its 1-3",
         "on-pitch score; the later official 0-3 award is retained only in the nullable",
         "official-score fields.",
+        "Every current-season row retains the exact snapshot identity and capture time.",
+        "A live or replayed fit may use it only when `source_snapshot_captured_at <= t`.",
         "",
         "## Fields rejected from the MVP match table",
         "",
         "- `Div`: constant source code and already represented by dataset scope.",
         "- `HTR`: derivable from half-time goals when those goals exist.",
+        "- `HxG/AxG`: newly observed in 2026-27 but outside the approved roadmap stage.",
         "- all 1X2, over/under, and Asian-handicap odds: market data is isolated below.",
         "- bookmaker counts, maxima, and exchange fields: not needed for the first",
         "  closing-probability benchmark.",
@@ -1079,6 +1301,7 @@ def generate_data_contract(evidence: dict[str, pd.DataFrame]) -> str:
         "- every eligible result has a timezone-aware availability timestamp strictly after kickoff;",
         "- ineligible administrative rows never expose a result-availability timestamp;",
         "- raw checksums and exact ordered schemas match their locks;",
+        "- current-season rows retain a non-null snapshot capture boundary;",
         f"- all {suspected_count} reviewed administrative results set `model_eligible=false`;",
         "- review config must match the detected candidate set exactly;",
         "- market rows never enter a predictive feature dataset.",
@@ -1099,6 +1322,8 @@ def generate_audit_report(
     total_suspected = len(suspected)
     provenance = json.loads(ACQUISITION_PROVENANCE.read_text(encoding="utf-8"))
     acquisition = provenance["successful_acquisition"]
+    snapshot_audit = evidence["current_season_snapshot_audit"]
+    active_snapshot = snapshot_audit.loc[snapshot_audit["is_active"]].iloc[0]
     shots_non_null, shots_rows, shots_overall, shots_min = coverage_stats(evidence, "HS")
     sot_non_null, sot_rows, sot_overall, sot_min = coverage_stats(evidence, "HST")
 
@@ -1202,14 +1427,15 @@ def generate_audit_report(
     ]
 
     lines = [
-        "# Turkish Super Lig data audit: 2017-18 through 2025-26",
+        "# Turkish Super Lig data audit: 2017-18 through 2026-27",
         "",
         "## Answer first",
         "",
-        "**Verdict: GO for proceeding to a score-only baseline and Dixon-Coles phase.**",
-        "No model is implemented in this phase.",
+        "**Verdict: GO-WITH-CONSTRAINTS for continuing model research.**",
+        "The audit itself does not fit a model; naive baselines are a separate downstream stage.",
         "",
-        f"The nine Football-Data snapshots contain {total_rows:,} rows. Date, teams,",
+        f"The active ten-season view contains {total_rows:,} rows: nine frozen historical",
+        "seasons plus one immutable 2026-27 current-season snapshot. Date, teams,",
         "full-time goals, and FTR are complete and internally consistent enough for a",
         "score-based MVP. The raw schemas are not concat-compatible: they range from 61",
         "to 131 columns and change odds providers and closing-market coverage over time.",
@@ -1222,7 +1448,12 @@ def generate_audit_report(
         "Reliable MVP columns are `Date`, `HomeTeam`, `AwayTeam`, `FTHG`, `FTAG`, and",
         "`FTR`. Half-time and match-stat fields are retained as optional historical",
         "outcomes. Closing market-average 1X2 odds are absent before 2019-20, so market",
-        "benchmark coverage is not homogeneous across all nine seasons.",
+        "benchmark coverage is not homogeneous across all seasons.",
+        f"The active current-season snapshot was captured at {active_snapshot['captured_at']} but",
+        f"ends at match date {active_snapshot['date_max']} "
+        f"({int(active_snapshot['capture_to_latest_match_days'])} calendar days earlier).",
+        "It is safe as versioned evidence but too stale to call",
+        "fully current without a pre-prediction refresh and coverage check.",
         "",
         "## Dataset and grain",
         "",
@@ -1234,15 +1465,21 @@ def generate_audit_report(
         "",
         f"Source page: [{provenance['source_page']}]({provenance['source_page']}).",
         f"Field definitions: [{provenance['source_notes']}]({provenance['source_notes']}).",
-        f"Snapshot date: {provenance['snapshot_date']}.",
+        f"Frozen historical acquisition date: {provenance['snapshot_date']}.",
         "",
         "The first local request was rejected:",
         provenance["local_attempt"]["reason"],
         "No mirror or invented substitute entered the audit. The successful acquisition",
         f"used {acquisition['method']} in [this workflow run]({acquisition['run_url']}).",
-        f"Artifact digest: `{acquisition['artifact_digest']}`. {acquisition['verification']}",
+        f"Historical artifact digest: `{acquisition['artifact_digest']}`. {acquisition['verification']}",
+        "The active 2026-27 snapshot was acquired separately in",
+        f"[this workflow run]({active_current_snapshot()['acquisition_run_url']}).",
+        f"Its artifact digest is `{active_current_snapshot()['artifact_digest']}` and its raw",
+        f"SHA-256 is `{active_snapshot['sha256']}`. The snapshot catalog and revision",
+        "audit retain every future capture instead of overwriting earlier bytes.",
         "The per-file URLs, byte sizes, and hashes are reproduced in",
-        "`raw_file_manifest.csv`.",
+        "`raw_file_manifest.csv`; live capture and revision evidence is in",
+        "`current_season_snapshot_audit.csv`.",
         "",
         md_table(
             [
@@ -1302,6 +1539,9 @@ def generate_audit_report(
         "  (`AvgH/AvgD/AvgA`) and closing (`AvgCH/AvgCD/AvgCA`) averages.",
         "- 2024-25 expands to 119 columns with Betfair/1XBet/exchange fields.",
         "- 2025-26 expands to 131 columns and changes the individual bookmaker roster.",
+        "- 2026-27 currently has 113 columns. It introduces `HxG/AxG` plus",
+        "  `PP*`/`PPC*`/`SKB*` odds fields and removes 32 fields from the prior roster.",
+        "  xG is audited for schema drift only and remains rejected from this roadmap stage.",
         "",
         "Major missingness (>=5% within a present column):",
         "",
@@ -1360,6 +1600,13 @@ def generate_audit_report(
             [
                 [
                     "High",
+                    "Current-season freshness",
+                    f"Captured {active_snapshot['captured_at']}; latest included match date {active_snapshot['date_max']} ({int(active_snapshot['capture_to_latest_match_days'])}-day gap).",
+                    "A live fit can omit newly completed matches even when acquisition itself just succeeded.",
+                    "Refresh before every live forecast and require both recent capture and explicit coverage-through checks.",
+                ],
+                [
+                    "High",
                     "Administrative results",
                     f"{total_suspected} source-confirmed rows; all set model_eligible=false",
                     "Including awarded goals would bias attack/defence strength and score tails.",
@@ -1414,13 +1661,14 @@ def generate_audit_report(
         "",
         "REQUIRED: `match_id`, `season`, `date`, `kickoff_time`, timezone/source",
         "lineage, `home_team`, `away_team`, `home_goals`, `away_goals`, `result`,",
-        "`match_status`, and `model_eligible`.",
+        "`match_status`, `model_eligible`, and `source_snapshot_id`. Current-season",
+        "rows also require `source_snapshot_captured_at`.",
         "",
         "OPTIONAL: official-score override fields, both half-time goal fields, and all audited shots,",
         "shots-on-target, fouls, corners, yellow-card, and red-card fields. They are",
         "historical outcomes, not current-match features.",
         "",
-        "REJECTED FROM MVP: `Div`, derivable `HTR`, all odds in the match table,",
+        "REJECTED FROM MVP: `Div`, derivable `HTR`, `HxG/AxG`, all odds in the match table,",
         "over/under and handicap markets, bookmaker maxima/counts, and all",
         "rolling/pre-match features. Full types and validation",
         "rules are in `DATA_CONTRACT.md`.",
@@ -1435,15 +1683,19 @@ def generate_audit_report(
         "   training-only dynamic promoted-team prior specified in `MODEL_DESIGN.md`.",
         "4. RESOLVED: results become available after a fixed 180-minute safety lag;",
         "   the suspended Başakşehir-Bursaspor match anchors to its reviewed resumption.",
+        "5. OPEN LIVE-OPERATIONS CONSTRAINT: Football-Data may lag completed fixtures.",
+        "   A forecast cannot be labelled current until a newly captured snapshot passes",
+        "   an explicit required-through date check.",
         "",
         "## Final decision",
         "",
-        "**GO.** The score-and-result backbone is viable for the next score-only baseline",
-        "and Dixon-Coles iteration. Administrative results and team aliases now have",
-        "explicit source-backed decisions. Match statistics are sufficiently complete",
+        "**GO-WITH-CONSTRAINTS.** The frozen historical score backbone is viable for",
+        "independent Poisson and Dixon-Coles research. Administrative results and",
+        "team aliases have explicit source-backed decisions. Match statistics are sufficiently complete",
         "as optional outcomes but are not necessary for Dixon-Coles. Market odds are",
-        "useful as an external benchmark",
-        "from 2019-20 onward and must stay logically isolated.",
+        "useful as an external benchmark from 2019-20 onward and must stay logically",
+        "isolated. The 2026-27 live layer",
+        "must be refreshed and checked for coverage before every forecast.",
         "",
         "## Exact columns by season",
     ]
@@ -1583,6 +1835,7 @@ def write_outputs(
     REPORTS_DIR.mkdir(parents=True, exist_ok=True)
     ordered_outputs = [
         "raw_file_manifest",
+        "current_season_snapshot_audit",
         "season_summary",
         "schema_by_season",
         "missingness_by_season",
@@ -1635,7 +1888,7 @@ def main(argv: list[str] | None = None) -> int:
             f"{len(evidence['suspected_non_played_matches'])} non-played candidates."
         )
         print(f"Report: {REPORTS_DIR / 'DATA_AUDIT.md'}")
-        print("Verdict: GO")
+        print("Verdict: GO-WITH-CONSTRAINTS")
         return 0
     except AuditError as exc:
         print(f"AUDIT FAILED: {exc}", file=sys.stderr)

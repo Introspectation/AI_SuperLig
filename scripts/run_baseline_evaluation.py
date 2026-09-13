@@ -30,6 +30,7 @@ EXPECTED_SPLITS = [
     ("2023-24", "development"),
     ("2024-25", "development"),
     ("2025-26", "final_holdout"),
+    ("2026-27", "live_only"),
 ]
 MODEL_ORDER = ["uniform_hda", "expanding_league_hda"]
 PROBABILITY_COLUMNS = ["p_home", "p_draw", "p_away"]
@@ -360,6 +361,7 @@ def generate_report(predictions: pd.DataFrame, metrics: pd.DataFrame) -> str:
         "- Warm-up history: 2017-18 through 2020-21.",
         "- Development walk-forward: 2021-22 through 2024-25.",
         "- Final holdout: 2025-26, still sealed and absent from predictions/metrics.",
+        "- Current season: 2026-27, live-only and absent from development metrics.",
         "- Each prediction uses only `result_available_at < prediction_time` history.",
         "- Same-kickoff fixtures share the same available history.",
         "",
