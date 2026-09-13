@@ -46,6 +46,9 @@ Every update obeys `LEAKAGE_CONTRACT.md`. For a match at time `t`, the prior and
 all observed-strength terms may use only results available strictly before `t`.
 An earlier kickoff alone is not proof that a match had finished. Same-date
 matches without a trusted kickoff time are treated as simultaneous.
+The canonical availability policy is a fixed 180-minute post-kickoff lag with
+source-reviewed interruption overrides. Modeling code may not tune or shorten
+that guardrail.
 
 ## Deferred implementation
 

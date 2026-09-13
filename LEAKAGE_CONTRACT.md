@@ -12,6 +12,12 @@ satisfy:
 feature(match_t) = f(matches strictly before t)
 ```
 
+For historical results, the executable form is:
+
+```text
+feature(match_t) = f(matches where result_available_at < t)
+```
+
 Information that becomes known at or after kickoff is not available to the
 prediction for that match. A convenient column being present in the historical
 match table does not make it a legal feature.
@@ -45,11 +51,14 @@ data.
   reviewed TFF snapshot. If a trusted kickoff time is missing in any future
   data, matches on the same calendar date are treated conservatively as
   simultaneous and may use only matches from strictly earlier dates.
-- An earlier kickoff is not automatically an available result. A match outcome
-  may enter a feature only after that match was completed before prediction
-  time. Because the current sources lack final-whistle timestamps, future
-  feature code must freeze a documented conservative result-availability lag
-  or batch potentially overlapping fixtures before any evaluation is run.
+- An earlier kickoff is not automatically an available result. Because the
+  current sources lack final-whistle timestamps, the fixed conservative policy
+  is `result_available_at = kickoff_at + 180 minutes`. The lag is a leakage
+  guardrail, is not tuned, and may not be shortened using evaluation results.
+- Source-confirmed interruptions require an explicit reviewed availability
+  override. Başakşehir-Bursaspor on 23 February 2019 anchors its 180-minute lag
+  to the official next-day resumption; ineligible administrative rows have no
+  result-availability timestamp.
 - Dynamic promoted-team prior parameters, including the shrinkage constant,
   must be estimated inside each chronological training boundary. A later
   season or evaluation fold may not influence a prior used earlier in time.
@@ -66,6 +75,9 @@ model predictions are fixed.
 ## Enforcement expectations
 
 Future feature code must declare its source columns and lookback boundary.
-Automated tests must include boundary cases for same-day fixtures, future rows,
-late backfills, and rolling-window shifts. A passing random-split experiment is
-not acceptable evidence for production performance.
+All repository evaluation code must obtain historical outcomes through
+`scripts/evaluation_time.py`; reimplementing a looser local filter is forbidden.
+Automated tests must include boundary cases for same-day fixtures, strict
+`result_available_at < t` comparisons, interruptions, future rows, late
+backfills, and rolling-window shifts. A passing random-split experiment is not
+acceptable evidence for production performance.

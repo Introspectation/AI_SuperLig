@@ -4,11 +4,14 @@ import sys
 import unittest
 from pathlib import Path
 
+import pandas as pd
+
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 import build_canonical_data as canonical_build  # noqa: E402
+import evaluation_time  # noqa: E402
 import run_data_audit as audit  # noqa: E402
 
 
@@ -87,6 +90,76 @@ class CanonicalDataTests(unittest.TestCase):
         self.assertEqual(int(totals["reviewed_date_mismatches"]), 1)
         self.assertEqual(int(totals["reviewed_score_differences"]), 1)
         self.assertEqual(int(totals["duplicate_canonical_keys"]), 0)
+
+    def test_result_availability_is_conservative_and_source_reviewed(self) -> None:
+        self.assertEqual(int(self.matches["result_available_at"].notna().sum()), 3057)
+        self.assertEqual(
+            self.matches["result_availability_rule"].value_counts().to_dict(),
+            {
+                "kickoff_plus_180_minutes": 3056,
+                "not_model_eligible": 31,
+                "reviewed_resumption_plus_180_minutes": 1,
+            },
+        )
+        eligible = self.matches[self.matches["model_eligible"]]
+        kickoff_at = pd.to_datetime(
+            eligible["date"] + " " + eligible["kickoff_time"],
+            format="%Y-%m-%d %H:%M",
+        ).dt.tz_localize("Europe/Istanbul")
+        available_at = pd.to_datetime(eligible["result_available_at"], utc=True)
+        self.assertTrue(available_at.gt(kickoff_at).all())
+
+        resumed = self.matches[
+            (self.matches["season"] == "2018-19")
+            & (self.matches["home_team"] == "Istanbul Basaksehir")
+            & (self.matches["away_team"] == "Bursaspor")
+        ].iloc[0]
+        self.assertEqual(resumed.date, "2019-02-23")
+        self.assertEqual(resumed.kickoff_time, "19:00")
+        self.assertEqual(resumed.result_available_at, "2019-02-24T22:00+03:00")
+
+        ordinary = self.matches[
+            (self.matches["season"] == "2019-20")
+            & (self.matches["home_team"] == "Fenerbahce")
+            & (self.matches["away_team"] == "Gaziantep FK")
+        ].iloc[0]
+        self.assertEqual(ordinary.kickoff_time, "20:00")
+        self.assertEqual(ordinary.result_available_at, "2019-08-19T23:00+03:00")
+        ordinary_available = pd.Timestamp(ordinary.result_available_at)
+        at_boundary = evaluation_time.available_history(
+            self.matches, ordinary_available
+        )
+        after_boundary = evaluation_time.available_history(
+            self.matches, ordinary_available + pd.Timedelta(minutes=1)
+        )
+        self.assertNotIn(ordinary.match_id, set(at_boundary["match_id"]))
+        self.assertIn(ordinary.match_id, set(after_boundary["match_id"]))
+
+        before_resumed_result = evaluation_time.available_history(
+            self.matches, "2019-02-24T21:59:00+03:00"
+        )
+        after_resumed_result = evaluation_time.available_history(
+            self.matches, "2019-02-24T22:01:00+03:00"
+        )
+        self.assertNotIn(resumed.match_id, set(before_resumed_result["match_id"]))
+        self.assertIn(resumed.match_id, set(after_resumed_result["match_id"]))
+        self.assertFalse(after_resumed_result["model_eligible"].eq(False).any())
+
+        leakage_contract = (ROOT / "LEAKAGE_CONTRACT.md").read_text(encoding="utf-8")
+        self.assertIn("result_available_at < t", leakage_contract)
+        self.assertEqual(
+            canonical_build.availability_risk_summary(self.matches),
+            {
+                "eligible_predictions": 3057,
+                "affected_predictions": 1367,
+                "unsafe_pair_exposures": 1788,
+                "max_unavailable_results": 6,
+            },
+        )
+
+    def test_history_filter_rejects_naive_prediction_time(self) -> None:
+        with self.assertRaises(evaluation_time.TimelineError):
+            evaluation_time.available_history(self.matches, "2026-08-01 20:00")
 
     def test_market_is_isolated_normalized_and_regime_labeled(self) -> None:
         self.assertEqual(self.market.columns.tolist(), canonical_build.MARKET_COLUMNS)

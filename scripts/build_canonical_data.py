@@ -7,7 +7,7 @@ import hashlib
 import json
 import sys
 from collections import OrderedDict
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo
@@ -27,6 +27,7 @@ TFF_TEAM_ALIASES = ROOT / "config" / "tff_team_aliases.csv"
 KICKOFF_DATE_DISCREPANCIES = ROOT / "config" / "kickoff_date_discrepancies.csv"
 KICKOFF_SCORE_DISCREPANCIES = ROOT / "config" / "kickoff_score_discrepancies.csv"
 KICKOFF_REVIEW_SOURCES = ROOT / "config" / "kickoff_review_sources.csv"
+RESULT_AVAILABILITY_OVERRIDES = ROOT / "config" / "result_availability_overrides.csv"
 QUALITY_REPORT = ROOT / "reports" / "CANONICAL_DATA_AUDIT.md"
 QUALITY_BY_SEASON = ROOT / "reports" / "canonical_data_quality_by_season.csv"
 TFF_JOIN_AUDIT = ROOT / "reports" / "tff_kickoff_join_audit.csv"
@@ -35,6 +36,7 @@ EARLY_KICKOFF_SEASONS = {"2017-18", "2018-19"}
 FOOTBALL_DATA_TIMEZONE = ZoneInfo("Europe/London")
 CANONICAL_TIMEZONE = ZoneInfo("Europe/Istanbul")
 TIMEZONE_EVIDENCE_IDS = {"TFF_2019_WEEK1", "TFF_2020_WEEK18"}
+RESULT_AVAILABILITY_LAG_MINUTES = 180
 OPTIONAL_FIELD_MAP = OrderedDict(
     [
         ("home_ht_goals", "HTHG"),
@@ -60,6 +62,8 @@ CANONICAL_COLUMNS = [
     "kickoff_time",
     "kickoff_timezone",
     "kickoff_time_source",
+    "result_available_at",
+    "result_availability_rule",
     "home_team",
     "away_team",
     "home_goals",
@@ -526,8 +530,6 @@ def apply_tff_kickoffs(matches: pd.DataFrame, tff: pd.DataFrame) -> tuple[pd.Dat
 
     merged = merged.drop(
         columns=[
-            "tff_kickoff_time",
-            "tff_date",
             "tff_home_goals",
             "tff_away_goals",
             "tff_match_id_backfill",
@@ -539,8 +541,115 @@ def apply_tff_kickoffs(matches: pd.DataFrame, tff: pd.DataFrame) -> tuple[pd.Dat
     return merged, pd.DataFrame(join_rows)
 
 
+def apply_result_availability(matches: pd.DataFrame) -> pd.DataFrame:
+    """Attach conservative, source-reviewed result availability timestamps."""
+    if not RESULT_AVAILABILITY_OVERRIDES.exists():
+        raise CanonicalBuildError("Missing reviewed result-availability overrides")
+    overrides = pd.read_csv(RESULT_AVAILABILITY_OVERRIDES, dtype="string")
+    required_columns = [
+        "season",
+        "prediction_date",
+        "home_team",
+        "away_team",
+        "result_anchor_date",
+        "result_anchor_time",
+        "result_availability_rule",
+        "evidence_ids",
+        "reason",
+    ]
+    if not set(required_columns).issubset(overrides.columns):
+        raise CanonicalBuildError("Result-availability override config schema changed")
+    if overrides[required_columns].isna().any(axis=None):
+        raise CanonicalBuildError("Result-availability overrides contain null values")
+    override_key = ["season", "prediction_date", "home_team", "away_team"]
+    if overrides.duplicated(override_key).any():
+        raise CanonicalBuildError("Result-availability override keys are duplicated")
+    if set(overrides["result_availability_rule"]) != {
+        "reviewed_resumption_plus_180_minutes"
+    }:
+        raise CanonicalBuildError("Unexpected result-availability override rule")
+
+    date_reviews = pd.read_csv(KICKOFF_DATE_DISCREPANCIES, dtype="string")
+    reviewed_date_keys = set(
+        map(
+            tuple,
+            date_reviews[
+                ["season", "football_data_date", "home_team", "away_team"]
+            ].itertuples(index=False, name=None),
+        )
+    )
+    override_keys = set(
+        map(
+            tuple,
+            overrides[override_key].itertuples(index=False, name=None),
+        )
+    )
+    if override_keys != reviewed_date_keys:
+        raise CanonicalBuildError(
+            "Result-availability overrides no longer match reviewed date discrepancies"
+        )
+
+    review_sources = pd.read_csv(KICKOFF_REVIEW_SOURCES, dtype="string")
+    known_evidence = set(review_sources["evidence_id"])
+    referenced_evidence: set[str] = set()
+    for value in overrides["evidence_ids"]:
+        referenced_evidence.update(str(value).split("|"))
+    if referenced_evidence - known_evidence:
+        raise CanonicalBuildError(
+            "Result-availability overrides reference unknown evidence IDs: "
+            f"{sorted(referenced_evidence - known_evidence)}"
+        )
+
+    override_lookup = {
+        tuple(getattr(row, column) for column in override_key): row
+        for row in overrides.itertuples(index=False)
+    }
+    available_values: list[Any] = []
+    availability_rules: list[str] = []
+    applied_override_keys: set[tuple[str, str, str, str]] = set()
+    for row in matches.itertuples(index=False):
+        if not bool(row.model_eligible):
+            available_values.append(pd.NA)
+            availability_rules.append("not_model_eligible")
+            continue
+
+        key = (row.season, row.date, row.home_team, row.away_team)
+        override = override_lookup.get(key)
+        if override is None:
+            anchor_date = row.date
+            anchor_time = row.kickoff_time
+            rule = "kickoff_plus_180_minutes"
+        else:
+            anchor_date = override.result_anchor_date
+            anchor_time = override.result_anchor_time
+            rule = override.result_availability_rule
+            if row.tff_date != anchor_date or row.tff_kickoff_time != anchor_time:
+                raise CanonicalBuildError(
+                    "Reviewed result-availability anchor disagrees with TFF snapshot"
+                )
+            applied_override_keys.add(key)
+
+        anchor = datetime.strptime(
+            f"{anchor_date} {anchor_time}", "%Y-%m-%d %H:%M"
+        ).replace(tzinfo=CANONICAL_TIMEZONE)
+        available = anchor + timedelta(minutes=RESULT_AVAILABILITY_LAG_MINUTES)
+        available_values.append(available.isoformat(timespec="minutes"))
+        availability_rules.append(rule)
+
+    if applied_override_keys != override_keys:
+        raise CanonicalBuildError("A result-availability override was not applied")
+    result = matches.copy()
+    result["result_available_at"] = pd.Series(
+        available_values, index=matches.index, dtype="string"
+    )
+    result["result_availability_rule"] = pd.Series(
+        availability_rules, index=matches.index, dtype="string"
+    )
+    return result
+
+
 def finalize_matches(matches: pd.DataFrame) -> pd.DataFrame:
-    matches = matches.copy()
+    matches = apply_result_availability(matches)
     matches["match_id"] = [
         stable_match_id(season, date, home, away)
         for season, date, home, away in matches[
@@ -554,6 +663,7 @@ def finalize_matches(matches: pd.DataFrame) -> pd.DataFrame:
         "kickoff_time",
         "kickoff_timezone",
         "kickoff_time_source",
+        "result_availability_rule",
         "home_goals",
         "away_goals",
         "result",
@@ -575,6 +685,32 @@ def finalize_matches(matches: pd.DataFrame) -> pd.DataFrame:
     )
     if parsed_kickoffs.isna().any():
         raise CanonicalBuildError("Canonical kickoff times contain invalid values")
+    parsed_availability = pd.to_datetime(
+        matches["result_available_at"], format="ISO8601", errors="coerce", utc=True
+    )
+    eligible = matches["model_eligible"]
+    if parsed_availability.loc[eligible].isna().any():
+        raise CanonicalBuildError("Eligible matches need result availability timestamps")
+    if parsed_availability.loc[~eligible].notna().any():
+        raise CanonicalBuildError("Ineligible matches cannot expose result timestamps")
+    kickoff_at = pd.to_datetime(
+        matches["date"] + " " + matches["kickoff_time"],
+        format="%Y-%m-%d %H:%M",
+        errors="raise",
+    ).dt.tz_localize(CANONICAL_TIMEZONE)
+    if not parsed_availability.loc[eligible].gt(kickoff_at.loc[eligible]).all():
+        raise CanonicalBuildError("Result availability must be after kickoff")
+    expected_rules = {
+        "kickoff_plus_180_minutes",
+        "reviewed_resumption_plus_180_minutes",
+        "not_model_eligible",
+    }
+    if set(matches["result_availability_rule"]) != expected_rules:
+        raise CanonicalBuildError("Result-availability rules changed unexpectedly")
+    if not matches.loc[~eligible, "result_availability_rule"].eq(
+        "not_model_eligible"
+    ).all():
+        raise CanonicalBuildError("Ineligible matches need the ineligible availability rule")
     if len(matches) != 3088 or int((~matches["model_eligible"]).sum()) != 31:
         raise CanonicalBuildError(
             "Canonical row or reviewed-exclusion count changed unexpectedly"
@@ -694,6 +830,9 @@ def quality_by_season(canonical: pd.DataFrame, market: pd.DataFrame) -> pd.DataF
                 "model_eligible_rows": eligible,
                 "excluded_administrative_rows": int((~selected["model_eligible"]).sum()),
                 "kickoff_complete_rows": int(selected["kickoff_time"].notna().sum()),
+                "result_available_rows": int(
+                    selected["result_available_at"].notna().sum()
+                ),
                 "tff_backfill_rows": int((selected["kickoff_time_source"] == "tff_archive").sum()),
                 "market_benchmark_rows": benchmark_rows,
                 "market_coverage_of_eligible": benchmark_rows / eligible if eligible else 0.0,
@@ -701,6 +840,35 @@ def quality_by_season(canonical: pd.DataFrame, market: pd.DataFrame) -> pd.DataF
             }
         )
     return pd.DataFrame(rows)
+
+
+def availability_risk_summary(canonical: pd.DataFrame) -> dict[str, int]:
+    """Measure leakage risk from treating earlier kickoffs as completed results."""
+    kickoff_at = pd.to_datetime(
+        canonical["date"] + " " + canonical["kickoff_time"],
+        format="%Y-%m-%d %H:%M",
+        errors="raise",
+    ).dt.tz_localize(CANONICAL_TIMEZONE)
+    result_available_at = pd.to_datetime(
+        canonical["result_available_at"], format="ISO8601", errors="coerce", utc=True
+    )
+    eligible = canonical["model_eligible"]
+    unavailable_counts = [
+        int(
+            (
+                eligible
+                & kickoff_at.lt(kickoff_at.loc[index])
+                & result_available_at.ge(kickoff_at.loc[index])
+            ).sum()
+        )
+        for index in canonical.index[eligible]
+    ]
+    return {
+        "eligible_predictions": int(eligible.sum()),
+        "affected_predictions": int(sum(count > 0 for count in unavailable_counts)),
+        "unsafe_pair_exposures": int(sum(unavailable_counts)),
+        "max_unavailable_results": int(max(unavailable_counts, default=0)),
+    }
 
 
 def generate_report(
@@ -712,6 +880,7 @@ def generate_report(
     eligible = int(canonical["model_eligible"].sum())
     primary = int((market["benchmark_tier"] == "primary_market_average").sum())
     secondary = int((market["benchmark_tier"] == "secondary_single_bookmaker").sum())
+    availability_risk = availability_risk_summary(canonical)
     table_rows = []
     for row in quality.itertuples(index=False):
         table_rows.append(
@@ -721,6 +890,7 @@ def generate_report(
                 row.model_eligible_rows,
                 row.excluded_administrative_rows,
                 row.kickoff_complete_rows,
+                row.result_available_rows,
                 row.tff_backfill_rows,
                 row.market_benchmark_rows,
                 audit.pct(row.market_coverage_of_eligible),
@@ -750,6 +920,9 @@ def generate_report(
         "administrative exclusions. Kickoff time is complete for every row after an",
         "exact one-to-one, score-verified TFF backfill of the first two seasons and",
         "timezone-aware Europe/London-to-Europe/Istanbul conversion thereafter.",
+        "Every eligible result also has a conservative availability timestamp. The",
+        "fixed rule is kickoff plus 180 minutes, with the suspended Başakşehir-",
+        "Bursaspor match anchored to its reviewed next-day resumption instead.",
         "",
         f"The isolated market benchmark contains {len(market):,} rows: {primary:,}",
         "primary closing-market-average rows from 2019-20 onward and",
@@ -769,6 +942,7 @@ def generate_report(
                 "Eligible",
                 "Excluded",
                 "Kickoff complete",
+                "Result available",
                 "TFF backfill",
                 "Market rows",
                 "Market coverage",
@@ -810,15 +984,19 @@ def generate_report(
         "matrix. Current-match outcomes remain forbidden predictive inputs under",
         "`LEAKAGE_CONTRACT.md`. `market_benchmark.csv` is a separate table and may be",
         "joined only after model predictions are frozen.",
-        "An earlier kickoff is not treated as an available result until the future",
-        "evaluation code applies the completion rule in `LEAKAGE_CONTRACT.md`.",
+        "For any future prediction at time `t`, history is restricted to rows whose",
+        "`result_available_at < t`; kickoff order alone never exposes an outcome.",
+        f"A kickoff-only ordering would affect {availability_risk['affected_predictions']:,} of",
+        f"{availability_risk['eligible_predictions']:,} eligible predictions",
+        f"({audit.pct(availability_risk['affected_predictions'] / availability_risk['eligible_predictions'])}),",
+        f"with up to {availability_risk['max_unavailable_results']} unavailable results",
+        "at one prediction cutoff.",
         "",
         "## Remaining modeling work",
         "",
         "Chronological evaluation scaffolding, naive baselines, independent Poisson,",
         "time-decayed Dixon-Coles, and the dynamic promoted-team prior remain",
         "unimplemented. Their design boundary is recorded in `MODEL_DESIGN.md`.",
-        "The conservative result-availability lag must be frozen before evaluation.",
         "",
         "## Reviewed source links",
         "",

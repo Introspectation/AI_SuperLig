@@ -49,7 +49,8 @@ The audit fails if its detected candidate set diverges from the reviewed config.
 ## Canonical outputs
 
 - `data/processed/canonical_matches.csv`: one traceable match row with kickoff,
-  on-pitch score targets, status, eligibility, and Football-Data lineage;
+  conservative result availability, on-pitch score targets, eligibility, and
+  Football-Data lineage;
 - `data/processed/market_benchmark.csv`: de-vigged H/D/A closing probabilities,
   kept physically and logically separate from predictive features;
 - `reports/CANONICAL_DATA_AUDIT.md`: coverage, exclusions, reviewed source
@@ -67,6 +68,10 @@ official TFF archive snapshots. The primary market benchmark uses closing
 market-average odds from 2019-20 onward; the earlier Pinnacle closing odds are
 retained as a clearly labelled secondary regime rather than mixed into the
 primary benchmark.
+
+Future evaluation code must obtain visible historical outcomes through
+`scripts/evaluation_time.py`, which enforces the strict availability boundary
+and rejects timezone-naive prediction timestamps.
 
 ## Git and CI
 
