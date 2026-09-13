@@ -41,9 +41,18 @@ data.
 - Training windows, decay weights, scalers, encoders, imputers, and feature
   selection must be fitted using information available strictly before each
   evaluation match.
-- When kickoff time is missing, as in the earliest audited seasons, matches on
-  the same calendar date are treated conservatively as simultaneous. Features
-  for those matches may use only matches from strictly earlier dates.
+- The canonical table backfills the earliest audited kickoff times from the
+  reviewed TFF snapshot. If a trusted kickoff time is missing in any future
+  data, matches on the same calendar date are treated conservatively as
+  simultaneous and may use only matches from strictly earlier dates.
+- An earlier kickoff is not automatically an available result. A match outcome
+  may enter a feature only after that match was completed before prediction
+  time. Because the current sources lack final-whistle timestamps, future
+  feature code must freeze a documented conservative result-availability lag
+  or batch potentially overlapping fixtures before any evaluation is run.
+- Dynamic promoted-team prior parameters, including the shrinkage constant,
+  must be estimated inside each chronological training boundary. A later
+  season or evaluation fold may not influence a prior used earlier in time.
 - Any future backfill must retain an `as_of` or ingestion snapshot boundary so
   revised history cannot leak into an earlier prediction replay.
 

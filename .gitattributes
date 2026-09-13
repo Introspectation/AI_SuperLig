@@ -10,3 +10,5 @@
 
 # Raw source bytes are immutable. This more-specific rule must remain last.
 data/raw/football_data/*.csv -text
+data/raw/tff/kickoff_times_*.csv -text
+data/raw/tff/kickoff_times_*.manifest.json -text

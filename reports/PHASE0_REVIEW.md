@@ -60,16 +60,16 @@ clubs merely because they share a city name.
 
 ## Limitations and remaining questions
 
-Ordinary rows do not receive match-by-match external verification; their
-`played` status is the canonical default after the reviewed exceptions are
-removed. The market benchmark regime and conservative same-day ordering rule
-remain separate design decisions and do not block score-only baselines.
+Ordinary rows after 2018-19 do not receive match-by-match external verification;
+their `played` status is the canonical default after reviewed exceptions are
+removed. Phase 1 separately verifies every first-two-season fixture against
+the TFF kickoff snapshot and locks one date plus one official-score difference.
 
 ## Recommended next step
 
-Proceed to chronological evaluation scaffolding and naive score baselines. The
-31 reviewed rows must stay in lineage but must fail any model-population test
-that expects `model_eligible=true`.
+Run the canonical data build, then proceed to chronological evaluation
+scaffolding and naive score baselines. The 31 reviewed exclusions must stay in
+lineage but fail any model-population test that expects `model_eligible=true`.
 
 ## Evidence sources
 

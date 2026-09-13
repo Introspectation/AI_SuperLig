@@ -1,0 +1,27 @@
+source_name,canonical_name,confidence,decision,reason
+AKHİSAR BELEDİYE GENÇLİK VE SPOR,Akhisarspor,high,approved_for_kickoff_join,TFF legal club name matches the 2017-18 fixture identity.
+AKHİSARSPOR,Akhisarspor,high,approved_for_kickoff_join,TFF short club name matches the 2018-19 fixture identity.
+TELESET MOBİLYA AKHİSARSPOR,Akhisarspor,high,approved_for_kickoff_join,Sponsor-prefixed TFF name matches the 2017-18 fixture identity.
+ALANYASPOR,Alanyaspor,high,approved_for_kickoff_join,TFF short club name matches the Football-Data identity.
+AYTEMİZ ALANYASPOR,Alanyaspor,high,approved_for_kickoff_join,Sponsor-prefixed TFF name matches the Football-Data identity.
+ANTALYASPOR A.Ş.,Antalyaspor,high,approved_for_kickoff_join,TFF legal suffix removed for the canonical identity.
+ATİKER KONYASPOR,Konyaspor,high,approved_for_kickoff_join,Sponsor-prefixed TFF name matches the Football-Data identity.
+BEŞİKTAŞ A.Ş.,Besiktas,high,approved_for_kickoff_join,TFF Turkish spelling and legal suffix map to the Football-Data spelling.
+BURSASPOR,Bursaspor,high,approved_for_kickoff_join,Exact canonical identity after casing normalization.
+BÜYÜKŞEHİR BELEDİYE ERZURUMSPOR,Erzurumspor FK,high,approved_for_kickoff_join,TFF fixture identity matches the separately reviewed Erzurum BB alias.
+ÇAYKUR RİZESPOR A.Ş.,Rizespor,high,approved_for_kickoff_join,Sponsor and legal suffix removed for the Football-Data identity.
+DEMİR GRUP SİVASSPOR,Sivasspor,high,approved_for_kickoff_join,Sponsor-prefixed TFF name matches the Football-Data identity.
+EVKUR YENİ MALATYASPOR,Yeni Malatyaspor,high,approved_for_kickoff_join,Sponsor-prefixed TFF name matches the Football-Data identity.
+YENİ MALATYASPOR,Yeni Malatyaspor,high,approved_for_kickoff_join,TFF short club name matches the Football-Data identity.
+FENERBAHÇE A.Ş.,Fenerbahce,high,approved_for_kickoff_join,TFF Turkish spelling and legal suffix map to the Football-Data spelling.
+GALATASARAY A.Ş.,Galatasaray,high,approved_for_kickoff_join,TFF legal suffix removed for the canonical identity.
+GENÇLERBİRLİĞİ,Genclerbirligi,high,approved_for_kickoff_join,TFF Turkish spelling maps to the Football-Data spelling.
+GÖZTEPE A.Ş.,Goztepe,high,approved_for_kickoff_join,TFF fixture identity matches the separately reviewed Goztep alias.
+İSTİKBAL MOBİLYA KAYSERİSPOR,Kayserispor,high,approved_for_kickoff_join,Sponsor-prefixed TFF name matches the Football-Data identity.
+KARDEMİR KARABÜKSPOR,Karabukspor,high,approved_for_kickoff_join,Sponsor-prefixed TFF name matches the Football-Data identity.
+KASIMPAŞA A.Ş.,Kasimpasa,high,approved_for_kickoff_join,TFF Turkish spelling and legal suffix map to the Football-Data spelling.
+KAYSERİSPOR,Kayserispor,high,approved_for_kickoff_join,TFF Turkish spelling maps to the Football-Data spelling.
+MEDİPOL BAŞAKŞEHİR FK,Istanbul Basaksehir,high,approved_for_kickoff_join,TFF fixture identity matches the separately reviewed Buyuksehyr alias.
+MKE ANKARAGÜCÜ,Ankaragucu,high,approved_for_kickoff_join,TFF Turkish spelling maps to the Football-Data spelling.
+OSMANLISPOR FUTBOL KULÜBÜ,Osmanlispor,high,approved_for_kickoff_join,TFF legal club name maps to the Football-Data short name.
+TRABZONSPOR A.Ş.,Trabzonspor,high,approved_for_kickoff_join,TFF legal suffix removed for the canonical identity.

@@ -1,4 +1,4 @@
-name: Phase 0 data audit CI
+name: Data foundation CI
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: phase0-ci-${{ github.workflow }}-${{ github.ref }}
+  group: data-foundation-ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -33,13 +33,14 @@ jobs:
       - name: Run regression tests
         run: python -m unittest discover -s tests -v
 
-      - name: Regenerate audit without network access
-        run: python scripts/run_data_audit.py --offline
+      - name: Rebuild audited data foundation without network access
+        run: python scripts/run_data_foundation.py
 
       - name: Verify committed outputs are reproducible
         run: >-
           git diff --exit-code --
           DATA_CONTRACT.md
+          data/processed
           reports
           config/expected_schemas.json
 
@@ -47,10 +48,12 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: phase0-data-audit-reports
+          name: data-foundation-outputs
           path: |
             DATA_CONTRACT.md
             LEAKAGE_CONTRACT.md
+            MODEL_DESIGN.md
+            data/processed/
             reports/
           if-no-files-found: error
           retention-days: 14

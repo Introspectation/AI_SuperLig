@@ -1,0 +1,2 @@
+season,date,home_team,away_team,on_pitch_home_goals,on_pitch_away_goals,official_home_goals,official_away_goals,match_status,model_eligible,decision,evidence_ids,reason
+2018-19,2019-01-18,Akhisarspor,Besiktas,1,3,0,3,played_then_awarded_forfeit,true,retain_on_pitch_score_for_score_models,TFF_2019_AKHISAR_PFDK|TFF_2019_AKHISAR_MATCH,The full match was played and ended 1-3 on the pitch; TFF later registered a 0-3 forfeit due to player-eligibility rules.
