@@ -1,0 +1,16 @@
+evaluation_role,season,model,matches,log_loss,brier_score
+development,ALL,ml_offset_logit,1413,0.986766072016,0.587777214167
+development,ALL,ml_offset_recalibration,1413,0.986678915796,0.587684702651
+development,ALL,ml_plain_logit,1413,0.983528622711,0.585561740303
+development,2021-22,ml_offset_logit,380,1.019334462870,0.611531865777
+development,2021-22,ml_offset_recalibration,380,1.019334462870,0.611531865777
+development,2021-22,ml_plain_logit,380,0.994219193073,0.594085721424
+development,2022-23,ml_offset_logit,313,0.992740950645,0.590501886078
+development,2022-23,ml_offset_recalibration,313,0.993988126816,0.592128380173
+development,2022-23,ml_plain_logit,313,0.998502762312,0.594769343463
+development,2023-24,ml_offset_logit,379,0.975993958457,0.580085194151
+development,2023-24,ml_offset_recalibration,379,0.976381330737,0.579965294150
+development,2023-24,ml_plain_logit,379,0.981229175676,0.583649872838
+development,2024-25,ml_offset_logit,341,0.956961102819,0.567354004975
+development,2024-25,ml_offset_recalibration,341,0.955024645412,0.565610986431
+development,2024-25,ml_plain_logit,341,0.960426476063,0.569736242224
