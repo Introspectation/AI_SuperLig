@@ -104,8 +104,21 @@ python scripts/run_poisson_evaluation.py
 
 This regenerates the baseline outputs, then writes per-match Poisson
 predictions, metrics, and `reports/POISSON_REPORT.md` under the same frozen
-split. CI runs this command and verifies that committed outputs reproduce. The
-model specification is recorded in `MODEL_DESIGN.md`.
+split. The model specification is recorded in `MODEL_DESIGN.md`.
+
+## Reproduce the time-decayed Dixon-Coles model
+
+Run every earlier stage plus the Stage 5 walk-forward decay grid, nested
+chronological decay selection, and ablations with:
+
+```powershell
+python scripts/run_dixon_coles_evaluation.py
+```
+
+This writes `reports/DIXON_COLES_REPORT.md`, per-match predictions, metrics,
+per-season grid metrics, and the decay selection table. CI runs this command
+and verifies that every committed output reproduces. The selection rule is in
+`EVALUATION_PROTOCOL.md`.
 
 Before any future live forecast, run the age-and-coverage gate documented in
 `CURRENT_SEASON_DATA.md`. A successful offline build alone does not mean the

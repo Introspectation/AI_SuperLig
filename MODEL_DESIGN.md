@@ -34,7 +34,8 @@ log(away_rate) = intercept + attack[away] - defence[home]
 ## Time-decayed Dixon-Coles (Stage 5, declared)
 
 Declared on 14.09.2026 before any Stage 5 development metric was computed. Fit
-code lives in `scripts/run_dixon_coles_evaluation.py`.
+code lives in `scripts/run_dixon_coles_evaluation.py`; development evidence is
+in `reports/DIXON_COLES_REPORT.md`.
 
 ```text
 P(home=x, away=y) = tau(x, y) * Poisson(x; home_rate) * Poisson(y; away_rate)
@@ -43,8 +44,9 @@ tau(1,0) = 1 + away_rate * rho                tau(1,1) = 1 - rho
 weight(match) = exp(-decay_per_day * days_before_latest_kickoff_in_history)
 ```
 
-- Rates, the fixed N(0, 1) team-strength penalty, unseen-club handling, and the
-  0-30 score grid are unchanged from Stage 4.
+- Rates, the fixed N(0, 1) team-strength penalty, and unseen-club handling are
+  unchanged from Stage 4. The score grid is 0-40 goals per side (see the
+  amendment below).
 - `rho` is estimated jointly with team strengths by weighted penalized maximum
   likelihood in every fit; it is not a tuned hyperparameter. A fit or fixture
   whose correction factors are not strictly positive fails loudly.
@@ -61,6 +63,15 @@ weight(match) = exp(-decay_per_day * days_before_latest_kickoff_in_history)
   attribute any gain; `independent_poisson` is the Stage 4 reference.
 - The promoted-team prior, match statistics, market odds, and the 2025-26
   holdout remain out of scope.
+
+Amendment made before any Stage 5 metric was computed (14.09.2026): the first
+full grid run stopped. With the Stage 4 0-30 goal grid, one declared fit lost
+more than `1e-9` probability mass: Besiktas-Pendikspor on 2023-08-20, decay
+0.005, expected home goals 8.83 against a club with one prior match. The
+Dixon-Coles correction itself was valid for that fixture. Stage 5 therefore
+uses a 0-40 goal grid per side with the same truncation check. This is a
+numerical truncation change chosen without any evaluation result; Stage 4
+keeps its 0-30 grid.
 
 ## Dynamic promoted-team prior
 

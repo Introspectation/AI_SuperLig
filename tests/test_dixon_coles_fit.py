@@ -156,8 +156,13 @@ class DixonColesFitTests(unittest.TestCase):
             float(matrix[1, 1]), base * home_rate * away_rate * (1.0 - rho), places=12
         )
         independent = poisson.score_distribution(home_rate, away_rate)
+        size = independent.shape[0]
+        self.assertEqual(matrix.shape[0], dc.SCORE_GRID_MAX_GOALS + 1)
         np.testing.assert_allclose(
-            dc.score_distribution(home_rate, away_rate, 0.0), independent, rtol=0, atol=1e-15
+            dc.score_distribution(home_rate, away_rate, 0.0)[:size, :size],
+            independent,
+            rtol=0,
+            atol=1e-15,
         )
 
     def test_invalid_inputs_fail_loudly(self) -> None:

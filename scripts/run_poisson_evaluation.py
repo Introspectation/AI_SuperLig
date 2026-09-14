@@ -262,12 +262,12 @@ def fit_independent_poisson(history: pd.DataFrame) -> PoissonFit:
     raise PoissonEvaluationError("Poisson fit did not converge")
 
 
-def _poisson_pmf(rate: float) -> np.ndarray:
+def _poisson_pmf(rate: float, max_goals: int = MAX_GOALS) -> np.ndarray:
     if not math.isfinite(rate) or rate <= 0.0:
         raise PoissonEvaluationError("Expected goals must be finite and positive")
-    pmf = np.empty(MAX_GOALS + 1)
+    pmf = np.empty(max_goals + 1)
     pmf[0] = math.exp(-rate)
-    for goals in range(1, MAX_GOALS + 1):
+    for goals in range(1, max_goals + 1):
         pmf[goals] = pmf[goals - 1] * rate / goals
     return pmf
 
