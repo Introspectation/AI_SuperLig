@@ -105,6 +105,21 @@ The 2025-26 holdout is not a tuning season.
    Stage 6 report are the declared gate subset; all other slices are
    descriptive.
 
+## Stage 7 chronological penalty selection
+
+1. Every eligible fixture from 2020-21 through 2024-25 is predicted walk-forward
+   for each declared `lambda`. Each prediction uses a fit trained only on
+   fixtures from 2019-20 onward whose results were available before its kickoff.
+   Features are built at the target development season's Stage 5 decay and
+   Stage 6 `k`. 2019-20 serves only as training data.
+2. For development season `S`, each Stage 7 model selects the `lambda` that
+   minimizes mean H/D/A log loss over its predictions from 2020-21 through the
+   season before `S`. Ties select the larger `lambda`; `inf` means no
+   adjustment. Every tuning result must be available before the first
+   prediction time in `S`.
+3. Development metrics for `S` use only that `lambda`. Calibration tables are
+   descriptive.
+
 ## Market isolation
 
 The evaluator does not load `data/processed/market_benchmark.csv`. Closing odds
