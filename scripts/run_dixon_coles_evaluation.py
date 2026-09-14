@@ -583,6 +583,7 @@ class CutoffContext:
     history_rows: int
     latest_result_available_at: pd.Timestamp
     appearances: pd.Series
+    season_appearances: dict[tuple[str, str], int]
     fits: dict[tuple[float, bool], DixonColesFit]
 
 
@@ -612,8 +613,18 @@ def _context_from_history(
         history_rows=len(history),
         latest_result_available_at=latest,
         appearances=poisson._team_appearances(history),
+        season_appearances=_season_appearances(history),
         fits=fits,
     )
+
+
+def _season_appearances(history: pd.DataFrame) -> dict[tuple[str, str], int]:
+    counts: dict[tuple[str, str], int] = {}
+    seasons = history["season"].tolist()
+    for column in ("home_team", "away_team"):
+        for key in zip(seasons, history[column].tolist()):
+            counts[key] = counts.get(key, 0) + 1
+    return counts
 
 
 def fit_cutoff(timeline: pd.DataFrame, cutoff: pd.Timestamp) -> CutoffContext:
@@ -851,7 +862,19 @@ def _validate_model_predictions(
         raise DixonColesError("Stage 5 history crosses the strict time boundary")
 
 
-def run_evaluation(matches: pd.DataFrame, splits: pd.DataFrame) -> dict[str, pd.DataFrame]:
+@dataclass(frozen=True)
+class Stage5State:
+    """Walk-forward fits and decay selection reused by later stages."""
+
+    timeline: pd.DataFrame
+    targets: pd.DataFrame
+    contexts: dict[pd.Timestamp, CutoffContext]
+    selection: pd.DataFrame
+
+
+def evaluate(
+    matches: pd.DataFrame, splits: pd.DataFrame
+) -> tuple[dict[str, pd.DataFrame], Stage5State]:
     timeline = build_timeline(matches)
     targets = walk_forward_targets(matches, splits)
     contexts = fit_walk_forward(timeline, targets)
@@ -862,12 +885,17 @@ def run_evaluation(matches: pd.DataFrame, splits: pd.DataFrame) -> dict[str, pd.
     predictions = build_model_predictions(targets, contexts, selection)
     _validate_model_predictions(predictions, development, selection)
     metrics = baseline.score_predictions(predictions, MODEL_ORDER)
-    return {
+    outputs = {
         "predictions": predictions,
         "metrics": metrics,
         "grid_metrics": grid_metrics,
         "selection": selection,
     }
+    return outputs, Stage5State(timeline, targets, contexts, selection)
+
+
+def run_evaluation(matches: pd.DataFrame, splits: pd.DataFrame) -> dict[str, pd.DataFrame]:
+    return evaluate(matches, splits)[0]
 
 
 def load_reference_outputs(predictions: pd.DataFrame) -> dict[str, pd.DataFrame]:
@@ -1284,15 +1312,21 @@ def write_outputs(outputs: dict[str, pd.DataFrame], reference: dict[str, pd.Data
     REPORT_OUTPUT.write_text(generate_report(outputs, reference), encoding="utf-8")
 
 
+def run_and_write(
+    matches: pd.DataFrame, splits: pd.DataFrame
+) -> tuple[dict[str, pd.DataFrame], Stage5State]:
+    outputs, state = evaluate(matches, splits)
+    write_outputs(outputs, load_reference_outputs(outputs["predictions"]))
+    return outputs, state
+
+
 def main() -> int:
     poisson_status = poisson.main()
     if poisson_status != 0:
         return poisson_status
     splits = baseline.load_split_config()
     matches = baseline.load_matches()
-    outputs = run_evaluation(matches, splits)
-    reference = load_reference_outputs(outputs["predictions"])
-    write_outputs(outputs, reference)
+    outputs, _ = run_and_write(matches, splits)
     print(
         "Dixon-Coles evaluation complete: "
         f"{outputs['predictions']['match_id'].nunique()} development matches, "

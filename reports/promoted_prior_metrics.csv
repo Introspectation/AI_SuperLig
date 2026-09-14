@@ -1,0 +1,16 @@
+evaluation_role,season,model,matches,log_loss,brier_score
+development,ALL,dixon_coles_promoted_prior,1413,0.986678915796,0.587684702651
+development,ALL,dixon_coles_promoted_point,1413,0.986625429005,0.587662599289
+development,ALL,poisson_decay_promoted_prior,1413,0.986863188354,0.587325757119
+development,2021-22,dixon_coles_promoted_prior,380,1.019334462870,0.611531865777
+development,2021-22,dixon_coles_promoted_point,380,1.019504881412,0.611615183196
+development,2021-22,poisson_decay_promoted_prior,380,1.018388830480,0.610722183817
+development,2022-23,dixon_coles_promoted_prior,313,0.993988126816,0.592128380173
+development,2022-23,dixon_coles_promoted_point,313,0.993837295455,0.591997522443
+development,2022-23,poisson_decay_promoted_prior,313,0.992978624904,0.591326566871
+development,2023-24,dixon_coles_promoted_prior,379,0.976381330737,0.579965294150
+development,2023-24,dixon_coles_promoted_point,379,0.976189380485,0.579875081931
+development,2023-24,poisson_decay_promoted_prior,379,0.978736680889,0.580816615369
+development,2024-25,dixon_coles_promoted_prior,341,0.955024645412,0.565610986431
+development,2024-25,dixon_coles_promoted_point,341,0.954964890222,0.565646928458
+development,2024-25,poisson_decay_promoted_prior,341,0.955150785659,0.564815695905

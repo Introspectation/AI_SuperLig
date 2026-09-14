@@ -116,9 +116,22 @@ python scripts/run_dixon_coles_evaluation.py
 ```
 
 This writes `reports/DIXON_COLES_REPORT.md`, per-match predictions, metrics,
-per-season grid metrics, and the decay selection table. CI runs this command
-and verifies that every committed output reproduces. The selection rule is in
-`EVALUATION_PROTOCOL.md`.
+per-season grid metrics, and the decay selection table. The selection rule is
+in `EVALUATION_PROTOCOL.md`.
+
+## Reproduce the dynamic promoted-team prior
+
+Run every earlier stage plus the Stage 6 promoted-team prior, its nested `k`
+selection, and ablations with:
+
+```powershell
+python scripts/run_promoted_prior_evaluation.py
+```
+
+This writes `reports/PROMOTED_PRIOR_REPORT.md`, per-match predictions, metrics,
+the `k` grid, the `k` selection table, and the prior offsets. CI runs this
+command and verifies that every committed output reproduces. The design is in
+`MODEL_DESIGN.md`.
 
 Before any future live forecast, run the age-and-coverage gate documented in
 `CURRENT_SEASON_DATA.md`. A successful offline build alone does not mean the
