@@ -1,6 +1,6 @@
 # AI SuperLig handoff
 
-Last verified: 2026-09-14, about 23:40 Europe/Istanbul.
+Last verified: 2026-09-14 23:20 Europe/Istanbul (20:20 UTC).
 
 This file is the shared operational handoff for coding agents (Claude Code and
 Codex alternate on this repository). Treat it as a lead, not ground truth:
@@ -16,14 +16,10 @@ The project is building leakage-safe probabilistic predictions for the Turkish
 Süper Lig. The active live season is **2026-27**. The completed **2025-26**
 season remains the sealed final holdout.
 
-User instructions and approvals (14.09.2026):
-
-- Continue from the handoff, follow `ROADMAP.md`, and commit, push, and update
-  this handoff at every checkpoint.
-- Merging PR #5, #6, #7, and #8 was approved and done.
-- Stage 7 was approved.
-- A separate data checkpoint that promotes a snapshot is approved once
-  Football-Data covers the TFF-verified latest completed date.
+**Stop condition at this transfer:** Stages 0-7 are complete. The user approved
+merging PR #9 (Stage 7) and asked for this handoff. **Stage 8 is not approved
+yet.** Do not start the candidate freeze or touch the 2025-26 holdout without
+explicit user go-ahead.
 
 No deployable model or live forecast exists. Stages 3-7 are development
 benchmarks only. Market odds remain an external benchmark and must never enter
@@ -31,86 +27,71 @@ predictive features or Stage 3-8 selection.
 
 ## 2. Current state
 
-- Branch: `agent/stage7-ml-challengers`, from `main` at `f12778f`.
-- Draft PR #9 targets `main`. The design checkpoint `630f022` passed CI.
-- The commit containing this file is the **Stage 7 evaluation checkpoint**; use
-  Git for its hash. Its CI result must be verified with `gh pr checks 9`.
-- CI now runs `python scripts/run_ml_challenger_evaluation.py`, which chains
-  every stage, with a 20-minute job timeout.
-- Never merge into `main` without explicit user approval.
+- This file is the last commit of PR #9 (`agent/stage7-ml-challengers`). The
+  user approved rebase-merging PR #9 into `main` on 14.09.2026 after green CI.
+  Verify with `gh pr view 9`; afterwards `main` holds Stages 0-7.
+- There is no active feature branch after the merge. Start new work from an
+  up-to-date `main` on a short-lived `agent/...` branch.
+- Before this commit, PR #9's head `447a0a5` passed both CI runs (about
+  5.5 minutes). CI runs `python scripts/run_ml_challenger_evaluation.py` with a
+  20-minute timeout.
+- No other PR was open at verification.
+- Local worktree: generated reports can show CRLF-only `M` flags on Windows;
+  `git diff --exit-code` shows no content change. They were reset to the
+  committed state before this handoff.
 - Local Git Bash quirk: `TZ=Europe/Istanbul date` prints UTC; plain `date` shows
   local Istanbul time.
 
 ## 3. Completed work
 
-| Stage | State | Result |
+| Stage | PR | Result |
 | --- | --- | --- |
-| 0-2 | Complete, merged | Data audit, canonical data and lineage, leakage boundary |
-| 3 / 3A | Complete, merged | Naive baselines; immutable 2026-27 snapshots and freshness gate |
-| 4 | Complete, merged | Independent Poisson walk-forward benchmark |
-| 5 | Complete, merged | Time-decayed Dixon-Coles, nested decay selection, ablations |
-| 6 | Complete, merged | Dynamic promoted-team prior, nested k selection, ablations |
-| 7 | Complete on PR #9 (characterized) | Penalized multinomial logistic challengers |
-| 8 | Next in roadmap | Candidate freeze (needs user go-ahead) |
+| 0-2 | #1-#3 | Data audit, canonical data and lineage, strict leakage boundary |
+| 3 / 3A | #4, #5 | Naive baselines; immutable 2026-27 snapshots and freshness gate |
+| 4 | #6 | Independent Poisson, GO |
+| 5 | #7 | Time-decayed Dixon-Coles, GO; gain from decay, `rho` not justified |
+| 6 | #8 | Dynamic promoted-team prior, GO on point estimates with caveats |
+| 7 | #9 | Penalized multinomial logistic challengers, CHARACTERIZED |
 
 Development evidence (1,413 matches, 2021-22 through 2024-25):
 
-| Model | Log loss | Brier |
-| --- | ---: | ---: |
-| `uniform_hda` | 1.098612 | 0.666667 |
-| `expanding_league_hda` | 1.060314 | 0.640070 |
-| `independent_poisson` (Stage 4) | 1.008672 | 0.600648 |
-| `poisson_decay` (Stage 5 ablation) | 0.995139 | 0.591252 |
-| `dixon_coles_decay` (Stage 5 candidate) | 0.995379 | 0.591547 |
-| `dixon_coles_promoted_prior` (Stage 6 candidate) | 0.986679 | 0.587685 |
-| `dixon_coles_promoted_point` (Stage 6 ablation) | 0.986625 | 0.587663 |
-| `poisson_decay_promoted_prior` (Stage 6 ablation) | 0.986863 | 0.587326 |
-| `ml_offset_logit` (Stage 7 candidate) | 0.986766 | 0.587777 |
-| `ml_offset_recalibration` (Stage 7 ablation) | 0.986679 | 0.587685 |
-| `ml_plain_logit` (Stage 7 ablation) | 0.983529 | 0.585562 |
+| Model | Stage / role | Log loss | Brier |
+| --- | --- | ---: | ---: |
+| `uniform_hda` | 3 | 1.098612 | 0.666667 |
+| `expanding_league_hda` | 3 | 1.060314 | 0.640070 |
+| `independent_poisson` | 4 candidate | 1.008672 | 0.600648 |
+| `poisson_decay` | 5 ablation | 0.995139 | 0.591252 |
+| `dixon_coles_decay` | 5 candidate | 0.995379 | 0.591547 |
+| `dixon_coles_promoted_prior` | 6 candidate | 0.986679 | 0.587685 |
+| `dixon_coles_promoted_point` | 6 ablation | 0.986625 | 0.587663 |
+| `poisson_decay_promoted_prior` | 6 ablation | 0.986863 | 0.587326 |
+| `ml_offset_logit` | 7 candidate | 0.986766 | 0.587777 |
+| `ml_offset_recalibration` | 7 ablation | 0.986679 | 0.587685 |
+| `ml_plain_logit` | 7 ablation | 0.983529 | 0.585562 |
 
-**Stage 7 verdict: CHARACTERIZED.**
+Key findings (full detail in `reports/*_REPORT.md`):
 
-- The candidate versus Stage 6 has a paired difference of +0.000087
-  [-0.004291, +0.004465].
-- Penalty selections:
-  - candidate: `inf`, 100, 300, 300;
-  - recalibration: always `inf` (identical to Stage 6);
-  - plain logistic: always 100.
-- `ml_plain_logit` is lower on point estimates: -0.003150 [-0.010136,
-  +0.003835] versus Stage 6. It still uses Stage 6 logits as ordinary features.
-  It was not promoted after results; Stage 8 weighs it.
-- Coefficients (`reports/ml_coefficients.csv`): the most consistent adjustment
-  signals are shots-on-target share difference and form points difference.
-- Calibration (descriptive): Stage 6 underpredicts home wins (mean 0.4445 vs
-  observed 0.4657). The candidate lowers per-class ECE; for home wins it falls
-  from 0.041 to 0.029.
-
-Stage caveats for the Stage 8 freeze:
-
-- **Stage 5:** the gain comes from recency decay; `rho` adds no H/D/A value.
-- **Stage 6:** passes its gate on point estimates, but:
-  - its intervals include zero;
-  - all `k` selections are at the grid maximum;
-  - uncertainty propagation adds no value.
-- **Stage 7:** the declared candidate adds nothing; the plain-logistic ablation
-  is suggestive but not separated from noise.
-
-Files:
-
-- code: `scripts/run_ml_challenger_evaluation.py`;
-- tests: `tests/test_ml_challenger_evaluation.py`;
-- report: `reports/ML_CHALLENGER_REPORT.md`, plus the `ml_*` CSVs.
-
-`run_promoted_prior_evaluation.py` now exposes `evaluate`, `run_and_write`, and
-`Stage6State`, with Stage 6 outputs unchanged. Offset models at
-`lambda = inf` are verified to reproduce Stage 6 exactly before outputs are
-written.
+- **Stage 5:** candidate versus Stage 4 -0.013293 [-0.020865, -0.005720]. The
+  gain comes from decay; `rho` alone is +0.000330. Selected decays are
+  0.0015/day (2021-22) and 0.003/day (later seasons).
+- **Stage 6:** versus Stage 5, promoted-club fixtures (415) -0.029623
+  [-0.061745, +0.002498] and all fixtures -0.008700 [-0.018153, +0.000752].
+  All 12 `k` selections are at the grid maximum (64). Uncertainty propagation
+  adds nothing.
+- **Stage 7:** the candidate versus Stage 6 is +0.000087 [-0.004291,
+  +0.004465]. Recalibration always chose `lambda = inf`. `ml_plain_logit` is
+  -0.003150 [-0.010136, +0.003835]: suggestive, not separated from noise, and
+  it uses Stage 6 logits as features. The most consistent adjustment signals are
+  shots-on-target share and form. Stage 6 slightly underpredicts home wins.
+- **Leakage safeguards held at every stage:**
+  - tamper tests: future and current-match data cannot change fits or features;
+  - nested chronological tuning;
+  - `k = 0` and `lambda = inf` reproduce the previous stage exactly;
+  - Windows-generated outputs reproduce on Ubuntu CI.
 
 ## 4. In-progress work
 
-None uncommitted at this checkpoint. Working-copy `M` flags on generated
-reports can be CRLF-only; trust `git diff --exit-code`.
+None. No uncommitted source, config, or documentation changes.
 
 ## 5. Decisions and invariants
 
@@ -119,18 +100,17 @@ reports can be CRLF-only; trust `git diff --exit-code`.
   `scripts/evaluation_time.py`. Past-match statistics are legal history; a
   match's own statistics never are.
 - Stage 4-7 specifications are in `MODEL_DESIGN.md` and selection rules in
-  `EVALUATION_PROTOCOL.md`, each committed before its metrics. Do not change a
-  grid, rule, feature, or candidate after seeing results. Stage 5's 0-40 goal
-  grid is the only pre-metric amendment.
-- **Stage 8** must choose one candidate and a decision rule from development
-  evidence only, before the one-time 2025-26 holdout. Any rule that picks among
-  models seen here should be declared and justified explicitly, because
-  development metrics are now known.
-- Final evaluation is chronological and walk-forward. Current-match
-  statistics, future matches, final standings, and closing odds are forbidden
-  inputs. Materialize predictions before any market join.
+  `EVALUATION_PROTOCOL.md`, each committed before its metrics. Stage 5's 0-40
+  goal grid is the only pre-metric amendment. Never change a grid, rule,
+  feature, or candidate after seeing results.
+- Final evaluation is chronological and walk-forward. Random splits,
+  current-match statistics, future matches, final standings, and closing odds
+  are forbidden. Materialize predictions before any market join.
 - Iterative-fit per-match outputs are published to nine decimals; aggregates
   are computed before rounding.
+- The 2025-26 holdout opens once, only after a committed Stage 8 freeze.
+  Selecting or tuning after observing 2026-27 outcomes and then calling
+  2025-26 untouched would break the selection boundary.
 - On 14.09.2026 the user asked in chat about Gaziantep FK-Fenerbahçe. A
   research forecast was computed as of kickoff and not committed or published:
   - the freshness gate failed;
@@ -139,25 +119,25 @@ reports can be CRLF-only; trust `git diff --exit-code`.
 
 ## 6. Failures and suspicious findings
 
-- **Runtime:**
-  - Local Windows timings: Stage 5 189 s, Stage 6 73 s, Stage 7 372 s, plus
-    about 80 s for foundation, baselines, and Poisson.
-  - The Stage 1-6 CI chain took about 2.5 minutes on Ubuntu; Stage 7 adds
-    walk-forward logistic refits.
-  - Watch CI against the 20-minute timeout. Profile `walk_forward` (row-dict
-    construction and 21 fits per training-set change) before adding stages.
+- **Stage 8 selection risk:** every development metric above is now known.
+  Choosing the best-looking model among many ablations would overfit
+  development data. Stage 8 must declare and justify its rule. For example:
+  prefer the simplest model whose gains are not separated from noise, or keep
+  the last declared candidate. Commit that rule before the holdout.
 - **Team alias gap in live data:** 2026-27 rows use "Erzurumspor", while
   2018-19 and 2020-21 rows use "Erzurumspor FK". Review
-  `config/team_aliases.csv` before any live forecast.
-- **Test fix during Stage 7:**
-  - A synthetic coefficient-recovery test at n=6000 was off by 3 SE for one
-    seed. At n=200000 the estimator converged, so the test now uses n=40000.
-  - `fit_logit` now zeroes offsets for non-offset models, matching
-    `predict_logit`. Production outputs were unaffected.
-- **Live data is stale** (section 7). The merge-triggered acquisition at
-  2026-09-14T17:51Z was byte-identical, and promotion through 2026-09-13 failed
-  closed. The first scheduled 05:30 Istanbul run (2026-09-15 02:30 UTC) was not
-  yet observed.
+  `config/team_aliases.csv` before any live forecast. Development metrics are
+  unaffected.
+- **Runtime:** CI takes about 5.5 minutes. A local Windows full chain took
+  775 s (Stage 5 189 s, Stage 6 73 s, Stage 7 372 s), and the 75-test suite
+  took 143 s. Profile Stage 7 `walk_forward` before adding stages.
+- **Live data is stale** (section 7):
+  - The merge-triggered acquisition at 2026-09-14T17:51Z was byte-identical to
+    the active snapshot.
+  - Promotion with `--required-through 2026-09-13` failed closed and wrote
+    nothing.
+  - The first scheduled 05:30 Istanbul acquisition from `main` (2026-09-15
+    02:30 UTC) had not run at verification.
 - In Git Bash here, `grep -c $'\r'` falsely reports CR; use
   `git ls-files --eol`.
 
@@ -170,38 +150,61 @@ Active snapshot, unchanged:
 - Captured: `2026-09-13T19:28:13Z`
 - Coverage: 36 results, 2026-08-14 through 2026-09-07; audit status `REVIEW`
 
+TFF (read 14.09 about 20:50) showed week 5 completed on 11-13 September, with
+Gaziantep FK-Fenerbahçe scheduled for 14.09 20:00.
+
 User note: open-source data covers seasons through 2025-26 plus the current
 season via Football-Data. Refresh only through that source.
 
-Promotion procedure:
+Promotion procedure (`CURRENT_SEASON_DATA.md`):
 
-- `captured_at` = the acquisition artifact's `created_at`.
-- `--required-through` = the latest completed match date verified on TFF.
+1. Download the scheduled run's artifact into `tmp/`.
+2. Promote it:
+   - `--captured-at` = the artifact's `created_at`;
+   - `--required-through` = the latest completed date verified on TFF;
+   - `--artifact-digest` = from `gh api .../runs/RUN_ID/artifacts`.
+3. Rerun the full chain and the tests, then commit as a separate data
+   checkpoint.
 
-A live forecast must pass the gate in `CURRENT_SEASON_DATA.md` and validate its
-fixture against an official schedule.
+## 8. Remaining work (next safe actions, in order)
 
-## 8. Remaining work (next safe actions)
+1. **Verify the merge:** `gh pr view 9` shows MERGED, and the `main` push CI is
+   green. If the merge did not happen, ask the user; do not merge on your own.
+2. **Data checkpoint (approved):**
+   - after the scheduled acquisition runs, check whether its 2026-27 CSV covers
+     the TFF-verified latest completed date;
+   - promote it on a new branch from `main`, rerun the chain and tests, commit,
+     push, and open a PR;
+   - merging that PR still needs approval.
+3. **Stage 8 candidate freeze (needs user go-ahead).** First write and commit a
+   freeze document:
+   - the chosen model and the justification for the selection rule (see
+     section 6);
+   - how decay, `k`, and `lambda` are chosen for 2025-26, using only seasons
+     before it under the existing nested rules;
+   - the frozen code commit;
+   - the holdout decision rule and the post-prediction market comparison plan.
 
-1. Verify CI on PR #9 for this checkpoint and fix on the branch if it fails.
-   Merge only with explicit user approval.
-2. After a scheduled acquisition covers the TFF-verified latest completed date,
-   promote it as a separate data checkpoint (approved). Rerun
-   `python scripts/run_ml_challenger_evaluation.py` and the tests, then commit.
-3. Stage 8 (candidate freeze) needs a new user go-ahead. Declare before touching
-   the holdout:
-   - the chosen candidate;
-   - the frozen code and hyperparameter rules for 2025-26 (for example, how
-     decay, `k`, and `lambda` are chosen for the holdout season, using data
-     before it);
-   - the decision rule.
+   Evaluated options only:
+   - `dixon_coles_promoted_prior` is the last declared model-based candidate;
+   - `dixon_coles_promoted_point` and `poisson_decay_promoted_prior` are simpler
+     or near-equal ablations;
+   - `ml_plain_logit` is the lowest development log loss but was never a
+     declared candidate.
+
+   A time-decayed Poisson with a point prior and no `rho` was never evaluated,
+   so it is not an option without a new pre-registered stage.
+4. **Before any live forecast:** fix the Erzurumspor alias, pass the freshness
+   gate, and decide on the Stage 3B publication track.
 
 ## 9. Verification
 
 ```powershell
 git status --short --branch
-git log --oneline main..HEAD
-gh pr checks 9
+git log --oneline -5 origin/main
+gh pr list --state all --limit 5
+gh run list --branch main --limit 3
+gh run list --workflow bootstrap-football-data.yml --limit 3
 python -m unittest discover -s tests
 python scripts/run_ml_challenger_evaluation.py
 git diff --exit-code -- DATA_CONTRACT.md data/processed reports config/expected_schemas.json
@@ -212,14 +215,16 @@ preserve every raw snapshot immutably.
 
 ## 10. Permissions and external effects
 
-- Granted on 14.09.2026:
-  - merge PR #5, #6, #7, and #8 (all done);
-  - promote acquisition artifacts that pass the coverage gate;
+- Granted and used on 14.09.2026:
+  - merge PR #5-#9;
+  - trigger, inspect, and promote acquisition artifacts that pass the coverage
+    gate;
   - Stage 4-7 scope.
 - Still requires explicit approval:
-  - merging PR #9 or any later PR, or force-pushing;
+  - Stage 8 and any holdout opening;
+  - merging any new PR, including the data checkpoint, or force-pushing;
   - publishing predictions, or adding external data sources;
-  - the Stage 3B track, or Stage 8 and later, including any holdout opening.
+  - the Stage 3B track.
 - At each checkpoint, stage only intended files and commit in the
   Europe/Istanbul format below, then push the feature branch and inspect CI:
 
