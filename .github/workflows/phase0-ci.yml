@@ -33,8 +33,8 @@ jobs:
       - name: Run regression tests
         run: python -m unittest discover -s tests -v
 
-      - name: Rebuild every modeling stage through the promoted-team prior without network access
-        run: python scripts/run_promoted_prior_evaluation.py
+      - name: Rebuild every modeling stage through the ML challengers without network access
+        run: python scripts/run_ml_challenger_evaluation.py
 
       - name: Verify committed outputs are reproducible
         run: >-

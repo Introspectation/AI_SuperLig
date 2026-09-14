@@ -1,6 +1,6 @@
 # AI SuperLig handoff
 
-Last verified: 2026-09-14 22:35 Europe/Istanbul.
+Last verified: 2026-09-14, about 23:40 Europe/Istanbul.
 
 This file is the shared operational handoff for coding agents (Claude Code and
 Codex alternate on this repository). Treat it as a lead, not ground truth:
@@ -21,7 +21,7 @@ User instructions and approvals (14.09.2026):
 - Continue from the handoff, follow `ROADMAP.md`, and commit, push, and update
   this handoff at every checkpoint.
 - Merging PR #5, #6, #7, and #8 was approved and done.
-- Stage 7 (ML challengers) was approved and started.
+- Stage 7 was approved.
 - A separate data checkpoint that promotes a snapshot is approved once
   Football-Data covers the TFF-verified latest completed date.
 
@@ -31,15 +31,12 @@ predictive features or Stage 3-8 selection.
 
 ## 2. Current state
 
-- Branch: `agent/stage7-ml-challengers`, from `main` at `f12778f` (PR #8,
-  Stage 6, rebase-merged 2026-09-14T19:33:35Z after green CI).
-- The commit containing this file is the **Stage 7 design checkpoint**. It
-  holds the declared ML challenger specification and penalty-selection rule,
-  committed before any Stage 7 code or metric. Use Git for its hash.
-- Stage 7 implementation has not started. Find the draft PR with
-  `gh pr list --head agent/stage7-ml-challengers` and verify its CI.
-- CI runs `python scripts/run_promoted_prior_evaluation.py` (all stages
-  through 6). PR #8's CI took about 3.5 minutes; the job timeout is 20 minutes.
+- Branch: `agent/stage7-ml-challengers`, from `main` at `f12778f`.
+- Draft PR #9 targets `main`. The design checkpoint `630f022` passed CI.
+- The commit containing this file is the **Stage 7 evaluation checkpoint**; use
+  Git for its hash. Its CI result must be verified with `gh pr checks 9`.
+- CI now runs `python scripts/run_ml_challenger_evaluation.py`, which chains
+  every stage, with a 20-minute job timeout.
 - Never merge into `main` without explicit user approval.
 - Local Git Bash quirk: `TZ=Europe/Istanbul date` prints UTC; plain `date` shows
   local Istanbul time.
@@ -53,7 +50,8 @@ predictive features or Stage 3-8 selection.
 | 4 | Complete, merged | Independent Poisson walk-forward benchmark |
 | 5 | Complete, merged | Time-decayed Dixon-Coles, nested decay selection, ablations |
 | 6 | Complete, merged | Dynamic promoted-team prior, nested k selection, ablations |
-| 7 | Design declared | Small-data ML challengers |
+| 7 | Complete on PR #9 (characterized) | Penalized multinomial logistic challengers |
+| 8 | Next in roadmap | Candidate freeze (needs user go-ahead) |
 
 Development evidence (1,413 matches, 2021-22 through 2024-25):
 
@@ -67,90 +65,101 @@ Development evidence (1,413 matches, 2021-22 through 2024-25):
 | `dixon_coles_promoted_prior` (Stage 6 candidate) | 0.986679 | 0.587685 |
 | `dixon_coles_promoted_point` (Stage 6 ablation) | 0.986625 | 0.587663 |
 | `poisson_decay_promoted_prior` (Stage 6 ablation) | 0.986863 | 0.587326 |
+| `ml_offset_logit` (Stage 7 candidate) | 0.986766 | 0.587777 |
+| `ml_offset_recalibration` (Stage 7 ablation) | 0.986679 | 0.587685 |
+| `ml_plain_logit` (Stage 7 ablation) | 0.983529 | 0.585562 |
+
+**Stage 7 verdict: CHARACTERIZED.**
+
+- The candidate versus Stage 6 has a paired difference of +0.000087
+  [-0.004291, +0.004465].
+- Penalty selections:
+  - candidate: `inf`, 100, 300, 300;
+  - recalibration: always `inf` (identical to Stage 6);
+  - plain logistic: always 100.
+- `ml_plain_logit` is lower on point estimates: -0.003150 [-0.010136,
+  +0.003835] versus Stage 6. It still uses Stage 6 logits as ordinary features.
+  It was not promoted after results; Stage 8 weighs it.
+- Coefficients (`reports/ml_coefficients.csv`): the most consistent adjustment
+  signals are shots-on-target share difference and form points difference.
+- Calibration (descriptive): Stage 6 underpredicts home wins (mean 0.4445 vs
+  observed 0.4657). The candidate lowers per-class ECE; for home wins it falls
+  from 0.041 to 0.029.
 
 Stage caveats for the Stage 8 freeze:
 
 - **Stage 5:** the gain comes from recency decay; `rho` adds no H/D/A value.
 - **Stage 6:** passes its gate on point estimates, but:
-  - its paired intervals include zero;
-  - all 12 `k` selections are at the grid maximum (64);
-  - uncertainty propagation adds no H/D/A value.
+  - its intervals include zero;
+  - all `k` selections are at the grid maximum;
+  - uncertainty propagation adds no value.
+- **Stage 7:** the declared candidate adds nothing; the plain-logistic ablation
+  is suggestive but not separated from noise.
 
-Reports: `reports/BASELINE_REPORT.md`, `POISSON_REPORT.md`,
-`DIXON_COLES_REPORT.md`, and `PROMOTED_PRIOR_REPORT.md`.
+Files:
 
-## 4. In-progress work: Stage 7 implementation plan
+- code: `scripts/run_ml_challenger_evaluation.py`;
+- tests: `tests/test_ml_challenger_evaluation.py`;
+- report: `reports/ML_CHALLENGER_REPORT.md`, plus the `ml_*` CSVs.
 
-Implement exactly the declared design in `MODEL_DESIGN.md` ("Small-data ML
-challengers (Stage 7, declared)") and `EVALUATION_PROTOCOL.md` ("Stage 7
-chronological penalty selection"):
+`run_promoted_prior_evaluation.py` now exposes `evaluate`, `run_and_write`, and
+`Stage6State`, with Stage 6 outputs unchanged. Offset models at
+`lambda = inf` are verified to reproduce Stage 6 exactly before outputs are
+written.
 
-1. Create `scripts/run_ml_challenger_evaluation.py`. Reuse the Stage 5 state
-   and the Stage 6 grid, which holds Stage 6 candidate probabilities for every
-   grid-season fixture at each selected decay and `k`. Expose Stage 6 grid
-   state from `run_promoted_prior_evaluation` without changing its outputs.
-2. Build features for every eligible fixture from 2019-20 onward at its own
-   kickoff:
-   - form, shots-on-target share, and rest days from
-     `evaluation_time.available_history`;
-   - Stage 6 logits and promoted flags.
-3. Write the penalized multinomial logistic Newton fit with offsets; a draw is
-   the reference class. `lambda = inf` must reproduce Stage 6 exactly for
-   offset models.
-4. Run walk-forward refits over training-set changes for 2020-21 through
-   2024-25, for each lambda and model, then the nested lambda selection.
-5. Outputs:
-   - `reports/ml_predictions.csv`, `ml_metrics.csv`, `ml_grid_metrics.csv`,
-     `ml_selection.csv`;
-   - `reports/ML_CHALLENGER_REPORT.md`, with the gate, ablations, calibration
-     tables (calibration-in-the-large and 10-bin per-class ECE), and coefficient
-     summaries.
-6. Tests:
-   - fit math, the `inf` equivalence, and feature leakage (future results
-     cannot change features);
-   - the selection rule and committed-output checks.
-7. Chain CI to the new command, profile runtime, update ROADMAP/README/HANDOFF,
-   commit, push, and inspect CI.
+## 4. In-progress work
+
+None uncommitted at this checkpoint. Working-copy `M` flags on generated
+reports can be CRLF-only; trust `git diff --exit-code`.
 
 ## 5. Decisions and invariants
 
 - For match time `t`: `feature(match_t) = f(matches strictly before t)` and
   `result_available_at < prediction_time`, obtained only through
-  `scripts/evaluation_time.py`. Past-match statistics such as shots on target
-  are legal history; a match's own statistics never are.
+  `scripts/evaluation_time.py`. Past-match statistics are legal history; a
+  match's own statistics never are.
 - Stage 4-7 specifications are in `MODEL_DESIGN.md` and selection rules in
   `EVALUATION_PROTOCOL.md`, each committed before its metrics. Do not change a
   grid, rule, feature, or candidate after seeing results. Stage 5's 0-40 goal
-  grid is the only pre-metric amendment so far.
+  grid is the only pre-metric amendment.
+- **Stage 8** must choose one candidate and a decision rule from development
+  evidence only, before the one-time 2025-26 holdout. Any rule that picks among
+  models seen here should be declared and justified explicitly, because
+  development metrics are now known.
 - Final evaluation is chronological and walk-forward. Current-match
   statistics, future matches, final standings, and closing odds are forbidden
   inputs. Materialize predictions before any market join.
 - Iterative-fit per-match outputs are published to nine decimals; aggregates
   are computed before rounding.
-- Selecting or tuning a model after observing 2026-27 outcomes and then calling
-  2025-26 untouched evidence would break the selection boundary.
-- On 14.09.2026 the user asked in chat about Gaziantep FK-Fenerbahçe
-  (14.09 20:00). A research forecast was computed as of kickoff and not
-  committed or published:
+- On 14.09.2026 the user asked in chat about Gaziantep FK-Fenerbahçe. A
+  research forecast was computed as of kickoff and not committed or published:
   - the freshness gate failed;
   - 2025-26 results were used only as training data;
   - Stage 5 models gave about 20/20/60, with 1-2 the most likely score.
 
 ## 6. Failures and suspicious findings
 
+- **Runtime:**
+  - Local Windows timings: Stage 5 189 s, Stage 6 73 s, Stage 7 372 s, plus
+    about 80 s for foundation, baselines, and Poisson.
+  - The Stage 1-6 CI chain took about 2.5 minutes on Ubuntu; Stage 7 adds
+    walk-forward logistic refits.
+  - Watch CI against the 20-minute timeout. Profile `walk_forward` (row-dict
+    construction and 21 fits per training-set change) before adding stages.
 - **Team alias gap in live data:** 2026-27 rows use "Erzurumspor", while
   2018-19 and 2020-21 rows use "Erzurumspor FK". Review
   `config/team_aliases.csv` before any live forecast.
-- **Runtime:** a local full chain took 319-360 s on Windows, while CI took about
-  3.5 minutes. Stage 7 adds walk-forward logistic refits, so profile and keep CI
-  under its timeout.
+- **Test fix during Stage 7:**
+  - A synthetic coefficient-recovery test at n=6000 was off by 3 SE for one
+    seed. At n=200000 the estimator converged, so the test now uses n=40000.
+  - `fit_logit` now zeroes offsets for non-offset models, matching
+    `predict_logit`. Production outputs were unaffected.
 - **Live data is stale** (section 7). The merge-triggered acquisition at
   2026-09-14T17:51Z was byte-identical, and promotion through 2026-09-13 failed
   closed. The first scheduled 05:30 Istanbul run (2026-09-15 02:30 UTC) was not
   yet observed.
 - In Git Bash here, `grep -c $'\r'` falsely reports CR; use
-  `git ls-files --eol`. Working-copy `M` flags on generated reports can be
-  CRLF-only.
+  `git ls-files --eol`.
 
 ## 7. Live-data state
 
@@ -174,22 +183,27 @@ fixture against an official schedule.
 
 ## 8. Remaining work (next safe actions)
 
-1. Implement Stage 7 per section 4, then commit, push, update the draft PR, and
-   inspect CI. Merge only with explicit user approval.
+1. Verify CI on PR #9 for this checkpoint and fix on the branch if it fails.
+   Merge only with explicit user approval.
 2. After a scheduled acquisition covers the TFF-verified latest completed date,
-   promote it as a separate data checkpoint (approved), rerun the full chain
-   and tests, and commit.
-3. Stage 8 (candidate freeze) needs a new user go-ahead. It must freeze code,
-   hyperparameters, and the decision rule before the one-time 2025-26 holdout.
+   promote it as a separate data checkpoint (approved). Rerun
+   `python scripts/run_ml_challenger_evaluation.py` and the tests, then commit.
+3. Stage 8 (candidate freeze) needs a new user go-ahead. Declare before touching
+   the holdout:
+   - the chosen candidate;
+   - the frozen code and hyperparameter rules for 2025-26 (for example, how
+     decay, `k`, and `lambda` are chosen for the holdout season, using data
+     before it);
+   - the decision rule.
 
 ## 9. Verification
 
 ```powershell
 git status --short --branch
 git log --oneline main..HEAD
-gh pr list --state open
+gh pr checks 9
 python -m unittest discover -s tests
-python scripts/run_promoted_prior_evaluation.py
+python scripts/run_ml_challenger_evaluation.py
 git diff --exit-code -- DATA_CONTRACT.md data/processed reports config/expected_schemas.json
 ```
 
@@ -203,9 +217,9 @@ preserve every raw snapshot immutably.
   - promote acquisition artifacts that pass the coverage gate;
   - Stage 4-7 scope.
 - Still requires explicit approval:
-  - merging the Stage 7 PR or any later PR, or force-pushing;
+  - merging PR #9 or any later PR, or force-pushing;
   - publishing predictions, or adding external data sources;
-  - the Stage 3B track, or Stage 8 and later.
+  - the Stage 3B track, or Stage 8 and later, including any holdout opening.
 - At each checkpoint, stage only intended files and commit in the
   Europe/Istanbul format below, then push the feature branch and inspect CI:
 
@@ -228,5 +242,5 @@ DD.MM.YYYY -> genel yapilan isler
   not in a committed report; market comparison belongs to the post-freeze
   benchmark.
 - **Returning-club historical prior**, **1. Lig bridge**, **wider Stage 6 k
-  grid**: deferred; any of them needs a new pre-registered design.
+  grid**: deferred; each needs a new pre-registered design.
 - **Deferred ML inputs:** tree ensembles, Elo, `HxG/AxG`, referee effects.

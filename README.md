@@ -129,9 +129,22 @@ python scripts/run_promoted_prior_evaluation.py
 ```
 
 This writes `reports/PROMOTED_PRIOR_REPORT.md`, per-match predictions, metrics,
-the `k` grid, the `k` selection table, and the prior offsets. CI runs this
-command and verifies that every committed output reproduces. The design is in
+the `k` grid, the `k` selection table, and the prior offsets. The design is in
 `MODEL_DESIGN.md`.
+
+## Reproduce the small-data ML challengers
+
+Run every earlier stage plus the Stage 7 penalized multinomial logistic
+challengers, nested penalty selection, and ablations with:
+
+```powershell
+python scripts/run_ml_challenger_evaluation.py
+```
+
+This writes `reports/ML_CHALLENGER_REPORT.md`, per-match predictions, metrics,
+the penalty grid, the penalty selection table, and fitted coefficients. CI runs
+this command and verifies that every committed output reproduces. It is the
+slowest stage; see `HANDOFF.md` for current runtimes.
 
 Before any future live forecast, run the age-and-coverage gate documented in
 `CURRENT_SEASON_DATA.md`. A successful offline build alone does not mean the

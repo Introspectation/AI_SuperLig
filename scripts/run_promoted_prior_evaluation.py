@@ -607,12 +607,21 @@ def _validate(
                 raise PromotedPriorError(f"k = 0 does not reproduce Stage 5 for {model}")
 
 
-def run_evaluation(
+@dataclass(frozen=True)
+class Stage6State:
+    """Stage 6 grid predictions and selections reused by later stages."""
+
+    grid_scored: pd.DataFrame
+    selection: pd.DataFrame
+    decay_by_season: dict[str, float]
+
+
+def evaluate(
     matches: pd.DataFrame,
     splits: pd.DataFrame,
     state: dc.Stage5State,
     stage5_predictions: pd.DataFrame,
-) -> dict[str, pd.DataFrame]:
+) -> tuple[dict[str, pd.DataFrame], Stage6State]:
     season_order = splits["season"].tolist()
     clubs_by_season = season_clubs(matches)
     decays = sorted({float(decay) for decay in state.selection["selected_decay_per_day"]})
@@ -652,13 +661,34 @@ def run_evaluation(
         for item in offsets.values()
         for club, attack, defence in zip(item.clubs, item.attack, item.defence)
     ]
-    return {
+    outputs = {
         "predictions": predictions,
         "metrics": baseline.score_predictions(predictions, MODEL_ORDER),
         "grid_metrics": summarize_grid(grid_scored),
         "selection": selection,
         "offsets": pd.DataFrame(offset_rows, columns=OFFSET_COLUMNS),
     }
+    return outputs, Stage6State(grid_scored, selection, decay_by_season)
+
+
+def run_evaluation(
+    matches: pd.DataFrame,
+    splits: pd.DataFrame,
+    state: dc.Stage5State,
+    stage5_predictions: pd.DataFrame,
+) -> dict[str, pd.DataFrame]:
+    return evaluate(matches, splits, state, stage5_predictions)[0]
+
+
+def run_and_write(
+    matches: pd.DataFrame,
+    splits: pd.DataFrame,
+    state: dc.Stage5State,
+    stage5_outputs: dict[str, pd.DataFrame],
+) -> tuple[dict[str, pd.DataFrame], Stage6State]:
+    outputs, stage6_state = evaluate(matches, splits, state, stage5_outputs["predictions"])
+    write_outputs(outputs, stage5_outputs, matches, splits)
+    return outputs, stage6_state
 
 
 def _paired_difference(
@@ -1059,8 +1089,7 @@ def main() -> int:
     matches = baseline.load_matches()
     stage5_outputs, state = dc.run_and_write(matches, splits)
     print("Dixon-Coles evaluation complete.")
-    outputs = run_evaluation(matches, splits, state, stage5_outputs["predictions"])
-    write_outputs(outputs, stage5_outputs, matches, splits)
+    outputs, _ = run_and_write(matches, splits, state, stage5_outputs)
     print(
         "Promoted-team prior evaluation complete: "
         f"{outputs['predictions']['match_id'].nunique()} development matches, "
