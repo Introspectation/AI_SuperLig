@@ -3,6 +3,34 @@
 This file records decisions that future modeling code must follow. It does not
 implement a predictive model.
 
+## Independent Poisson (Stage 4)
+
+Implemented by `scripts/run_poisson_evaluation.py`; development evidence is in
+`reports/POISSON_REPORT.md`. The specification below was fixed before its
+development metrics were computed.
+
+```text
+log(home_rate) = intercept + home_advantage + attack[home] - defence[away]
+log(away_rate) = intercept + attack[away] - defence[home]
+```
+
+- Home and away goals are conditionally independent Poisson counts.
+- Each prediction time gets its own penalized maximum-likelihood fit (Newton
+  steps with step halving) on every eligible on-pitch score available strictly
+  before that time. Same-kickoff fixtures share one fit.
+- All available history is weighted equally. Recency decay is a Stage 5
+  decision.
+- Every team attack and defence log-strength has a fixed N(0, 1) penalty;
+  intercept and home advantage are unpenalized. The penalty is an
+  identifiability device for sparse clubs, not a promoted-team prior, and must
+  not be tuned into one.
+- A club with no prior eligible result receives strength 0, the penalty centre.
+  This is the cold-start behaviour the promoted-team prior must improve on.
+- Score probabilities use a 0-30 goal grid per side, require truncation mass of
+  at least `1 - 1e-9`, and are renormalized; H/D/A probabilities sum the matrix.
+- Official awarded scores, match statistics, market odds, final-holdout
+  outcomes, and live rows outside their snapshot boundary are not inputs.
+
 ## Dynamic promoted-team prior
 
 The project uses the name **dynamic promoted-team prior** for cold-start

@@ -1,0 +1,6 @@
+evaluation_role,season,model,matches,log_loss,brier_score
+development,ALL,independent_poisson,1413,1.008671903596,0.600647894814
+development,2021-22,independent_poisson,380,1.038055169707,0.623130180134
+development,2022-23,independent_poisson,313,0.990580660558,0.587287856543
+development,2023-24,independent_poisson,379,1.002002127850,0.593079155095
+development,2024-25,independent_poisson,341,0.999946868280,0.596269525049

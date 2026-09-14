@@ -51,5 +51,6 @@ The isolated market benchmark table is not loaded by the evaluator.
 
 ## Next roadmap gate
 
-Implement independent Poisson under the same split and metrics. Do not open
-the 2025-26 holdout and do not implement the dynamic promoted-team prior yet.
+Stage 4 independent Poisson is compared with these floors under the same
+split and metrics in `reports/POISSON_REPORT.md`. The 2025-26 holdout
+remains sealed.
