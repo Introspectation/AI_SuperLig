@@ -120,8 +120,57 @@ The canonical availability policy is a fixed 180-minute post-kickoff lag with
 source-reviewed interruption overrides. Modeling code may not tune or shorten
 that guardrail.
 
-## Deferred implementation
+## Stage 6 implementation (declared)
 
-The dynamic promoted-team prior belongs after the naive and independent-Poisson
-baselines. Its added complexity must earn its place through chronological
-out-of-sample performance and calibration, not in-sample fit.
+Declared on 14.09.2026 before any Stage 6 metric was computed. It applies the
+agreed blend to Stage 5 base fits. Nothing is refitted for different `k`
+values.
+
+For a fixture in season `S` predicted at time `t`:
+
+- **Promoted club:** a club in the fixture with no eligible match in season
+  `S-1`. Only completed past-season rows are used. 2017-18 has no predecessor,
+  so promoted status is defined from 2018-19 onward.
+- **n:** the club's eligible season-`S` matches with `result_available_at < t`.
+- **Observed strength:** the club's attack and defence in the Stage 5 base fit
+  at `t` (0 for an unseen club).
+- **Reference level:** the mean base-fit attack (and, separately, defence) over
+  clubs with an eligible match in season `S-1`.
+- **Prior offsets:** for every completed season `s'` from 2018-19 up to `S-1`:
+  - refit the same base (same decay and `rho` setting) on all results available
+    at the end of `s'`;
+  - each club promoted into `s'` contributes its attack (defence) minus that
+    fit's reference level for `s'`.
+- **Prior:** the current reference level plus the mean offset. The prior
+  variance is the sample variance (`ddof = 1`) of the offsets; at least two
+  offsets are required.
+- **Blend:** `w = n / (n + k)` and
+  `strength = w * observed + (1 - w) * prior`. `k = 0` disables the prior
+  (`w = 1`). Non-promoted clubs are unchanged.
+- **Uncertainty:** a promoted club's attack and defence are normal on the
+  log-strength scale, centred on the blended value, with variance
+  `(1 - w) * prior_variance`.
+  - The home log rate variance adds home attack and away defence variances;
+    the away log rate variance adds away attack and home defence variances.
+  - The score matrix is averaged over a 5-point Gauss-Hermite grid for each
+    log rate.
+  - Dixon-Coles factors must stay strictly positive at every node.
+- **k grid:** 0, 4, 8, 16, 32, 64. `k` is selected per development season by
+  the nested rule in `EVALUATION_PROTOCOL.md`, at that season's Stage 5 decay.
+- **Models:**
+  - candidate `dixon_coles_promoted_prior`: Dixon-Coles decay base, blend, and
+    uncertainty;
+  - ablation `dixon_coles_promoted_point`: the same without uncertainty;
+  - ablation `poisson_decay_promoted_prior`: `rho = 0` base, blend, and
+    uncertainty.
+
+  Each model selects its own `k`. The Stage 5 references are
+  `dixon_coles_decay` and `poisson_decay`.
+- **Gate:** GO requires lower log loss than `dixon_coles_decay` on development
+  fixtures involving a promoted club, with overall development log loss no
+  worse. Otherwise the result is reported as characterized.
+- **Deferred:** a time-decayed historical prior for returning clubs and the
+  1. Lig bridge.
+
+Added complexity must earn its place through chronological out-of-sample
+performance and calibration, not in-sample fit.

@@ -91,6 +91,20 @@ itself:
 
 The 2025-26 holdout is not a tuning season.
 
+## Stage 6 chronological prior-strength selection
+
+1. Every eligible fixture from 2019-20 through 2024-25 is predicted for each
+   declared `k`, using the Stage 5 fits at the decay selected for the target
+   development season.
+2. For development season `S`, each Stage 6 model selects the `k` that
+   minimizes mean H/D/A log loss over its predictions from 2019-20 through the
+   season before `S` at decay `decay_S`. Ties select the smaller `k`; `k = 0`
+   means no prior. Every tuning result must be available before the first
+   prediction time in `S`.
+3. Development metrics for `S` use only that `k`. Promoted-club slices in the
+   Stage 6 report are the declared gate subset; all other slices are
+   descriptive.
+
 ## Market isolation
 
 The evaluator does not load `data/processed/market_benchmark.csv`. Closing odds
