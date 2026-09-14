@@ -1,0 +1,16 @@
+evaluation_role,season,model,matches,log_loss,brier_score
+development,ALL,dixon_coles_decay,1413,0.995379341472,0.591546967183
+development,ALL,poisson_decay,1413,0.995139383657,0.591252112827
+development,ALL,dixon_coles_no_decay,1413,1.009002196957,0.600808126018
+development,2021-22,dixon_coles_decay,380,1.026299718507,0.615835600338
+development,2021-22,poisson_decay,380,1.024695629518,0.614825380897
+development,2021-22,dixon_coles_no_decay,380,1.040055162918,0.624085673119
+development,2022-23,dixon_coles_decay,313,0.999863641307,0.593741934734
+development,2022-23,poisson_decay,313,0.998841005368,0.593344548150
+development,2022-23,dixon_coles_no_decay,313,0.991306195574,0.587501101457
+development,2023-24,dixon_coles_decay,379,0.991292053027,0.585317409737
+development,2023-24,poisson_decay,379,0.993416763045,0.586143149428
+development,2023-24,dixon_coles_no_decay,379,0.999247145021,0.591645244352
+development,2024-25,dixon_coles_decay,341,0.961349292201,0.569389479882
+development,2024-25,poisson_decay,341,0.960719712656,0.568740450086
+development,2024-25,dixon_coles_no_decay,341,1.001482801213,0.597266668368
