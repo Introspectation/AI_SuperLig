@@ -174,3 +174,80 @@ For a fixture in season `S` predicted at time `t`:
 
 Added complexity must earn its place through chronological out-of-sample
 performance and calibration, not in-sample fit.
+
+## Small-data ML challengers (Stage 7, declared)
+
+Declared on 14.09.2026 before any Stage 7 code or metric existed.
+
+**Model family: penalized multinomial logistic regression over H/D/A**, with
+draw as the reference class:
+
+```text
+z_home = offset_home + b_home_0 + x . b_home
+z_away = offset_away + b_away_0 + x . b_away
+z_draw = 0
+p = softmax(z_home, z_draw, z_away)
+```
+
+- Fitted by penalized maximum likelihood with Newton steps.
+- Features are standardized with training-row means and standard deviations at
+  every refit. A zero standard deviation keeps scale 1.
+- The penalty is `lambda / 2 * sum(b^2)` on the total log likelihood, not per
+  row.
+
+**Models:**
+
+- **Candidate `ml_offset_logit`:**
+  - offset = the Stage 6 candidate logits `log(p_home / p_draw)` and
+    `log(p_away / p_draw)`;
+  - adjustment features = all declared features;
+  - the penalty covers every adjustment coefficient, intercepts included, so
+    `lambda = inf` reproduces `dixon_coles_promoted_prior` exactly.
+- **Ablation `ml_offset_recalibration`:** the same offset, with only the two
+  Stage 6 logits as adjustment features.
+- **Ablation `ml_plain_logit`:**
+  - no offset, all declared features;
+  - intercepts unpenalized, slopes penalized;
+  - `lambda = inf` gives the training-row class frequencies.
+
+**Features for a fixture at time `t`** (history from
+`evaluation_time.available_history` at `t`):
+
+1. `stage6_logit_home_draw` and `stage6_logit_away_draw`: the Stage 6
+   candidate at the target season's Stage 5 decay and Stage 6 `k`.
+2. `form_points_diff`: home minus away mean points (win 3, draw 1, loss 0).
+   - Uses each club's last five eligible matches, or fewer if that is all the
+     club has.
+   - A club with none uses the history's mean points per club-match.
+3. `sot_share_diff`: home minus away shots-on-target share, for / (for +
+   against).
+   - Summed over each club's last five eligible matches that have both values.
+   - A share with no usable match is 0.5.
+4. `rest_days_diff`: home minus away days since the club's previous eligible
+   kickoff in the history.
+   - Capped at 14 days.
+   - A club with no previous match counts 14.
+5. `home_promoted` and `away_promoted`: Stage 6 promoted status (0 or 1).
+
+**Training and refits:**
+
+- The training rows for a fit at `t` are every eligible fixture from 2019-20
+  onward with `result_available_at < t`.
+- Each row's features are computed at that row's own kickoff, at the target
+  season's decay and `k`.
+- Fits are reused while the training set is unchanged.
+
+**Lambda grid:** 1, 3, 10, 30, 100, 300, `inf`. The value is selected per model
+by the nested rule in `EVALUATION_PROTOCOL.md`.
+
+**Gate:** GO requires all of the following against
+`dixon_coles_promoted_prior`:
+
+- lower development log loss;
+- lower Brier score;
+- a paired log-loss interval that excludes zero.
+
+Otherwise the result is characterized. Calibration tables are descriptive.
+
+**Deferred:** tree ensembles, Elo, `HxG/AxG`, referee effects, and any market
+information.
