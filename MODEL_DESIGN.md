@@ -31,6 +31,37 @@ log(away_rate) = intercept + attack[away] - defence[home]
 - Official awarded scores, match statistics, market odds, final-holdout
   outcomes, and live rows outside their snapshot boundary are not inputs.
 
+## Time-decayed Dixon-Coles (Stage 5, declared)
+
+Declared on 14.09.2026 before any Stage 5 development metric was computed. Fit
+code lives in `scripts/run_dixon_coles_evaluation.py`.
+
+```text
+P(home=x, away=y) = tau(x, y) * Poisson(x; home_rate) * Poisson(y; away_rate)
+tau(0,0) = 1 - home_rate * away_rate * rho    tau(0,1) = 1 + home_rate * rho
+tau(1,0) = 1 + away_rate * rho                tau(1,1) = 1 - rho
+weight(match) = exp(-decay_per_day * days_before_latest_kickoff_in_history)
+```
+
+- Rates, the fixed N(0, 1) team-strength penalty, unseen-club handling, and the
+  0-30 score grid are unchanged from Stage 4.
+- `rho` is estimated jointly with team strengths by weighted penalized maximum
+  likelihood in every fit; it is not a tuned hyperparameter. A fit or fixture
+  whose correction factors are not strictly positive fails loudly.
+- Weights are anchored at the most recent kickoff in the available history, so
+  a fit depends only on that history and may be reused by later cutoffs with
+  the same history.
+- Decay grid per day, with half-life in days: 0 (none), 0.0005 (1386),
+  0.001 (693), 0.0015 (462), 0.002 (347), 0.003 (231), 0.005 (139). The grid is
+  fixed; a selection at its edge is reported, not extended.
+- Decay is selected by the nested chronological rule in
+  `EVALUATION_PROTOCOL.md`.
+- The candidate is `dixon_coles_decay`. Ablations `poisson_decay` (selected
+  decay, `rho = 0`) and `dixon_coles_no_decay` (no decay, fitted `rho`)
+  attribute any gain; `independent_poisson` is the Stage 4 reference.
+- The promoted-team prior, match statistics, market odds, and the 2025-26
+  holdout remain out of scope.
+
 ## Dynamic promoted-team prior
 
 The project uses the name **dynamic promoted-team prior** for cold-start

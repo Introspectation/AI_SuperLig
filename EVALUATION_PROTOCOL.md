@@ -8,7 +8,7 @@ explicitly replaces it.
 
 | Role | Seasons | Permitted use |
 | --- | --- | --- |
-| Warm-up history | 2017-18 through 2020-21 | Historical observations available to the first development prediction. |
+| Warm-up history | 2017-18 through 2020-21 | Historical observations available to the first development prediction; 2019-20 and 2020-21 also host Stage 5 walk-forward tuning predictions. |
 | Development walk-forward | 2021-22 through 2024-25 | Model development, comparison, and training-only tuning. |
 | Final holdout | 2025-26 | Sealed until the candidate model and decision rule are frozen. |
 | Live-only current season | 2026-27 | Versioned observations may update a live fit; never development tuning data. |
@@ -72,6 +72,24 @@ published to nine decimals; aggregate metrics are computed before rounding.
 The paired interval, calibration-in-the-large table, cold-start slice, and
 exact-score diagnostic in `reports/POISSON_REPORT.md` are descriptive evidence,
 not selection rules.
+
+## Stage 5 chronological decay selection
+
+Stage 5 selects its recency decay without letting a development season tune
+itself:
+
+1. Every eligible fixture from 2019-20 through 2024-25 is predicted at kickoff
+   for each declared decay value, using only `result_available_at < t` history.
+   2019-20 and 2020-21 serve only as tuning seasons.
+2. For development season `S`, the selected decay minimizes mean H/D/A log loss
+   over all grid predictions from 2019-20 through the season before `S`. Ties
+   select the smaller decay. Every tuning result must be available before the
+   first prediction time in `S`.
+3. Development metrics for `S` use only that selected decay. The per-season grid
+   table in the Stage 5 report is descriptive and never replaces the nested
+   choice.
+
+The 2025-26 holdout is not a tuning season.
 
 ## Market isolation
 
