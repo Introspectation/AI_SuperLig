@@ -1,9 +1,9 @@
 # AI SuperLig
 
 Research repository for probabilistic prediction of the 2026-27 Turkish Super
-Lig. The audited data foundation is complete and the modeling stage begins with
-leakage-safe naive probabilistic baselines. No production or live model exists
-yet.
+Lig. The audited data foundation is complete, and modeling has progressed
+through leakage-safe naive baselines to a Stage 4 independent Poisson
+development benchmark. No production or live model exists yet.
 
 The current season is not treated as a frozen one-time download. See
 `CURRENT_SEASON_DATA.md` for immutable refresh, promotion, and pre-prediction
@@ -92,6 +92,20 @@ This creates per-match development predictions, aggregate metrics, and
 development seasons, while 2025-26 remains a sealed final holdout. See
 `EVALUATION_PROTOCOL.md` for metric definitions and leakage rules, and
 `ROADMAP.md` for the ordered path to the 2026-27 prediction runner.
+
+## Reproduce the independent Poisson model
+
+Run the foundation, the naive baselines, and the Stage 4 independent Poisson
+walk-forward evaluation with:
+
+```powershell
+python scripts/run_poisson_evaluation.py
+```
+
+This regenerates the baseline outputs, then writes per-match Poisson
+predictions, metrics, and `reports/POISSON_REPORT.md` under the same frozen
+split. CI runs this command and verifies that committed outputs reproduce. The
+model specification is recorded in `MODEL_DESIGN.md`.
 
 Before any future live forecast, run the age-and-coverage gate documented in
 `CURRENT_SEASON_DATA.md`. A successful offline build alone does not mean the

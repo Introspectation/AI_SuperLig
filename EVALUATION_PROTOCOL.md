@@ -55,8 +55,23 @@ sum to one. Probability clipping is not used to hide invalid model output.
   eligible result available before the prediction timestamp.
 
 These are reference floors, not deployment candidates. They use no team
-identity, match statistics, betting odds, or future information. Independent
-Poisson is the next roadmap model after this checkpoint.
+identity, match statistics, betting odds, or future information. They remain
+the floors for every later challenger.
+
+## Stage 4 independent Poisson
+
+`independent_poisson` is the first team-strength challenger. It is scored on
+the same development fixtures, prediction timestamps, and metrics as the
+baselines. `scripts/run_poisson_evaluation.py` regenerates the baselines first
+and fails if their fixtures or prediction times differ. The specification is
+recorded in `MODEL_DESIGN.md`.
+
+Iterative fits are reproducible to numerical tolerance rather than
+bit-for-bit across numerical libraries, so per-match fitted values are
+published to nine decimals; aggregate metrics are computed before rounding.
+The paired interval, calibration-in-the-large table, cold-start slice, and
+exact-score diagnostic in `reports/POISSON_REPORT.md` are descriptive evidence,
+not selection rules.
 
 ## Market isolation
 

@@ -149,7 +149,8 @@ def _probability_row(
     }
 
 
-def build_predictions(matches: pd.DataFrame, splits: pd.DataFrame) -> pd.DataFrame:
+def development_targets(matches: pd.DataFrame, splits: pd.DataFrame) -> pd.DataFrame:
+    """Return eligible development fixtures ordered by kickoff prediction time."""
     canonical_seasons = list(dict.fromkeys(matches["season"].tolist()))
     configured_seasons = splits["season"].tolist()
     if canonical_seasons != configured_seasons:
@@ -164,6 +165,11 @@ def build_predictions(matches: pd.DataFrame, splits: pd.DataFrame) -> pd.DataFra
     targets = targets.sort_values(["_prediction_time", "match_id"], kind="stable")
     if targets.empty:
         raise BaselineEvaluationError("Development split contains no eligible matches")
+    return targets
+
+
+def build_predictions(matches: pd.DataFrame, splits: pd.DataFrame) -> pd.DataFrame:
+    targets = development_targets(matches, splits)
 
     rows: list[dict[str, Any]] = []
     for cutoff, fixtures in targets.groupby("_prediction_time", sort=True):
@@ -240,7 +246,8 @@ def _validate_predictions(predictions: pd.DataFrame, targets: pd.DataFrame) -> N
         raise BaselineEvaluationError("Prediction history crosses the strict time boundary")
 
 
-def score_predictions(predictions: pd.DataFrame) -> pd.DataFrame:
+def add_match_scores(predictions: pd.DataFrame) -> pd.DataFrame:
+    """Return a copy with per-match natural-log loss and multiclass Brier score."""
     probability_for_result = {
         "H": predictions["p_home"],
         "D": predictions["p_draw"],
@@ -263,16 +270,24 @@ def score_predictions(predictions: pd.DataFrame) -> pd.DataFrame:
         )
         for row, result in zip(scored.to_dict("records"), scored["actual_result"])
     ]
+    return scored
+
+
+def score_predictions(
+    predictions: pd.DataFrame, models: list[str] | None = None
+) -> pd.DataFrame:
+    model_order = MODEL_ORDER if models is None else models
+    scored = add_match_scores(predictions)
 
     metric_rows: list[dict[str, Any]] = []
-    for model in MODEL_ORDER:
+    for model in model_order:
         selected = scored.loc[scored["model"] == model]
         metric_rows.append(_metric_row("ALL", model, selected))
     for season in EXPECTED_SPLITS:
         season_name, role = season
         if role != "development":
             continue
-        for model in MODEL_ORDER:
+        for model in model_order:
             selected = scored.loc[
                 (scored["season"] == season_name) & (scored["model"] == model)
             ]
@@ -374,8 +389,9 @@ def generate_report(predictions: pd.DataFrame, metrics: pd.DataFrame) -> str:
         "",
         "## Next roadmap gate",
         "",
-        "Implement independent Poisson under the same split and metrics. Do not open",
-        "the 2025-26 holdout and do not implement the dynamic promoted-team prior yet.",
+        "Stage 4 independent Poisson is compared with these floors under the same",
+        "split and metrics in `reports/POISSON_REPORT.md`. The 2025-26 holdout",
+        "remains sealed.",
         "",
     ]
     return "\n".join(lines)
